@@ -173,9 +173,136 @@
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: float3D 6s ease-in-out infinite;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon.ai-chat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .feature-icon.pdf-resume {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .feature-icon.doc-creation {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .feature-icon.charts {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .feature-icon.search {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .feature-icon.code-gen {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: -1;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+
+
+        @keyframes float3D {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            25% { 
+                transform: translateY(-4px) rotateX(2deg) rotateY(-2deg); 
+                box-shadow: 
+                    0 12px 36px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                transform: translateY(-6px) rotateX(-1deg) rotateY(3deg); 
+                box-shadow: 
+                    0 16px 40px rgba(0, 0, 0, 0.4),
+                    0 0 25px rgba(255, 255, 255, 0.15),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            }
+            75% { 
+                transform: translateY(-2px) rotateX(3deg) rotateY(-1deg); 
+                box-shadow: 
+                    0 10px 34px rgba(0, 0, 0, 0.35),
+                    0 0 22px rgba(255, 255, 255, 0.12),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+            }
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            animation: iconHover 0.5s ease-out, glassGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes glassGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 40px rgba(0, 0, 0, 0.4),
+                    0 0 30px rgba(255, 255, 255, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            }
+            50% { 
+                box-shadow: 
+                    0 25px 50px rgba(0, 0, 0, 0.5),
+                    0 0 40px rgba(255, 255, 255, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                    0 0 60px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes iconHover {
+            0% { transform: translateY(-5px) rotateX(0deg) rotateY(0deg) scale(1); }
+            50% { transform: translateY(-8px) rotateX(20deg) rotateY(20deg) scale(1.15); }
+            100% { transform: translateY(-5px) rotateX(15deg) rotateY(15deg) scale(1.1); }
         }
 
         .feature-card h3 {
@@ -227,6 +354,39 @@
             font-size: 2.2rem;
             margin-bottom: 1.5rem;
             color: #00d4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .security-icon {
+            width: 60px !important;
+            height: 60px !important;
+            font-size: 1.8rem !important;
+            animation: securityFloat 4s ease-in-out infinite;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            display: inline-flex !important;
+            margin: 0 1rem 0 0 !important;
+        }
+
+        @keyframes securityFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotateZ(0deg) scale(1); 
+                filter: drop-shadow(0 8px 16px rgba(0, 212, 255, 0.4));
+            }
+            25% { 
+                transform: translateY(-5px) rotateZ(-5deg) scale(1.05); 
+                filter: drop-shadow(0 12px 20px rgba(0, 212, 255, 0.6));
+            }
+            50% { 
+                transform: translateY(-8px) rotateZ(5deg) scale(1.1); 
+                filter: drop-shadow(0 15px 25px rgba(0, 212, 255, 0.3));
+            }
+            75% { 
+                transform: translateY(-3px) rotateZ(-3deg) scale(1.05); 
+                filter: drop-shadow(0 10px 18px rgba(0, 212, 255, 0.5));
+            }
         }
 
         .security p {
@@ -245,7 +405,7 @@
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
             background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
             background-size: 400% 400%;
             color: white;
@@ -294,6 +454,74 @@
         @keyframes buttonPulse {
             0%, 100% { box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4), 0 0 20px rgba(0, 212, 255, 0.6); }
             50% { box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6), 0 0 30px rgba(0, 212, 255, 0.8); }
+        }
+
+        .download-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            color: white;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: downloadBounce 2s ease-in-out infinite;
+        }
+
+        .download-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: -1;
+        }
+
+        .download-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes downloadBounce {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg); 
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            }
+            50% { 
+                transform: translateY(-3px) rotateX(10deg); 
+                filter: drop-shadow(0 8px 12px rgba(0, 212, 255, 0.4));
+            }
+        }
+
+        .download-btn:hover .download-icon {
+            animation: downloadHover 0.6s ease-in-out infinite;
+        }
+
+        @keyframes downloadHover {
+            0%, 100% { 
+                transform: translateY(-2px) rotateX(15deg) scale(1.1); 
+            }
+            50% { 
+                transform: translateY(-5px) rotateX(20deg) scale(1.15); 
+            }
         }
 
         /* Footer */
@@ -405,37 +633,37 @@
             <h2>Características Principales</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <span class="feature-icon">🤖</span>
+                    <div class="feature-icon ai-chat" data-icon="🧠">🧠</div>
                     <h3>Chat Local con IA</h3>
                     <p>Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.</p>
                 </div>
 
                 <div class="feature-card">
-                    <span class="feature-icon">📄</span>
+                    <div class="feature-icon pdf-resume" data-icon="📄">📄</div>
                     <h3>Resúmenes de PDF</h3>
                     <p>Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.</p>
                 </div>
 
                 <div class="feature-card">
-                    <span class="feature-icon">📊</span>
+                    <div class="feature-icon doc-creation" data-icon="📝">📝</div>
                     <h3>Creación de Documentos</h3>
                     <p>Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.</p>
                 </div>
 
                 <div class="feature-card">
-                    <span class="feature-icon">📈</span>
+                    <div class="feature-icon charts" data-icon="📊">📊</div>
                     <h3>Gráficas Sin Internet</h3>
                     <p>Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.</p>
                 </div>
 
                 <div class="feature-card">
-                    <span class="feature-icon">🔍</span>
+                    <div class="feature-icon search" data-icon="🔍">🔍</div>
                     <h3>Búsqueda Inteligente</h3>
                     <p>Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.</p>
                 </div>
 
                 <div class="feature-card">
-                    <span class="feature-icon">💻</span>
+                    <div class="feature-icon code-gen" data-icon="💻">💻</div>
                     <h3>Generación de Código</h3>
                     <p>Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.</p>
                 </div>
@@ -446,7 +674,7 @@
     <!-- Security Section -->
     <section class="security">
         <div class="container">
-            <h2>🛡️ Privacidad y Seguridad Total</h2>
+            <h2><div class="feature-icon security-icon" data-icon="🔒">🔒</div> Privacidad y Seguridad Total</h2>
             <p>SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.</p>
         </div>
     </section>
@@ -457,7 +685,7 @@
             <h2>Comienza Tu Experiencia SuitAI</h2>
             <p style="margin-bottom: 2rem; color: #cccccc;">Descarga SuitAI y descubre el futuro de la inteligencia artificial privada</p>
             <a href="#" class="download-btn" onclick="openDownloadPage()">
-                <span>⬇️</span>
+                <div class="download-icon" data-icon="💾">💾</div>
                 <span>Descargar SuitAI</span>
             </a>
         </div>
@@ -567,6 +795,37 @@
 
                 // Staggered entrance animation
                 card.style.animationDelay = `${index * 0.1}s`;
+
+                // Random animation delays for 3D icons
+                const icon = card.querySelector('.feature-icon');
+                if (icon) {
+                    const randomDelay = Math.random() * 3;
+                    icon.style.animationDelay = `${randomDelay}s`;
+                }
+            });
+        }
+
+        // Enhanced 3D icon effects
+        function enhance3DEffects() {
+            // Add random animation delays to all 3D icons
+            document.querySelectorAll('.feature-icon, .security-icon, .download-icon').forEach(icon => {
+                const randomDelay = Math.random() * 4;
+                const currentAnimation = getComputedStyle(icon).animation;
+                icon.style.animation = currentAnimation;
+                icon.style.animationDelay = `${randomDelay}s`;
+            });
+
+            // Add hover sound effect simulation
+            document.querySelectorAll('.feature-icon').forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    icon.style.transform = 'translateY(-8px) rotateX(20deg) rotateY(20deg) scale(1.2)';
+                    icon.style.filter = 'drop-shadow(0 20px 40px rgba(0, 212, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 212, 255, 0.8))';
+                });
+                
+                icon.addEventListener('mouseleave', () => {
+                    icon.style.transform = '';
+                    icon.style.filter = '';
+                });
             });
         }
 
@@ -628,6 +887,7 @@
             enhanceFeatureCards();
             createScrollAnimations();
             addSparkleAnimation();
+            enhance3DEffects();
             
             // Add mouse movement parallax
             document.addEventListener('mousemove', handleMouseMove);
@@ -639,13 +899,16 @@
                 typeWriter(tagline, originalText, 30);
             }, 1000);
             
-            // Add floating animation to logo
+            // Add floating animation to logo with 3D effects
             const logo = document.querySelector('.logo');
+            logo.style.transformStyle = 'preserve-3d';
             logo.addEventListener('mouseenter', () => {
-                logo.style.transform = 'scale(1.05) rotate(2deg)';
+                logo.style.transform = 'scale(1.05) rotate(2deg) rotateX(5deg) rotateY(5deg)';
+                logo.style.filter = 'drop-shadow(0 10px 20px rgba(0, 212, 255, 0.4))';
             });
             logo.addEventListener('mouseleave', () => {
-                logo.style.transform = 'scale(1) rotate(0deg)';
+                logo.style.transform = 'scale(1) rotate(0deg) rotateX(0deg) rotateY(0deg)';
+                logo.style.filter = '';
             });
         });
 
@@ -660,4 +923,4 @@
         }, 3000);
     </script>
 </body>
-</html> 
+</html>
