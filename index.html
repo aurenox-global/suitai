@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuitAI - Inteligencia Artificial Local</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: headerSweep 4s ease-in-out infinite;
+        }
+
+        @keyframes headerSweep {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
+            background-size: 400% 400%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            margin-bottom: 1rem;
+            animation: gradientShift 4s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1); }
+            to { text-shadow: 0 0 30px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 212, 255, 0.3), 0 0 90px rgba(0, 212, 255, 0.1); }
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            animation: slideInFromLeft 1s ease-out, textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.3); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #aaaaaa;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInFromRight 1.2s ease-out 0.5s both;
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            border-color: rgba(0, 212, 255, 0.8);
+            box-shadow: 
+                0 20px 40px rgba(0, 212, 255, 0.2),
+                0 0 20px rgba(0, 212, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        .feature-card p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Security Section */
+        .security {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 102, 255, 0.05) 100%);
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: sectionPulse 8s ease-in-out infinite;
+        }
+
+        .security::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes sectionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .security h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #00d4ff;
+        }
+
+        .security p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
+            background-size: 400% 400%;
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(0, 212, 255, 0.4),
+                0 0 20px rgba(0, 212, 255, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: gradientShift 1s ease-in-out infinite, buttonPulse 1s ease-in-out infinite;
+        }
+
+        .download-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4), 0 0 20px rgba(0, 212, 255, 0.6); }
+            50% { box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6), 0 0 30px rgba(0, 212, 255, 0.8); }
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888888;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-btn {
+                padding: 1.2rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, rgba(0, 212, 255, 0.2) 50%, transparent 100%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite, sparkle 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.1; }
+            25% { transform: translateY(-30px) rotate(90deg) scale(1.2); opacity: 0.4; }
+            50% { transform: translateY(-20px) rotate(180deg) scale(0.8); opacity: 0.6; }
+            75% { transform: translateY(-40px) rotate(270deg) scale(1.1); opacity: 0.3; }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">SuitAI</div>
+            <p class="tagline">Inteligencia Artificial Completamente Local y Segura</p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>La Revolución de la IA Local</h1>
+            <p>Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>Chat Local con IA</h3>
+                    <p>Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📄</span>
+                    <h3>Resúmenes de PDF</h3>
+                    <p>Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Creación de Documentos</h3>
+                    <p>Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Gráficas Sin Internet</h3>
+                    <p>Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Búsqueda Inteligente</h3>
+                    <p>Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💻</span>
+                    <h3>Generación de Código</h3>
+                    <p>Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security">
+        <div class="container">
+            <h2>🛡️ Privacidad y Seguridad Total</h2>
+            <p>SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.</p>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download">
+        <div class="container">
+            <h2>Comienza Tu Experiencia SuitAI</h2>
+            <p style="margin-bottom: 2rem; color: #cccccc;">Descarga SuitAI y descubre el futuro de la inteligencia artificial privada</p>
+            <a href="#" class="download-btn" onclick="openDownloadPage()">
+                <span>⬇️</span>
+                <span>Descargar SuitAI</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SuitAI. Inteligencia Artificial Local y Segura.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated particles with enhanced effects
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 80;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 2;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 8;
+                const duration = 4 + Math.random() * 4;
+                
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = posX + 'px';
+                particle.style.top = posY + 'px';
+                particle.style.animationDelay = delay + 's';
+                particle.style.animationDuration = duration + 's';
+                
+                // Add random glow intensity
+                const glowIntensity = Math.random() * 0.5 + 0.2;
+                particle.style.opacity = glowIntensity;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Typing effect for hero text
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Parallax effect for mouse movement
+        function handleMouseMove(e) {
+            const particles = document.querySelectorAll('.particle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index % 5 + 1) * 0.5;
+                const xOffset = (x - 0.5) * speed * 10;
+                const yOffset = (y - 0.5) * speed * 10;
+                
+                particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        function createScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                        entry.target.style.animationDelay = '0.2s';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.feature-card, .security, .download').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Enhanced feature card interactions
+        function enhanceFeatureCards() {
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02) rotateX(5deg) rotateY(5deg)';
+                    this.style.zIndex = '10';
+                    
+                    // Add sparkle effect
+                    createSparkles(this);
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+                    this.style.zIndex = '1';
+                    
+                    // Remove sparkles
+                    this.querySelectorAll('.sparkle').forEach(sparkle => sparkle.remove());
+                });
+
+                // Staggered entrance animation
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Create sparkle effects on hover
+        function createSparkles(element) {
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.position = 'absolute';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
+                sparkle.style.background = 'rgba(0, 212, 255, 0.8)';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animation = 'sparkleEffect 1s ease-out forwards';
+                sparkle.style.boxShadow = '0 0 6px rgba(0, 212, 255, 0.8)';
+                sparkle.style.pointerEvents = 'none';
+                
+                element.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        // Add sparkle animation to CSS dynamically
+        function addSparkleAnimation() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes sparkleEffect {
+                    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                    50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
+                    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Download button functionality with enhanced effects
+        function openDownloadPage() {
+            // Enlace oficial de descarga de SuitAI
+            window.open('https://mega.nz/folder/xb4TTb4Q#3IPeywjEAAQXQZLlJGlxLg', '_blank');
+            
+            // Add click effect
+            const btn = document.querySelector('.download-btn');
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 150);
+        }
+
+        // Page load animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Initialize all effects
+            createParticles();
+            enhanceFeatureCards();
+            createScrollAnimations();
+            addSparkleAnimation();
+            
+            // Add mouse movement parallax
+            document.addEventListener('mousemove', handleMouseMove);
+            
+            // Typing effect for tagline
+            setTimeout(() => {
+                const tagline = document.querySelector('.tagline');
+                const originalText = tagline.textContent;
+                typeWriter(tagline, originalText, 30);
+            }, 1000);
+            
+            // Add floating animation to logo
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('mouseenter', () => {
+                logo.style.transform = 'scale(1.05) rotate(2deg)';
+            });
+            logo.addEventListener('mouseleave', () => {
+                logo.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Random particle regeneration
+        setInterval(() => {
+            const particles = document.querySelectorAll('.particle');
+            if (particles.length > 0) {
+                const randomParticle = particles[Math.floor(Math.random() * particles.length)];
+                randomParticle.style.left = Math.random() * window.innerWidth + 'px';
+                randomParticle.style.top = Math.random() * window.innerHeight + 'px';
+            }
+        }, 3000);
+    </script>
+</body>
+</html> 
