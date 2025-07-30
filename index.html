@@ -36,6 +36,92 @@
             overflow: hidden;
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .floating-languages {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .language-flag {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: flagFloat 6s ease-in-out infinite;
+            will-change: transform;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-flag:hover {
+            transform: translateY(-8px) scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 
+                0 8px 24px rgba(0, 212, 255, 0.3),
+                0 0 20px rgba(0, 212, 255, 0.2);
+            z-index: 10;
+        }
+
+        .language-flag.active {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 153, 204, 0.3) 100%);
+            border-color: #00d4ff;
+            box-shadow: 
+                0 6px 20px rgba(0, 212, 255, 0.4),
+                0 0 15px rgba(0, 212, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .language-flag.active:hover {
+            transform: translateY(-8px) scale(1.15);
+        }
+
+        @keyframes flagFloat {
+            0%, 100% { 
+                transform: translateY(0px); 
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+            25% { 
+                transform: translateY(-3px); 
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            }
+            50% { 
+                transform: translateY(-5px); 
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+            75% { 
+                transform: translateY(-2px); 
+                box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+            }
+        }
+
+        /* Staggered animation delays */
+        .language-flag:nth-child(1) { animation-delay: 0s; }
+        .language-flag:nth-child(2) { animation-delay: 0.2s; }
+        .language-flag:nth-child(3) { animation-delay: 0.4s; }
+        .language-flag:nth-child(4) { animation-delay: 0.6s; }
+        .language-flag:nth-child(5) { animation-delay: 0.8s; }
+
         header::before {
             content: '';
             position: absolute;
@@ -574,6 +660,24 @@
                 padding: 1.2rem 2rem;
                 font-size: 1.1rem;
             }
+
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .floating-languages {
+                gap: 0.3rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .language-flag {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
         }
 
         /* Particles Background */
@@ -616,58 +720,69 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">SuitAI</div>
-            <p class="tagline">Inteligencia Artificial Completamente Local y Segura</p>
+            <div class="header-top">
+                <div class="logo">SuitAI</div>
+                <div class="language-selector">
+                    <div class="floating-languages">
+                        <div class="language-flag active" data-lang="es" title="Español">🇪🇸</div>
+                        <div class="language-flag" data-lang="en" title="English">🇺🇸</div>
+                        <div class="language-flag" data-lang="de" title="Deutsch">🇩🇪</div>
+                        <div class="language-flag" data-lang="pl" title="Polski">🇵🇱</div>
+                        <div class="language-flag" data-lang="fr" title="Français">🇫🇷</div>
+                    </div>
+                </div>
+            </div>
+            <p class="tagline" data-key="tagline">Inteligencia Artificial Completamente Local y Segura</p>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>La Revolución de la IA Local</h1>
-            <p>Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.</p>
+            <h1 data-key="heroTitle">La Revolución de la IA Local</h1>
+            <p data-key="heroDescription">Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.</p>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2>Características Principales</h2>
+            <h2 data-key="featuresTitle">Características Principales</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon ai-chat" data-icon="🧠">🧠</div>
-                    <h3>Chat Local con IA</h3>
-                    <p>Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.</p>
+                    <h3 data-key="feature1Title">Chat Local con IA</h3>
+                    <p data-key="feature1Description">Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon pdf-resume" data-icon="📄">📄</div>
-                    <h3>Resúmenes de PDF</h3>
-                    <p>Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.</p>
+                    <h3 data-key="feature2Title">Resúmenes de PDF</h3>
+                    <p data-key="feature2Description">Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon doc-creation" data-icon="📝">📝</div>
-                    <h3>Creación de Documentos</h3>
-                    <p>Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.</p>
+                    <h3 data-key="feature3Title">Creación de Documentos</h3>
+                    <p data-key="feature3Description">Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon charts" data-icon="📊">📊</div>
-                    <h3>Gráficas Sin Internet</h3>
-                    <p>Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.</p>
+                    <h3 data-key="feature4Title">Gráficas Sin Internet</h3>
+                    <p data-key="feature4Description">Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon search" data-icon="🔍">🔍</div>
-                    <h3>Búsqueda Inteligente</h3>
-                    <p>Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.</p>
+                    <h3 data-key="feature5Title">Búsqueda Inteligente</h3>
+                    <p data-key="feature5Description">Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon code-gen" data-icon="💻">💻</div>
-                    <h3>Generación de Código</h3>
-                    <p>Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.</p>
+                    <h3 data-key="feature6Title">Generación de Código</h3>
+                    <p data-key="feature6Description">Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.</p>
                 </div>
             </div>
         </div>
@@ -676,19 +791,19 @@
     <!-- Security Section -->
     <section class="security">
         <div class="container">
-            <h2><div class="feature-icon security-icon" data-icon="🔒">🔒</div> Privacidad y Seguridad Total</h2>
-            <p>SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.</p>
+            <h2><div class="feature-icon security-icon" data-icon="🔒">🔒</div> <span data-key="securityTitle">Privacidad y Seguridad Total</span></h2>
+            <p data-key="securityDescription">SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.</p>
         </div>
     </section>
 
     <!-- Download Section -->
     <section class="download">
         <div class="container">
-            <h2>Comienza Tu Experiencia SuitAI</h2>
-            <p style="margin-bottom: 2rem; color: #cccccc;">Descarga SuitAI y descubre el futuro de la inteligencia artificial privada</p>
+            <h2 data-key="downloadTitle">Comienza Tu Experiencia SuitAI</h2>
+            <p style="margin-bottom: 2rem; color: #cccccc;" data-key="downloadDescription">Descarga SuitAI y descubre el futuro de la inteligencia artificial privada</p>
             <a href="#" class="download-btn" onclick="openDownloadPage()">
                 <div class="download-icon" data-icon="💾">💾</div>
-                <span>Descargar SuitAI</span>
+                <span data-key="downloadButton">Descargar SuitAI</span>
             </a>
         </div>
     </section>
@@ -696,7 +811,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 SuitAI. Inteligencia Artificial Local y Segura.</p>
+            <p data-key="footer">&copy; 2024 SuitAI. Inteligencia Artificial Local y Segura.</p>
         </div>
     </footer>
 
@@ -822,7 +937,229 @@
             });
         }
 
-        // Funciones sparkle removidas para optimización
+        // Sistema de traducción multiidioma
+        const translations = {
+            es: {
+                tagline: "Inteligencia Artificial Completamente Local y Segura",
+                heroTitle: "La Revolución de la IA Local",
+                heroDescription: "Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.",
+                featuresTitle: "Características Principales",
+                feature1Title: "Chat Local con IA",
+                feature1Description: "Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.",
+                feature2Title: "Resúmenes de PDF",
+                feature2Description: "Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.",
+                feature3Title: "Creación de Documentos",
+                feature3Description: "Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.",
+                feature4Title: "Gráficas Sin Internet",
+                feature4Description: "Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.",
+                feature5Title: "Búsqueda Inteligente",
+                feature5Description: "Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.",
+                feature6Title: "Generación de Código",
+                feature6Description: "Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.",
+                securityTitle: "Privacidad y Seguridad Total",
+                securityDescription: "SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.",
+                downloadTitle: "Comienza Tu Experiencia SuitAI",
+                downloadDescription: "Descarga SuitAI y descubre el futuro de la inteligencia artificial privada",
+                downloadButton: "Descargar SuitAI",
+                footer: "© 2024 SuitAI. Inteligencia Artificial Local y Segura."
+            },
+            en: {
+                tagline: "Completely Local and Secure Artificial Intelligence",
+                heroTitle: "The Local AI Revolution",
+                heroDescription: "Experience the power of artificial intelligence without compromising your privacy. SuitAI runs completely on your device, no internet required.",
+                featuresTitle: "Main Features",
+                feature1Title: "Local AI Chat",
+                feature1Description: "Converse with advanced artificial intelligence that runs completely on your device. No latency, no limits, no privacy compromise.",
+                feature2Title: "PDF Summaries",
+                feature2Description: "Analyze and summarize PDF documents instantly. Extract key information, generate executive summaries and understand complex content in seconds.",
+                feature3Title: "Document Creation",
+                feature3Description: "Generate PDF, DOC, Excel, and text files with AI. Create reports, presentations and professional documents automatically.",
+                feature4Title: "Offline Charts",
+                feature4Description: "Create impressive data visualizations completely offline. Generate interactive charts, diagrams and graphs without external connection.",
+                feature5Title: "Smart Search",
+                feature5Description: "Search for information on the internet when you need it, or stay completely offline. You decide when to connect and when to stay private.",
+                feature6Title: "Code Generation",
+                feature6Description: "Develop applications, scripts and code in multiple languages. A complete programming assistant that works locally on your machine.",
+                securityTitle: "Total Privacy and Security",
+                securityDescription: "SuitAI is designed with privacy as a priority. It works completely offline when you want, keeping your data safe on your device. Disconnect from the internet and keep working with all AI functionalities. Your conversations, documents and data never leave your control.",
+                downloadTitle: "Start Your SuitAI Experience",
+                downloadDescription: "Download SuitAI and discover the future of private artificial intelligence",
+                downloadButton: "Download SuitAI",
+                footer: "© 2024 SuitAI. Local and Secure Artificial Intelligence."
+            },
+            de: {
+                tagline: "Vollständig Lokale und Sichere Künstliche Intelligenz",
+                heroTitle: "Die Lokale KI-Revolution",
+                heroDescription: "Erleben Sie die Macht der künstlichen Intelligenz ohne Kompromisse bei der Privatsphäre. SuitAI läuft vollständig auf Ihrem Gerät, kein Internet erforderlich.",
+                featuresTitle: "Hauptfunktionen",
+                feature1Title: "Lokaler KI-Chat",
+                feature1Description: "Unterhalten Sie sich mit fortgeschrittener künstlicher Intelligenz, die vollständig auf Ihrem Gerät läuft. Keine Latenz, keine Grenzen, keine Privatsphäre-Kompromisse.",
+                feature2Title: "PDF-Zusammenfassungen",
+                feature2Description: "Analysieren und fassen Sie PDF-Dokumente sofort zusammen. Extrahieren Sie wichtige Informationen, erstellen Sie Executive Summaries und verstehen Sie komplexe Inhalte in Sekunden.",
+                feature3Title: "Dokumentenerstellung",
+                feature3Description: "Generieren Sie PDF-, DOC-, Excel- und Textdateien mit KI. Erstellen Sie automatisch Berichte, Präsentationen und professionelle Dokumente.",
+                feature4Title: "Offline-Diagramme",
+                feature4Description: "Erstellen Sie beeindruckende Datenvisualisierungen vollständig offline. Generieren Sie interaktive Diagramme und Grafiken ohne externe Verbindung.",
+                feature5Title: "Intelligente Suche",
+                feature5Description: "Suchen Sie bei Bedarf Informationen im Internet oder bleiben Sie vollständig offline. Sie entscheiden, wann Sie sich verbinden und wann Sie privat bleiben.",
+                feature6Title: "Code-Generierung",
+                feature6Description: "Entwickeln Sie Anwendungen, Skripte und Code in mehreren Sprachen. Ein kompletter Programmierassistent, der lokal auf Ihrer Maschine arbeitet.",
+                securityTitle: "Totale Privatsphäre und Sicherheit",
+                securityDescription: "SuitAI ist mit Privatsphäre als Priorität entwickelt. Es arbeitet vollständig offline, wenn Sie möchten, und hält Ihre Daten sicher auf Ihrem Gerät. Trennen Sie die Internetverbindung und arbeiten Sie weiter mit allen KI-Funktionalitäten. Ihre Gespräche, Dokumente und Daten verlassen nie Ihre Kontrolle.",
+                downloadTitle: "Starten Sie Ihre SuitAI-Erfahrung",
+                downloadDescription: "Laden Sie SuitAI herunter und entdecken Sie die Zukunft der privaten künstlichen Intelligenz",
+                downloadButton: "SuitAI Herunterladen",
+                footer: "© 2024 SuitAI. Lokale und Sichere Künstliche Intelligenz."
+            },
+            pl: {
+                tagline: "Całkowicie Lokalna i Bezpieczna Sztuczna Inteligencja",
+                heroTitle: "Rewolucja Lokalnej AI",
+                heroDescription: "Doświadcz mocy sztucznej inteligencji bez narażania prywatności. SuitAI działa całkowicie na Twoim urządzeniu, bez potrzeby internetu.",
+                featuresTitle: "Główne Funkcje",
+                feature1Title: "Lokalny Chat z AI",
+                feature1Description: "Rozmawiaj z zaawansowaną sztuczną inteligencją, która działa całkowicie na Twoim urządzeniu. Bez opóźnień, bez ograniczeń, bez kompromisów w prywatności.",
+                feature2Title: "Podsumowania PDF",
+                feature2Description: "Analizuj i podsumowuj dokumenty PDF natychmiastowo. Wydobywaj kluczowe informacje, generuj streszczenia wykonawcze i rozumiej złożone treści w sekundach.",
+                feature3Title: "Tworzenie Dokumentów",
+                feature3Description: "Generuj pliki PDF, DOC, Excel i tekstowe za pomocą AI. Twórz raporty, prezentacje i profesjonalne dokumenty automatycznie.",
+                feature4Title: "Wykresy Offline",
+                feature4Description: "Twórz imponujące wizualizacje danych całkowicie offline. Generuj interaktywne wykresy, diagramy i grafy bez zewnętrznego połączenia.",
+                feature5Title: "Inteligentne Wyszukiwanie",
+                feature5Description: "Szukaj informacji w internecie gdy potrzebujesz, lub pozostań całkowicie offline. To Ty decydujesz kiedy się połączyć, a kiedy pozostać prywatnym.",
+                feature6Title: "Generowanie Kodu",
+                feature6Description: "Twórz aplikacje, skrypty i kod w wielu językach. Kompletny asystent programistyczny, który działa lokalnie na Twojej maszynie.",
+                securityTitle: "Całkowita Prywatność i Bezpieczeństwo",
+                securityDescription: "SuitAI został zaprojektowany z prywatnością jako priorytetem. Działa całkowicie offline gdy chcesz, zachowując Twoje dane bezpiecznie na urządzeniu. Odłącz się od internetu i kontynuuj pracę ze wszystkimi funkcjonalnościami AI. Twoje rozmowy, dokumenty i dane nigdy nie opuszczają Twojej kontroli.",
+                downloadTitle: "Rozpocznij Swoją Przygodę z SuitAI",
+                downloadDescription: "Pobierz SuitAI i odkryj przyszłość prywatnej sztucznej inteligencji",
+                downloadButton: "Pobierz SuitAI",
+                footer: "© 2024 SuitAI. Lokalna i Bezpieczna Sztuczna Inteligencja."
+            },
+            fr: {
+                tagline: "Intelligence Artificielle Complètement Locale et Sécurisée",
+                heroTitle: "La Révolution de l'IA Locale",
+                heroDescription: "Découvrez la puissance de l'intelligence artificielle sans compromettre votre vie privée. SuitAI fonctionne entièrement sur votre appareil, sans besoin d'internet.",
+                featuresTitle: "Fonctionnalités Principales",
+                feature1Title: "Chat Local avec IA",
+                feature1Description: "Conversez avec une intelligence artificielle avancée qui fonctionne entièrement sur votre appareil. Sans latence, sans limites, sans compromis sur la vie privée.",
+                feature2Title: "Résumés PDF",
+                feature2Description: "Analysez et résumez des documents PDF instantanément. Extrayez des informations clés, générez des résumés exécutifs et comprenez du contenu complexe en quelques secondes.",
+                feature3Title: "Création de Documents",
+                feature3Description: "Générez des fichiers PDF, DOC, Excel et texte avec l'IA. Créez automatiquement des rapports, présentations et documents professionnels.",
+                feature4Title: "Graphiques Hors Ligne",
+                feature4Description: "Créez des visualisations de données impressionnantes complètement hors ligne. Générez des graphiques, diagrammes et charts interactifs sans connexion externe.",
+                feature5Title: "Recherche Intelligente",
+                feature5Description: "Recherchez des informations sur internet quand vous en avez besoin, ou restez complètement hors ligne. Vous décidez quand vous connecter et quand rester privé.",
+                feature6Title: "Génération de Code",
+                feature6Description: "Développez des applications, scripts et code dans plusieurs langages. Un assistant de programmation complet qui fonctionne localement sur votre machine.",
+                securityTitle: "Confidentialité et Sécurité Totales",
+                securityDescription: "SuitAI est conçu avec la confidentialité comme priorité. Il fonctionne complètement hors ligne quand vous le souhaitez, gardant vos données en sécurité sur votre appareil. Déconnectez-vous d'internet et continuez à travailler avec toutes les fonctionnalités IA. Vos conversations, documents et données ne quittent jamais votre contrôle.",
+                downloadTitle: "Commencez Votre Expérience SuitAI",
+                downloadDescription: "Téléchargez SuitAI et découvrez l'avenir de l'intelligence artificielle privée",
+                downloadButton: "Télécharger SuitAI",
+                footer: "© 2024 SuitAI. Intelligence Artificielle Locale et Sécurisée."
+            }
+        };
+
+        // Variables globales para idioma
+        let currentLanguage = 'es';
+        const languageFlags = {
+            es: '🇪🇸',
+            en: '🇺🇸', 
+            de: '🇩🇪',
+            pl: '🇵🇱',
+            fr: '🇫🇷'
+        };
+
+        // Función para cambiar idioma
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            
+            currentLanguage = lang;
+            
+            // Actualizar todos los elementos con data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Actualizar banderas activas
+            document.querySelectorAll('.language-flag').forEach(flag => {
+                flag.classList.remove('active');
+                if (flag.getAttribute('data-lang') === lang) {
+                    flag.classList.add('active');
+                }
+            });
+            
+            // Guardar preferencia
+            localStorage.setItem('suitai-language', lang);
+            
+            console.log(`Idioma cambiado a: ${lang}`);
+        }
+
+        // Función para inicializar el selector de idioma
+        function initLanguageSelector() {
+            // Verificar que todas las banderas estén presentes
+            const allFlags = document.querySelectorAll('.language-flag');
+            console.log(`🌍 Banderas de idioma encontradas: ${allFlags.length}`);
+            
+            if (allFlags.length === 0) {
+                console.error('❌ No se encontraron banderas de idioma');
+                return;
+            }
+
+            allFlags.forEach(flag => {
+                const lang = flag.getAttribute('data-lang');
+                const title = flag.getAttribute('title');
+                console.log(`🏁 ${lang}: ${title} - ${flag.textContent}`);
+            });
+            
+            // Manejar clics en banderas
+            allFlags.forEach(flag => {
+                flag.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const lang = flag.getAttribute('data-lang');
+                    console.log(`🎯 Bandera seleccionada: ${lang}`);
+                    changeLanguage(lang);
+                    
+                    // Efecto visual de clic
+                    flag.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        flag.style.transform = '';
+                    }, 150);
+                });
+
+                // Efecto hover mejorado
+                flag.addEventListener('mouseenter', () => {
+                    if (!flag.classList.contains('active')) {
+                        flag.style.transform = 'translateY(-8px) scale(1.1)';
+                    }
+                });
+
+                flag.addEventListener('mouseleave', () => {
+                    if (!flag.classList.contains('active')) {
+                        flag.style.transform = '';
+                    }
+                });
+            });
+            
+            // Cargar idioma guardado o español por defecto
+            const savedLanguage = localStorage.getItem('suitai-language') || 'es';
+            if (translations[savedLanguage]) {
+                changeLanguage(savedLanguage);
+            } else {
+                changeLanguage('es');
+            }
+
+            console.log('✅ Selector de idiomas flotantes inicializado correctamente');
+            
+            // Limpiar logs después de 3 segundos
+            setTimeout(() => {
+                console.clear();
+            }, 3000);
+        }
 
         // Download button functionality with enhanced effects
         function openDownloadPage() {
@@ -847,6 +1184,7 @@
             enhanceFeatureCards();
             createScrollAnimations();
             enhance3DEffects();
+            initLanguageSelector();
             
             // Add mouse movement parallax
             document.addEventListener('mousemove', handleMouseMove);
@@ -854,8 +1192,10 @@
             // Typing effect for tagline
             setTimeout(() => {
                 const tagline = document.querySelector('.tagline');
-                const originalText = tagline.textContent;
-                typeWriter(tagline, originalText, 30);
+                if (tagline) {
+                    const originalText = tagline.textContent;
+                    typeWriter(tagline, originalText, 30);
+                }
             }, 1000);
             
             // Optimized logo interaction
