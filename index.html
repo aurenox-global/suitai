@@ -63,7 +63,8 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
             margin-bottom: 1rem;
-            animation: gradientShift 4s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+            animation: gradientShift 6s ease-in-out infinite; /* Reducido a una sola animación */
+            will-change: background-position;
         }
 
         @keyframes gradientShift {
@@ -180,17 +181,17 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            transform-style: preserve-3d;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-radius: 20px;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px); /* Reducido para mejor rendimiento */
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float3D 6s ease-in-out infinite;
+            animation: float3D 8s ease-in-out infinite; /* Más lento */
             font-size: 2rem;
             color: white;
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            will-change: transform; /* Optimización GPU */
         }
 
         .feature-icon.ai-chat {
@@ -588,10 +589,11 @@
 
         .particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, rgba(0, 212, 255, 0.2) 50%, transparent 100%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.6) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite, sparkle 3s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            animation: float 8s ease-in-out infinite; /* Removido sparkle para mejor rendimiento */
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+            will-change: transform, opacity;
         }
 
         @keyframes float {
@@ -699,20 +701,20 @@
     </footer>
 
     <script>
-        // Create animated particles with enhanced effects
+        // Create optimized particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const numberOfParticles = 80;
+            const numberOfParticles = 30; // Reducido para mejor rendimiento
 
             for (let i = 0; i < numberOfParticles; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 6 + 2;
+                const size = Math.random() * 4 + 2;
                 const posX = Math.random() * window.innerWidth;
                 const posY = Math.random() * window.innerHeight;
-                const delay = Math.random() * 8;
-                const duration = 4 + Math.random() * 4;
+                const delay = Math.random() * 6;
+                const duration = 6 + Math.random() * 2; // Duraciones más consistentes
                 
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
@@ -720,9 +722,9 @@
                 particle.style.top = posY + 'px';
                 particle.style.animationDelay = delay + 's';
                 particle.style.animationDuration = duration + 's';
+                particle.style.willChange = 'transform, opacity'; // Optimización GPU
                 
-                // Add random glow intensity
-                const glowIntensity = Math.random() * 0.5 + 0.2;
+                const glowIntensity = Math.random() * 0.3 + 0.2;
                 particle.style.opacity = glowIntensity;
                 
                 particlesContainer.appendChild(particle);
@@ -743,18 +745,28 @@
             type();
         }
 
-        // Parallax effect for mouse movement
+        // Optimized parallax effect with throttling
+        let mouseThrottle = false;
         function handleMouseMove(e) {
-            const particles = document.querySelectorAll('.particle');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
+            if (mouseThrottle) return;
+            mouseThrottle = true;
             
-            particles.forEach((particle, index) => {
-                const speed = (index % 5 + 1) * 0.5;
-                const xOffset = (x - 0.5) * speed * 10;
-                const yOffset = (y - 0.5) * speed * 10;
+            requestAnimationFrame(() => {
+                const particles = document.querySelectorAll('.particle');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
                 
-                particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                particles.forEach((particle, index) => {
+                    if (index % 2 === 0) { // Solo aplicar a la mitad para mejor rendimiento
+                        const speed = (index % 3 + 1) * 0.3; // Reducir intensidad
+                        const xOffset = (x - 0.5) * speed * 5;
+                        const yOffset = (y - 0.5) * speed * 5;
+                        
+                        particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                    }
+                });
+                
+                mouseThrottle = false;
             });
         }
 
@@ -774,95 +786,43 @@
             });
         }
 
-        // Enhanced feature card interactions
+        // Optimized feature card interactions
         function enhanceFeatureCards() {
             document.querySelectorAll('.feature-card').forEach((card, index) => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px) scale(1.02) rotateX(5deg) rotateY(5deg)';
+                    this.style.transform = 'translateY(-8px) scale(1.02)'; /* Simplificado para mejor rendimiento */
                     this.style.zIndex = '10';
-                    
-                    // Add sparkle effect
-                    createSparkles(this);
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+                    this.style.transform = 'translateY(0) scale(1)';
                     this.style.zIndex = '1';
-                    
-                    // Remove sparkles
-                    this.querySelectorAll('.sparkle').forEach(sparkle => sparkle.remove());
                 });
 
-                // Staggered entrance animation
-                card.style.animationDelay = `${index * 0.1}s`;
+                // Staggered entrance animation con menos delay
+                card.style.animationDelay = `${index * 0.05}s`;
 
-                // Random animation delays for 3D icons
+                // Random animation delays optimizados
                 const icon = card.querySelector('.feature-icon');
                 if (icon) {
-                    const randomDelay = Math.random() * 3;
+                    const randomDelay = Math.random() * 2; /* Reducido el rango */
                     icon.style.animationDelay = `${randomDelay}s`;
+                    icon.style.willChange = 'transform';
                 }
             });
         }
 
-        // Enhanced 3D icon effects
+        // Simplified 3D effects for better performance
         function enhance3DEffects() {
-            // Add random animation delays to all 3D icons
+            // Simplified animation delays
             document.querySelectorAll('.feature-icon, .security-icon, .download-icon').forEach(icon => {
-                const randomDelay = Math.random() * 4;
-                const currentAnimation = getComputedStyle(icon).animation;
-                icon.style.animation = currentAnimation;
+                const randomDelay = Math.random() * 2; /* Reducido el rango */
                 icon.style.animationDelay = `${randomDelay}s`;
-            });
-
-            // Add hover sound effect simulation
-            document.querySelectorAll('.feature-icon').forEach(icon => {
-                icon.addEventListener('mouseenter', () => {
-                    icon.style.transform = 'translateY(-8px) rotateX(20deg) rotateY(20deg) scale(1.2)';
-                    icon.style.filter = 'drop-shadow(0 20px 40px rgba(0, 212, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 212, 255, 0.8))';
-                });
-                
-                icon.addEventListener('mouseleave', () => {
-                    icon.style.transform = '';
-                    icon.style.filter = '';
-                });
+                icon.style.willChange = 'transform';
             });
         }
 
-        // Create sparkle effects on hover
-        function createSparkles(element) {
-            for (let i = 0; i < 5; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.position = 'absolute';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
-                sparkle.style.background = 'rgba(0, 212, 255, 0.8)';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animation = 'sparkleEffect 1s ease-out forwards';
-                sparkle.style.boxShadow = '0 0 6px rgba(0, 212, 255, 0.8)';
-                sparkle.style.pointerEvents = 'none';
-                
-                element.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1000);
-            }
-        }
-
-        // Add sparkle animation to CSS dynamically
-        function addSparkleAnimation() {
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes sparkleEffect {
-                    0% { transform: scale(0) rotate(0deg); opacity: 1; }
-                    50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
-                    100% { transform: scale(0) rotate(360deg); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Funciones sparkle removidas para optimización
 
         // Download button functionality with enhanced effects
         function openDownloadPage() {
@@ -882,11 +842,10 @@
             // Add smooth scrolling behavior
             document.documentElement.style.scrollBehavior = 'smooth';
             
-            // Initialize all effects
+            // Initialize optimized effects
             createParticles();
             enhanceFeatureCards();
             createScrollAnimations();
-            addSparkleAnimation();
             enhance3DEffects();
             
             // Add mouse movement parallax
@@ -899,28 +858,37 @@
                 typeWriter(tagline, originalText, 30);
             }, 1000);
             
-            // Add floating animation to logo with 3D effects
+            // Optimized logo interaction
             const logo = document.querySelector('.logo');
-            logo.style.transformStyle = 'preserve-3d';
             logo.addEventListener('mouseenter', () => {
-                logo.style.transform = 'scale(1.05) rotate(2deg) rotateX(5deg) rotateY(5deg)';
-                logo.style.filter = 'drop-shadow(0 10px 20px rgba(0, 212, 255, 0.4))';
+                logo.style.transform = 'scale(1.03) rotate(1deg)'; /* Simplificado */
+                logo.style.filter = 'drop-shadow(0 8px 16px rgba(0, 212, 255, 0.3))';
             });
             logo.addEventListener('mouseleave', () => {
-                logo.style.transform = 'scale(1) rotate(0deg) rotateX(0deg) rotateY(0deg)';
+                logo.style.transform = 'scale(1) rotate(0deg)';
                 logo.style.filter = '';
+            });
+
+            // Pause animations when page is not visible
+            document.addEventListener('visibilitychange', () => {
+                const animatedElements = document.querySelectorAll('.feature-icon, .particle, .logo, .security-icon, .download-icon');
+                if (document.hidden) {
+                    animatedElements.forEach(el => el.style.animationPlayState = 'paused');
+                } else {
+                    animatedElements.forEach(el => el.style.animationPlayState = 'running');
+                }
             });
         });
 
-        // Random particle regeneration
+        // Optimized particle regeneration - menos frecuente
         setInterval(() => {
             const particles = document.querySelectorAll('.particle');
-            if (particles.length > 0) {
+            if (particles.length > 0 && document.visibilityState === 'visible') { // Solo si la página es visible
                 const randomParticle = particles[Math.floor(Math.random() * particles.length)];
                 randomParticle.style.left = Math.random() * window.innerWidth + 'px';
                 randomParticle.style.top = Math.random() * window.innerHeight + 'px';
             }
-        }, 3000);
+        }, 8000); // Reducido de 3s a 8s
     </script>
 </body>
-</html>
+</html> 
