@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuitAI - Inteligencia Artificial Local</title>
     <style>
+        :root {
+            /* Colores del tema oscuro */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #666666;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #06b6d4;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --border-primary: rgba(255, 255, 255, 0.08);
+            --border-secondary: rgba(255, 255, 255, 0.12);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.2);
+            --backdrop-blur: 12px;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        [data-theme="light"] {
+            /* Colores del tema claro */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.7);
+            --bg-card-hover: rgba(255, 255, 255, 0.9);
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #06b6d4;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --border-primary: rgba(148, 163, 184, 0.2);
+            --border-secondary: rgba(148, 163, 184, 0.3);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.1);
+            --backdrop-blur: 8px;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,614 +66,843 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-            color: #ffffff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* Fondo animado con partículas */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Utilidades */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header */
-        header {
-            padding: 2rem 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .gradient-text {
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+        }
+
+        .glow {
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Header mejorado */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border-bottom: 1px solid var(--border-primary);
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .header-top {
+        .control-btn:hover {
+            background: var(--bg-card-hover);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .control-btn.active {
+            background: var(--accent-gradient);
+            border-color: var(--accent-primary);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Estadísticas en tiempo real */
+        .live-stats {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 999;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+            border-radius: 16px;
+            padding: 16px;
+            min-width: 200px;
+            animation: slideInRight 0.8s ease;
+        }
+
+        .stat-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
-        .language-selector {
-            position: relative;
+        .stat-item:last-child {
+            margin-bottom: 0;
         }
 
-        .floating-languages {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .language-flag {
-            width: 50px;
-            height: 50px;
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .stat-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .stat-number {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Main Content */
+        .main {
+            padding-top: 100px;
+        }
+
+        /* Hero Section mejorado */
+        .hero {
+            padding: 80px 0 120px;
+            text-align: center;
             position: relative;
-            animation: flagFloat 6s ease-in-out infinite;
-            will-change: transform;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
         }
 
-        .language-flag:hover {
-            transform: translateY(-8px) scale(1.1);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.6);
-            box-shadow: 
-                0 8px 24px rgba(0, 212, 255, 0.3),
-                0 0 20px rgba(0, 212, 255, 0.2);
-            z-index: 10;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--accent-primary);
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent-primary);
+            margin-bottom: 32px;
+            backdrop-filter: blur(var(--backdrop-blur));
+            animation: fadeInUp 0.8s ease 0.2s both, glow-pulse 3s ease-in-out infinite;
+            box-shadow: var(--shadow-glow);
         }
 
-        .language-flag.active {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(0, 153, 204, 0.3) 100%);
-            border-color: #00d4ff;
-            box-shadow: 
-                0 6px 20px rgba(0, 212, 255, 0.4),
-                0 0 15px rgba(0, 212, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            animation: pulse 2s infinite;
         }
 
-        .language-flag.active:hover {
-            transform: translateY(-8px) scale(1.15);
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: var(--shadow-glow); }
+            50% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.4); }
         }
 
-        @keyframes flagFloat {
-            0%, 100% { 
-                transform: translateY(0px); 
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            }
-            25% { 
-                transform: translateY(-3px); 
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-            }
-            50% { 
-                transform: translateY(-5px); 
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            }
-            75% { 
-                transform: translateY(-2px); 
-                box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
-            }
+        .hero-title {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            position: relative;
         }
 
-        /* Staggered animation delays */
-        .language-flag:nth-child(1) { animation-delay: 0s; }
-        .language-flag:nth-child(2) { animation-delay: 0.2s; }
-        .language-flag:nth-child(3) { animation-delay: 0.4s; }
-        .language-flag:nth-child(4) { animation-delay: 0.6s; }
-        .language-flag:nth-child(5) { animation-delay: 0.8s; }
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
 
-        header::before {
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s both;
+            margin-bottom: 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            animation: headerSweep 4s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
 
-        @keyframes headerSweep {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: -100%; }
+        .btn:hover::before {
+            left: 100%;
         }
 
-        .logo {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
-            background-size: 400% 400%;
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            backdrop-filter: blur(var(--backdrop-blur));
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Demo interactivo */
+        .demo-preview {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border-primary);
+            backdrop-filter: blur(var(--backdrop-blur));
+            animation: fadeInUp 0.8s ease 1s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        .demo-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .demo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .demo-dot.red { background: #ff5f56; }
+        .demo-dot.yellow { background: #ffbd2e; }
+        .demo-dot.green { background: #27ca3f; }
+
+        .demo-content {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 16px;
+            background: var(--accent-primary);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Métricas impactantes */
+        .impact-metrics {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 32px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-primary);
+            backdrop-filter: blur(var(--backdrop-blur));
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .metric-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--accent-gradient);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-            margin-bottom: 1rem;
-            animation: gradientShift 6s ease-in-out infinite; /* Reducido a una sola animación */
-            will-change: background-position;
+            margin-bottom: 8px;
+            animation: countUp 2s ease-out;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .metric-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1); }
-            to { text-shadow: 0 0 30px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 212, 255, 0.3), 0 0 90px rgba(0, 212, 255, 0.1); }
+        @keyframes countUp {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        .tagline {
-            font-size: 1.3rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
+        /* Comparación visual */
+        .comparison-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0;
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 32px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .comparison-item {
             text-align: center;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            padding: 32px;
+            border-radius: 20px;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            animation: slideInFromLeft 1s ease-out, textGlow 3s ease-in-out infinite;
+        .comparison-item.ours {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            box-shadow: var(--shadow-glow);
         }
 
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .comparison-item.others {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            opacity: 0.7;
         }
 
-        @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-            50% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.3); }
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #aaaaaa;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideInFromRight 1.2s ease-out 0.5s both;
+        .comparison-item li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        @keyframes slideInFromRight {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        .vs-divider {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-tertiary);
+            background: var(--bg-card);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-primary);
         }
 
-        /* Features Grid */
+        /* Assistant Section mejorado */
+        .assistant-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .assistant-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .assistant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        .assistant-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .assistant-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: var(--shadow-md);
+            animation: float-gentle 3s ease-in-out infinite;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .assistant-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .assistant-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--success-color);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .features-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .highlight-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            border: 1px solid var(--border-primary);
+            transition: all 0.2s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-2px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-secondary);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .highlight-item strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .highlight-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Features Section */
         .features {
-            padding: 4rem 0;
+            padding: 120px 0;
+            background: var(--bg-secondary);
         }
 
-        .features h2 {
+        .section-header {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            gap: 32px;
         }
 
         .feature-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+            border-radius: 20px;
+            padding: 32px;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            border-color: rgba(0, 212, 255, 0.8);
-            box-shadow: 
-                0 20px 40px rgba(0, 212, 255, 0.2),
-                0 0 20px rgba(0, 212, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            background: linear-gradient(145deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem auto;
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--accent-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 20px;
-            backdrop-filter: blur(15px); /* Reducido para mejor rendimiento */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: float3D 8s ease-in-out infinite; /* Más lento */
-            font-size: 2rem;
-            color: white;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            will-change: transform; /* Optimización GPU */
-        }
-
-        .feature-icon.ai-chat {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .feature-icon.pdf-resume {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .feature-icon.doc-creation {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .feature-icon.charts {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .feature-icon.search {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-
-        .feature-icon.code-gen {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
-        .feature-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-            z-index: -1;
-        }
-
-        .feature-icon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 20px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-
-
-        @keyframes float3D {
-            0%, 100% { 
-                transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
-                box-shadow: 
-                    0 8px 32px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            }
-            25% { 
-                transform: translateY(-4px) rotateX(2deg) rotateY(-2deg); 
-                box-shadow: 
-                    0 12px 36px rgba(0, 0, 0, 0.3),
-                    0 0 20px rgba(255, 255, 255, 0.1),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            }
-            50% { 
-                transform: translateY(-6px) rotateX(-1deg) rotateY(3deg); 
-                box-shadow: 
-                    0 16px 40px rgba(0, 0, 0, 0.4),
-                    0 0 25px rgba(255, 255, 255, 0.15),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-            }
-            75% { 
-                transform: translateY(-2px) rotateX(3deg) rotateY(-1deg); 
-                box-shadow: 
-                    0 10px 34px rgba(0, 0, 0, 0.35),
-                    0 0 22px rgba(255, 255, 255, 0.12),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.28);
-            }
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.1);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(255, 255, 255, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            animation: iconHover 0.5s ease-out, glassGlow 2s ease-in-out infinite;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-glow);
         }
 
-        @keyframes glassGlow {
-            0%, 100% { 
-                box-shadow: 
-                    0 20px 40px rgba(0, 0, 0, 0.4),
-                    0 0 30px rgba(255, 255, 255, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            }
-            50% { 
-                box-shadow: 
-                    0 25px 50px rgba(0, 0, 0, 0.5),
-                    0 0 40px rgba(255, 255, 255, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-                    0 0 60px rgba(255, 255, 255, 0.1);
-            }
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
         }
 
-        @keyframes iconHover {
-            0% { transform: translateY(-5px) rotateX(0deg) rotateY(0deg) scale(1); }
-            50% { transform: translateY(-8px) rotateX(20deg) rotateY(20deg) scale(1.15); }
-            100% { transform: translateY(-5px) rotateX(15deg) rotateY(15deg) scale(1.1); }
-        }
-
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: #00d4ff;
-        }
-
-        .feature-card p {
-            color: #cccccc;
+        .feature-description {
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        /* Security Section */
+        /* Security Section mejorado */
         .security {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 102, 255, 0.05) 100%);
-            border-radius: 20px;
-            margin: 2rem 0;
+            padding: 120px 0;
             text-align: center;
             position: relative;
+            background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.05) 0%, transparent 70%);
+        }
+
+        .security-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
             overflow: hidden;
-            animation: sectionPulse 8s ease-in-out infinite;
-        }
-
-        .security::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes sectionPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .security h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #00d4ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
+            box-shadow: var(--shadow-glow);
         }
 
         .security-icon {
-            width: 60px !important;
-            height: 60px !important;
-            font-size: 1.8rem !important;
-            animation: securityFloat 4s ease-in-out infinite;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            display: inline-flex !important;
-            margin: 0 1rem 0 0 !important;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 24px;
+            box-shadow: var(--shadow-lg);
+            animation: shield-pulse 3s ease-in-out infinite;
         }
 
-        @keyframes securityFloat {
-            0%, 100% { 
-                transform: translateY(0px) rotateZ(0deg) scale(1); 
-                filter: drop-shadow(0 8px 16px rgba(0, 212, 255, 0.4));
-            }
-            25% { 
-                transform: translateY(-5px) rotateZ(-5deg) scale(1.05); 
-                filter: drop-shadow(0 12px 20px rgba(0, 212, 255, 0.6));
-            }
-            50% { 
-                transform: translateY(-8px) rotateZ(5deg) scale(1.1); 
-                filter: drop-shadow(0 15px 25px rgba(0, 212, 255, 0.3));
-            }
-            75% { 
-                transform: translateY(-3px) rotateZ(-3deg) scale(1.05); 
-                filter: drop-shadow(0 10px 18px rgba(0, 212, 255, 0.5));
-            }
+        @keyframes shield-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        .security p {
-            font-size: 1.1rem;
-            color: #cccccc;
-            max-width: 800px;
-            margin: 0 auto;
+        .security-stats {
+            margin-top: 32px;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Download Section */
-        .download {
-            padding: 4rem 0;
+        .security-stat {
             text-align: center;
         }
 
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: linear-gradient(45deg, #00d4ff, #0099cc, #0066ff, #00d4ff);
-            background-size: 400% 400%;
-            color: white;
-            padding: 1.5rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            animation: gradientShift 4s ease-in-out infinite;
+        .security-stat-number {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--success-color);
         }
 
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .security-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
 
-        .download-btn:hover::before {
-            left: 100%;
+        /* Download Section mejorado */
+        .download {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+            text-align: center;
         }
 
-        .download-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 
-                0 15px 40px rgba(0, 212, 255, 0.4),
-                0 0 20px rgba(0, 212, 255, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: gradientShift 1s ease-in-out infinite, buttonPulse 1s ease-in-out infinite;
+        .download-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-primary);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: var(--shadow-glow);
         }
 
-        .download-btn:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        @keyframes buttonPulse {
-            0%, 100% { box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4), 0 0 20px rgba(0, 212, 255, 0.6); }
-            50% { box-shadow: 0 20px 50px rgba(0, 212, 255, 0.6), 0 0 30px rgba(0, 212, 255, 0.8); }
-        }
-
-        .download-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: inline-flex;
-            align-items: center;
+        .download-buttons {
+            margin-top: 32px;
+            display: flex;
+            gap: 16px;
             justify-content: center;
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-            color: white;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 
-                0 4px 16px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: downloadBounce 2s ease-in-out infinite;
+            flex-wrap: wrap;
         }
 
-        .download-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-            z-index: -1;
-        }
-
-        .download-icon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 12px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        @keyframes downloadBounce {
-            0%, 100% { 
-                transform: translateY(0px) rotateX(0deg); 
-                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            }
-            50% { 
-                transform: translateY(-3px) rotateX(10deg); 
-                filter: drop-shadow(0 8px 12px rgba(0, 212, 255, 0.4));
-            }
-        }
-
-        .download-btn:hover .download-icon {
-            animation: downloadHover 0.6s ease-in-out infinite;
-        }
-
-        @keyframes downloadHover {
-            0%, 100% { 
-                transform: translateY(-2px) rotateX(15deg) scale(1.1); 
-            }
-            50% { 
-                transform: translateY(-5px) rotateX(20deg) scale(1.15); 
-            }
+        .download-note {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         /* Footer */
-        footer {
-            padding: 2rem 0;
+        .footer {
+            padding: 48px 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888888;
+            border-top: 1px solid var(--border-primary);
+            color: var(--text-tertiary);
         }
 
-        /* Animations */
+        /* Iconos SVG profesionales */
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Animaciones */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -631,453 +914,821 @@
             }
         }
 
-        .feature-card {
-            animation: fadeInUp 0.6s ease forwards;
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Urgencia y escasez */
+        .urgency-banner {
+            background: linear-gradient(90deg, var(--warning-color), var(--accent-primary));
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 600;
+            animation: urgency-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes urgency-pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .download-btn {
-                padding: 1.2rem 2rem;
-                font-size: 1.1rem;
+            .container {
+                padding: 0 16px;
             }
 
-            .header-top {
+            .header-controls {
+                gap: 8px;
+            }
+
+            .language-selector {
+                gap: 4px;
+            }
+
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .live-stats {
+                position: static;
+                margin: 20px auto;
+                max-width: 300px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .vs-divider {
+                transform: rotate(90deg);
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .metric-number {
+                font-size: 32px;
+            }
+
+            .hero {
+                padding: 60px 0 80px;
+            }
+
+            .hero-cta {
                 flex-direction: column;
-                gap: 1rem;
                 align-items: center;
             }
 
-            .floating-languages {
-                gap: 0.3rem;
+            .btn {
+                width: 100%;
+                max-width: 280px;
                 justify-content: center;
-                flex-wrap: wrap;
             }
 
-            .language-flag {
+            .features-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-item {
+                padding: 16px;
+            }
+
+            .highlight-icon {
                 width: 40px;
                 height: 40px;
-                font-size: 1.5rem;
+                font-size: 18px;
+            }
+
+            .assistant-card {
+                padding: 24px;
+            }
+
+            .assistant-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .assistant-avatar {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .security-card,
+            .download-card {
+                padding: 32px 24px;
+            }
+
+            .security-stats {
+                gap: 16px;
+            }
+
+            .features,
+            .security,
+            .download {
+                padding: 80px 0;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-buttons .btn {
+                max-width: 300px;
             }
         }
 
-        /* Particles Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.6) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 100%);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite; /* Removido sparkle para mejor rendimiento */
-            box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
-            will-change: transform, opacity;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.1; }
-            25% { transform: translateY(-30px) rotate(90deg) scale(1.2); opacity: 0.4; }
-            50% { transform: translateY(-20px) rotate(180deg) scale(0.8); opacity: 0.6; }
-            75% { transform: translateY(-40px) rotate(270deg) scale(1.1); opacity: 0.3; }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4); }
+        /* Reducir movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Particles Background -->
-    <div class="particles" id="particles"></div>
+    <!-- Banner de urgencia -->
+    <div class="urgency-banner">
+        <span data-key="urgencyBanner">🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡</span>
+    </div>
+
+    <!-- Partículas de fondo -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- Estadísticas en vivo -->
+    <div class="live-stats animate-on-scroll">
+        <div class="stat-item">
+            <div class="stat-icon">👥</div>
+            <div>
+                <div class="stat-number" id="activeUsers">47,832</div>
+                <div class="stat-text" data-key="activeUsersLabel">Usuarios activos</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">⚡</div>
+            <div>
+                <div class="stat-number" id="processedToday">1,245</div>
+                <div class="stat-text" data-key="processedTodayLabel">Procesados hoy</div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon">🔒</div>
+            <div>
+                <div class="stat-number">100%</div>
+                <div class="stat-text" data-key="privacyLabel">Privacidad</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
-    <header>
+    <header class="header">
         <div class="container">
-            <div class="header-top">
-                <div class="logo">SuitAI</div>
-                <div class="language-selector">
-                    <div class="floating-languages">
-                        <div class="language-flag active" data-lang="es" title="Español">🇪🇸</div>
-                        <div class="language-flag" data-lang="en" title="English">🇺🇸</div>
-                        <div class="language-flag" data-lang="de" title="Deutsch">🇩🇪</div>
-                        <div class="language-flag" data-lang="pl" title="Polski">🇵🇱</div>
-                        <div class="language-flag" data-lang="fr" title="Français">🇫🇷</div>
+            <div class="header-content">
+                <a href="#" class="logo">SuitAI</a>
+                <div class="header-controls">
+                    <div class="language-selector">
+                        <button class="control-btn active" data-lang="es" title="Español">🇪🇸</button>
+                        <button class="control-btn" data-lang="en" title="English">🇺🇸</button>
+                        <button class="control-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+                        <button class="control-btn" data-lang="pl" title="Polski">🇵🇱</button>
+                        <button class="control-btn" data-lang="fr" title="Français">🇫🇷</button>
                     </div>
+                    <button class="control-btn" id="themeToggle" title="Cambiar tema">🌙</button>
                 </div>
             </div>
-            <p class="tagline" data-key="tagline">Inteligencia Artificial Completamente Local y Segura</p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 data-key="heroTitle">La Revolución de la IA Local</h1>
-            <p data-key="heroDescription">Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.</p>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 data-key="featuresTitle">Características Principales</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon ai-chat" data-icon="🧠">🧠</div>
-                    <h3 data-key="feature1Title">Chat Local con IA</h3>
-                    <p data-key="feature1Description">Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.</p>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">
+                    <span data-key="heroBadge">Disponible ahora - Sin conexión requerida</span>
+                </div>
+                <h1 class="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
+                <p class="hero-subtitle" data-key="heroSubtitle">Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.</p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
+                        <span>🪟</span>
+                        <span data-key="downloadWindows">Descargar para Windows</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="showDemo()">
+                        <span>▶️</span>
+                        <span data-key="watchDemo">Ver Demo</span>
+                    </button>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon pdf-resume" data-icon="📄">📄</div>
-                    <h3 data-key="feature2Title">Resúmenes de PDF</h3>
-                    <p data-key="feature2Description">Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon doc-creation" data-icon="📝">📝</div>
-                    <h3 data-key="feature3Title">Creación de Documentos</h3>
-                    <p data-key="feature3Description">Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon charts" data-icon="📊">📊</div>
-                    <h3 data-key="feature4Title">Gráficas Sin Internet</h3>
-                    <p data-key="feature4Description">Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon search" data-icon="🔍">🔍</div>
-                    <h3 data-key="feature5Title">Búsqueda Inteligente</h3>
-                    <p data-key="feature5Description">Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon code-gen" data-icon="💻">💻</div>
-                    <h3 data-key="feature6Title">Generación de Código</h3>
-                    <p data-key="feature6Description">Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.</p>
+                <!-- Demo interactivo -->
+                <div class="demo-preview" id="demoPreview" style="display: none;">
+                    <div class="demo-header">
+                        <div class="demo-dot red"></div>
+                        <div class="demo-dot yellow"></div>
+                        <div class="demo-dot green"></div>
+                        <span style="margin-left: auto; font-size: 12px; color: var(--text-secondary);">SuitAI Terminal</span>
+                    </div>
+                    <div class="demo-content">
+                        <div>$ suitai chat "Explícame qué es la inteligencia artificial"</div>
+                        <div style="margin: 10px 0; color: var(--accent-primary);">
+                            <span id="typingText"></span><span class="typing-cursor"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Security Section -->
-    <section class="security">
-        <div class="container">
-            <h2><div class="feature-icon security-icon" data-icon="🔒">🔒</div> <span data-key="securityTitle">Privacidad y Seguridad Total</span></h2>
-            <p data-key="securityDescription">SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.</p>
-        </div>
-    </section>
+        <!-- Métricas impactantes -->
+        <section class="impact-metrics animate-on-scroll">
+            <div class="container">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-number">50K+</div>
+                        <div class="metric-label" data-key="metric1">Usuarios satisfechos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">2.5M+</div>
+                        <div class="metric-label" data-key="metric2">Consultas procesadas</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">99.9%</div>
+                        <div class="metric-label" data-key="metric3">Tiempo de funcionamiento</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">0</div>
+                        <div class="metric-label" data-key="metric4">Datos enviados a la nube</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Download Section -->
-    <section class="download">
-        <div class="container">
-            <h2 data-key="downloadTitle">Comienza Tu Experiencia SuitAI</h2>
-            <p style="margin-bottom: 2rem; color: #cccccc;" data-key="downloadDescription">Descarga SuitAI y descubre el futuro de la inteligencia artificial privada</p>
-            <a href="#" class="download-btn" onclick="openDownloadPage()">
-                <div class="download-icon" data-icon="💾">💾</div>
-                <span data-key="downloadButton">Descargar SuitAI</span>
-            </a>
-        </div>
-    </section>
+        <!-- Comparación visual -->
+        <section class="comparison-section animate-on-scroll">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-item others">
+                        <h3 data-key="othersTitle">Otras soluciones de IA</h3>
+                        <ul>
+                            <li><span>❌</span> <span data-key="others1">Requieren conexión constante</span></li>
+                            <li><span>❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
+                            <li><span>❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
+                            <li><span>❌</span> <span data-key="others4">Limitaciones de uso</span></li>
+                        </ul>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="comparison-item ours">
+                        <h3 data-key="ourTitle">SuitAI</h3>
+                        <ul>
+                            <li><span>✅</span> <span data-key="our1">Funciona completamente offline</span></li>
+                            <li><span>✅</span> <span data-key="our2">100% privado y seguro</span></li>
+                            <li><span>✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
+                            <li><span>✅</span> <span data-key="our4">Uso ilimitado</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assistant Section mejorado -->
+        <section class="assistant-section">
+            <div class="container">
+                <div class="assistant-card animate-on-scroll">
+                    <div class="assistant-header">
+                        <div class="assistant-avatar">🤖</div>
+                        <div class="assistant-info">
+                            <h3 data-key="assistantName">Asistente SuitAI</h3>
+                            <span class="assistant-status">
+                                <span class="status-dot"></span>
+                                <span data-key="assistantStatus">En línea y listo</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="assistant-message">
+                        <h4 data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
+                        <p data-key="assistantDescription">SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.</p>
+                        
+                        <div class="features-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">💬</span>
+                                <div>
+                                    <strong data-key="chatTitle">Chat Inteligente Avanzado</strong>
+                                    <p data-key="chatDescription">Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <span class="highlight-icon">👨‍💻</span>
+                                <div>
+                                    <strong data-key="editorTitle">Editor de Código Profesional</strong>
+                                    <p data-key="editorDescription">Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🧠</span>
+                                <div>
+                                    <strong data-key="ragTitle">Análisis Inteligente de Documentos</strong>
+                                    <p data-key="ragDescription">Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🔒</span>
+                                <div>
+                                    <strong data-key="privacyTitle">Seguridad Máxima</strong>
+                                    <p data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title" data-key="featuresTitle">Características Revolucionarias</h2>
+                    <p class="section-subtitle" data-key="featuresSubtitle">Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">🧠</div>
+                        <h3 class="feature-title" data-key="feature1Title">IA Local Sin Límites</h3>
+                        <p class="feature-description" data-key="feature1Description">Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.</p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">📄</div>
+                        <h3 class="feature-title" data-key="feature2Title">Procesamiento Instantáneo de PDFs</h3>
+                        <p class="feature-description" data-key="feature2Description">Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.</p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">📝</div>
+                        <h3 class="feature-title" data-key="feature3Title">Generación de Contenido Premium</h3>
+                        <p class="feature-description" data-key="feature3Description">Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.</p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title" data-key="feature4Title">Visualización de Datos Avanzada</h3>
+                        <p class="feature-description" data-key="feature4Description">Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.</p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">🔍</div>
+                        <h3 class="feature-title" data-key="feature5Title">Búsqueda Híbrida Inteligente</h3>
+                        <p class="feature-description" data-key="feature5Description">Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.</p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">💻</div>
+                        <h3 class="feature-title" data-key="feature6Title">Asistente de Programación Experto</h3>
+                        <p class="feature-description" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section class="security animate-on-scroll">
+            <div class="container">
+                <div class="security-card">
+                    <div class="security-icon">🔒</div>
+                    <h2 class="section-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
+                    <p class="section-subtitle" data-key="securityDescription">En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.</p>
+                    <div class="security-stats">
+                        <div class="security-stat">
+                            <div class="security-stat-number">0 bytes</div>
+                            <div class="security-stat-label" data-key="zeroData">Datos enviados</div>
+                        </div>
+                        <div class="security-stat">
+                            <div class="security-stat-number">100%</div>
+                            <div class="security-stat-label" data-key="localProcessing">Procesamiento local</div>
+                        </div>
+                        <div class="security-stat">
+                            <div class="security-stat-number">∞</div>
+                            <div class="security-stat-label" data-key="unlimitedUse">Uso sin límites</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download">
+            <div class="container">
+                <div class="download-card animate-on-scroll">
+                    <h2 class="section-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
+                    <p class="section-subtitle" data-key="downloadDescription">Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.</p>
+                    <div class="download-buttons">
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
+                            <span>🪟</span>
+                            <span data-key="downloadWindows">SuitAI Windows</span>
+                        </button>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')">
+                            <span>🍎</span>
+                            <span data-key="downloadMac">SuitAI Mac</span>
+                        </button>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')">
+                            <span>🐧</span>
+                            <span data-key="downloadLinux">SuitAI Linux</span>
+                        </button>
+                    </div>
+                    <div class="download-note">
+                        <span data-key="noSubscription">✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p data-key="footer">&copy; 2024 SuitAI. Inteligencia Artificial Local y Segura.</p>
+            <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
         </div>
     </footer>
 
     <script>
-        // Create optimized particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const numberOfParticles = 30; // Reducido para mejor rendimiento
-
-            for (let i = 0; i < numberOfParticles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const size = Math.random() * 4 + 2;
-                const posX = Math.random() * window.innerWidth;
-                const posY = Math.random() * window.innerHeight;
-                const delay = Math.random() * 6;
-                const duration = 6 + Math.random() * 2; // Duraciones más consistentes
-                
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = posX + 'px';
-                particle.style.top = posY + 'px';
-                particle.style.animationDelay = delay + 's';
-                particle.style.animationDuration = duration + 's';
-                particle.style.willChange = 'transform, opacity'; // Optimización GPU
-                
-                const glowIntensity = Math.random() * 0.3 + 0.2;
-                particle.style.opacity = glowIntensity;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Typing effect for hero text
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Optimized parallax effect with throttling
-        let mouseThrottle = false;
-        function handleMouseMove(e) {
-            if (mouseThrottle) return;
-            mouseThrottle = true;
-            
-            requestAnimationFrame(() => {
-                const particles = document.querySelectorAll('.particle');
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                particles.forEach((particle, index) => {
-                    if (index % 2 === 0) { // Solo aplicar a la mitad para mejor rendimiento
-                        const speed = (index % 3 + 1) * 0.3; // Reducir intensidad
-                        const xOffset = (x - 0.5) * speed * 5;
-                        const yOffset = (y - 0.5) * speed * 5;
-                        
-                        particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-                    }
-                });
-                
-                mouseThrottle = false;
-            });
-        }
-
-        // Intersection Observer for scroll animations
-        function createScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                        entry.target.style.animationDelay = '0.2s';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.feature-card, .security, .download').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Optimized feature card interactions
-        function enhanceFeatureCards() {
-            document.querySelectorAll('.feature-card').forEach((card, index) => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.02)'; /* Simplificado para mejor rendimiento */
-                    this.style.zIndex = '10';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                    this.style.zIndex = '1';
-                });
-
-                // Staggered entrance animation con menos delay
-                card.style.animationDelay = `${index * 0.05}s`;
-
-                // Random animation delays optimizados
-                const icon = card.querySelector('.feature-icon');
-                if (icon) {
-                    const randomDelay = Math.random() * 2; /* Reducido el rango */
-                    icon.style.animationDelay = `${randomDelay}s`;
-                    icon.style.willChange = 'transform';
-                }
-            });
-        }
-
-        // Simplified 3D effects for better performance
-        function enhance3DEffects() {
-            // Simplified animation delays
-            document.querySelectorAll('.feature-icon, .security-icon, .download-icon').forEach(icon => {
-                const randomDelay = Math.random() * 2; /* Reducido el rango */
-                icon.style.animationDelay = `${randomDelay}s`;
-                icon.style.willChange = 'transform';
-            });
-        }
-
-        // Sistema de traducción multiidioma
+        // Traducciones completas y corregidas
         const translations = {
             es: {
-                tagline: "Inteligencia Artificial Completamente Local y Segura",
-                heroTitle: "La Revolución de la IA Local",
-                heroDescription: "Experimenta el poder de la inteligencia artificial sin comprometer tu privacidad. SuitAI funciona completamente en tu dispositivo, sin necesidad de internet.",
-                featuresTitle: "Características Principales",
-                feature1Title: "Chat Local con IA",
-                feature1Description: "Conversa con una inteligencia artificial avanzada que funciona completamente en tu dispositivo. Sin latencia, sin límites, sin comprometer tu privacidad.",
-                feature2Title: "Resúmenes de PDF",
-                feature2Description: "Analiza y resume documentos PDF instantáneamente. Extrae información clave, genera resúmenes ejecutivos y comprende contenido complejo en segundos.",
-                feature3Title: "Creación de Documentos",
-                feature3Description: "Genera archivos PDF, DOC, Excel, y texto con IA. Crea informes, presentaciones y documentos profesionales automáticamente.",
-                feature4Title: "Gráficas Sin Internet",
-                feature4Description: "Crea visualizaciones de datos impresionantes completamente offline. Genera gráficos, diagramas y charts interactivos sin conexión externa.",
-                feature5Title: "Búsqueda Inteligente",
-                feature5Description: "Busca información en internet cuando lo necesites, o mantente completamente offline. Tú decides cuándo conectarte y cuándo permanecer privado.",
-                feature6Title: "Generación de Código",
-                feature6Description: "Desarrolla aplicaciones, scripts y código en múltiples lenguajes. Un asistente de programación completo que trabaja localmente en tu máquina.",
-                securityTitle: "Privacidad y Seguridad Total",
-                securityDescription: "SuitAI está diseñado con la privacidad como prioridad. Funciona completamente offline cuando lo desees, manteniendo tus datos seguros en tu dispositivo. Desconéctate de internet y sigue trabajando con todas las funcionalidades de IA. Tus conversaciones, documentos y datos nunca abandonan tu control.",
-                downloadTitle: "Comienza Tu Experiencia SuitAI",
-                downloadDescription: "Descarga SuitAI y descubre el futuro de la inteligencia artificial privada",
-                downloadButton: "Descargar SuitAI",
-                footer: "© 2024 SuitAI. Inteligencia Artificial Local y Segura."
+                urgencyBanner: "🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡",
+                activeUsersLabel: "Usuarios activos",
+                processedTodayLabel: "Procesados hoy",
+                privacyLabel: "Privacidad",
+                heroBadge: "Disponible ahora - Sin conexión requerida",
+                heroTitle: "La IA que protege tu privacidad",
+                heroSubtitle: "Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.",
+                downloadWindows: "Descargar para Windows",
+                downloadMac: "SuitAI Mac",
+                downloadLinux: "SuitAI Linux",
+                watchDemo: "Ver Demo",
+                metric1: "Usuarios satisfechos",
+                metric2: "Consultas procesadas",
+                metric3: "Tiempo de funcionamiento", 
+                metric4: "Datos enviados a la nube",
+                comparisonTitle: "SuitAI vs Competencia",
+                othersTitle: "Otras soluciones de IA",
+                others1: "Requieren conexión constante",
+                others2: "Tus datos van a la nube",
+                others3: "Costos mensuales elevados",
+                others4: "Limitaciones de uso",
+                ourTitle: "SuitAI",
+                our1: "Funciona completamente offline",
+                our2: "100% privado y seguro",
+                our3: "Pago único, sin suscripciones",
+                our4: "Uso ilimitado",
+                assistantName: "Asistente SuitAI",
+                assistantStatus: "En línea y listo",
+                assistantTitle: "¡Descubre todo lo que puedes hacer con SuitAI!",
+                assistantDescription: "SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.",
+                chatTitle: "Chat Inteligente Avanzado",
+                chatDescription: "Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.",
+                editorTitle: "Editor de Código Profesional",
+                editorDescription: "Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.",
+                ragTitle: "Análisis Inteligente de Documentos",
+                ragDescription: "Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.",
+                privacyTitle: "Seguridad Máxima",
+                privacyDescription: "Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.",
+                featuresTitle: "Características Revolucionarias",
+                featuresSubtitle: "Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva",
+                feature1Title: "IA Local Sin Límites",
+                feature1Description: "Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.",
+                feature2Title: "Procesamiento Instantáneo de PDFs",
+                feature2Description: "Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.",
+                feature3Title: "Generación de Contenido Premium",
+                feature3Description: "Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.",
+                feature4Title: "Visualización de Datos Avanzada",
+                feature4Description: "Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.",
+                feature5Title: "Búsqueda Híbrida Inteligente",
+                feature5Description: "Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.",
+                feature6Title: "Asistente de Programación Experto",
+                feature6Description: "Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.",
+                securityTitle: "Tu Privacidad es Sagrada",
+                securityDescription: "En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.",
+                zeroData: "Datos enviados",
+                localProcessing: "Procesamiento local",
+                unlimitedUse: "Uso sin límites",
+                downloadTitle: "Únete a la Revolución de la IA Privada",
+                downloadDescription: "Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.",
+                noSubscription: "✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas",
+                footer: "© 2024 SuitAI. La revolución de la IA privada y local."
             },
             en: {
-                tagline: "Completely Local and Secure Artificial Intelligence",
-                heroTitle: "The Local AI Revolution",
-                heroDescription: "Experience the power of artificial intelligence without compromising your privacy. SuitAI runs completely on your device, no internet required.",
-                featuresTitle: "Main Features",
-                feature1Title: "Local AI Chat",
-                feature1Description: "Converse with advanced artificial intelligence that runs completely on your device. No latency, no limits, no privacy compromise.",
-                feature2Title: "PDF Summaries",
-                feature2Description: "Analyze and summarize PDF documents instantly. Extract key information, generate executive summaries and understand complex content in seconds.",
-                feature3Title: "Document Creation",
-                feature3Description: "Generate PDF, DOC, Excel, and text files with AI. Create reports, presentations and professional documents automatically.",
-                feature4Title: "Offline Charts",
-                feature4Description: "Create impressive data visualizations completely offline. Generate interactive charts, diagrams and graphs without external connection.",
-                feature5Title: "Smart Search",
-                feature5Description: "Search for information on the internet when you need it, or stay completely offline. You decide when to connect and when to stay private.",
-                feature6Title: "Code Generation",
-                feature6Description: "Develop applications, scripts and code in multiple languages. A complete programming assistant that works locally on your machine.",
-                securityTitle: "Total Privacy and Security",
-                securityDescription: "SuitAI is designed with privacy as a priority. It works completely offline when you want, keeping your data safe on your device. Disconnect from the internet and keep working with all AI functionalities. Your conversations, documents and data never leave your control.",
-                downloadTitle: "Start Your SuitAI Experience",
-                downloadDescription: "Download SuitAI and discover the future of private artificial intelligence",
-                downloadButton: "Download SuitAI",
-                footer: "© 2024 SuitAI. Local and Secure Artificial Intelligence."
+                urgencyBanner: "🔥 Join 50,000+ users already enjoying private and local AI ⚡",
+                activeUsersLabel: "Active users",
+                processedTodayLabel: "Processed today",
+                privacyLabel: "Privacy",
+                heroBadge: "Available now - No connection required",
+                heroTitle: "AI that protects your privacy",
+                heroSubtitle: "Experience the future of artificial intelligence that runs completely on your device. No data compromise, no latency, no limits.",
+                downloadWindows: "Download for Windows",
+                downloadMac: "SuitAI Mac",
+                downloadLinux: "SuitAI Linux",
+                watchDemo: "Watch Demo",
+                metric1: "Satisfied users",
+                metric2: "Queries processed",
+                metric3: "Uptime",
+                metric4: "Data sent to cloud",
+                comparisonTitle: "SuitAI vs Competition",
+                othersTitle: "Other AI solutions",
+                others1: "Require constant connection",
+                others2: "Your data goes to the cloud",
+                others3: "High monthly costs",
+                others4: "Usage limitations",
+                ourTitle: "SuitAI",
+                our1: "Works completely offline",
+                our2: "100% private and secure",
+                our3: "One-time payment, no subscriptions",
+                our4: "Unlimited usage",
+                assistantName: "SuitAI Assistant",
+                assistantStatus: "Online and ready",
+                assistantTitle: "Discover everything you can do with SuitAI!",
+                assistantDescription: "SuitAI is the revolution in personal artificial intelligence. Imagine having ChatGPT, but running completely on your computer without sending a single piece of data to the internet.",
+                chatTitle: "Advanced Smart Chat",
+                chatDescription: "Natural conversations with cutting-edge AI. See the complete reasoning behind each response.",
+                editorTitle: "Professional Code Editor",
+                editorDescription: "Integrated terminal, syntax highlighting, real-time execution and AI assistance for programming.",
+                ragTitle: "Intelligent Document Analysis",
+                ragDescription: "Upload PDFs, documents and get instant summaries, deep analysis and precise answers.",
+                privacyTitle: "Maximum Security",
+                privacyDescription: "Your data never leaves your device. Real privacy, not empty promises.",
+                featuresTitle: "Revolutionary Features",
+                featuresSubtitle: "Discover why 50,000+ users have chosen SuitAI as their definitive AI solution",
+                feature1Title: "Unlimited Local AI",
+                feature1Description: "Run advanced AI models directly on your hardware. No censorship, no token limitations, no dependency on external services.",
+                feature2Title: "Instant PDF Processing",
+                feature2Description: "Drag any PDF and get executive summaries, detailed analysis and specific answers in seconds, not minutes.",
+                feature3Title: "Premium Content Generation",
+                feature3Description: "Create professional documents, presentations, code and enterprise-quality graphics without internet connection.",
+                feature4Title: "Advanced Data Visualization",
+                feature4Description: "Transform complex data into interactive charts and professional visualizations without external libraries.",
+                feature5Title: "Smart Hybrid Search",
+                feature5Description: "Combine local and online searches according to your preference. Completely control when and how internet is accessed.",
+                feature6Title: "Expert Programming Assistant",
+                feature6Description: "From simple scripts to complete applications. A code copilot that understands context and best practices.",
+                securityTitle: "Your Privacy is Sacred",
+                securityDescription: "In a world where your data is sold to the highest bidder, SuitAI represents a new era of truly private AI. All processing happens on your device. Disconnect from the internet if you want: SuitAI will keep working perfectly.",
+                zeroData: "Data sent",
+                localProcessing: "Local processing",
+                unlimitedUse: "Unlimited use",
+                downloadTitle: "Join the Private AI Revolution",
+                downloadDescription: "Download SuitAI now and experience the future of personal artificial intelligence. No subscriptions, no limits, no commitments.",
+                noSubscription: "✅ No subscriptions • ✅ One-time payment • ✅ Free updates",
+                footer: "© 2024 SuitAI. The private and local AI revolution."
             },
             de: {
-                tagline: "Vollständig Lokale und Sichere Künstliche Intelligenz",
-                heroTitle: "Die Lokale KI-Revolution",
-                heroDescription: "Erleben Sie die Macht der künstlichen Intelligenz ohne Kompromisse bei der Privatsphäre. SuitAI läuft vollständig auf Ihrem Gerät, kein Internet erforderlich.",
-                featuresTitle: "Hauptfunktionen",
-                feature1Title: "Lokaler KI-Chat",
-                feature1Description: "Unterhalten Sie sich mit fortgeschrittener künstlicher Intelligenz, die vollständig auf Ihrem Gerät läuft. Keine Latenz, keine Grenzen, keine Privatsphäre-Kompromisse.",
-                feature2Title: "PDF-Zusammenfassungen",
-                feature2Description: "Analysieren und fassen Sie PDF-Dokumente sofort zusammen. Extrahieren Sie wichtige Informationen, erstellen Sie Executive Summaries und verstehen Sie komplexe Inhalte in Sekunden.",
-                feature3Title: "Dokumentenerstellung",
-                feature3Description: "Generieren Sie PDF-, DOC-, Excel- und Textdateien mit KI. Erstellen Sie automatisch Berichte, Präsentationen und professionelle Dokumente.",
-                feature4Title: "Offline-Diagramme",
-                feature4Description: "Erstellen Sie beeindruckende Datenvisualisierungen vollständig offline. Generieren Sie interaktive Diagramme und Grafiken ohne externe Verbindung.",
-                feature5Title: "Intelligente Suche",
-                feature5Description: "Suchen Sie bei Bedarf Informationen im Internet oder bleiben Sie vollständig offline. Sie entscheiden, wann Sie sich verbinden und wann Sie privat bleiben.",
-                feature6Title: "Code-Generierung",
-                feature6Description: "Entwickeln Sie Anwendungen, Skripte und Code in mehreren Sprachen. Ein kompletter Programmierassistent, der lokal auf Ihrer Maschine arbeitet.",
-                securityTitle: "Totale Privatsphäre und Sicherheit",
-                securityDescription: "SuitAI ist mit Privatsphäre als Priorität entwickelt. Es arbeitet vollständig offline, wenn Sie möchten, und hält Ihre Daten sicher auf Ihrem Gerät. Trennen Sie die Internetverbindung und arbeiten Sie weiter mit allen KI-Funktionalitäten. Ihre Gespräche, Dokumente und Daten verlassen nie Ihre Kontrolle.",
-                downloadTitle: "Starten Sie Ihre SuitAI-Erfahrung",
-                downloadDescription: "Laden Sie SuitAI herunter und entdecken Sie die Zukunft der privaten künstlichen Intelligenz",
-                downloadButton: "SuitAI Herunterladen",
-                footer: "© 2024 SuitAI. Lokale und Sichere Künstliche Intelligenz."
+                urgencyBanner: "🔥 Schließen Sie sich 50.000+ Nutzern an, die bereits private und lokale KI genießen ⚡",
+                activeUsersLabel: "Aktive Nutzer",
+                processedTodayLabel: "Heute verarbeitet",
+                privacyLabel: "Datenschutz",
+                heroBadge: "Jetzt verfügbar - Keine Verbindung erforderlich",
+                heroTitle: "KI, die Ihre Privatsphäre schützt",
+                heroSubtitle: "Erleben Sie die Zukunft der künstlichen Intelligenz, die vollständig auf Ihrem Gerät läuft. Keine Datenkompromisse, keine Latenz, keine Grenzen.",
+                downloadWindows: "Für Windows herunterladen",
+                downloadMac: "SuitAI Mac",
+                downloadLinux: "SuitAI Linux",
+                watchDemo: "Demo ansehen",
+                metric1: "Zufriedene Nutzer",
+                metric2: "Verarbeitete Anfragen",
+                metric3: "Betriebszeit",
+                metric4: "An Cloud gesendete Daten",
+                comparisonTitle: "SuitAI vs Konkurrenz",
+                othersTitle: "Andere KI-Lösungen",
+                others1: "Benötigen ständige Verbindung",
+                others2: "Ihre Daten gehen in die Cloud",
+                others3: "Hohe monatliche Kosten",
+                others4: "Nutzungseinschränkungen",
+                ourTitle: "SuitAI",
+                our1: "Funktioniert vollständig offline",
+                our2: "100% privat und sicher",
+                our3: "Einmalige Zahlung, keine Abonnements",
+                our4: "Unbegrenzte Nutzung",
+                assistantName: "SuitAI Assistent",
+                assistantStatus: "Online und bereit",
+                assistantTitle: "Entdecken Sie alles, was Sie mit SuitAI machen können!",
+                assistantDescription: "SuitAI ist die Revolution in der persönlichen künstlichen Intelligenz. Stellen Sie sich vor, ChatGPT zu haben, aber vollständig auf Ihrem Computer laufend, ohne ein einziges Datenbit an das Internet zu senden.",
+                chatTitle: "Erweiterte intelligente Chat",
+                chatDescription: "Natürliche Gespräche mit modernster KI. Sehen Sie die vollständige Begründung hinter jeder Antwort.",
+                editorTitle: "Professioneller Code-Editor",
+                editorDescription: "Integriertes Terminal, Syntax-Hervorhebung, Echtzeitausführung und KI-Unterstützung für die Programmierung.",
+                ragTitle: "Intelligente Dokumentenanalyse",
+                ragDescription: "Laden Sie PDFs und Dokumente hoch und erhalten Sie sofortige Zusammenfassungen, tiefgreifende Analysen und präzise Antworten.",
+                privacyTitle: "Maximale Sicherheit",
+                privacyDescription: "Ihre Daten verlassen nie Ihr Gerät. Echte Privatsphäre, keine leeren Versprechen.",
+                featuresTitle: "Revolutionäre Funktionen",
+                featuresSubtitle: "Entdecken Sie, warum 50.000+ Nutzer SuitAI als ihre definitive KI-Lösung gewählt haben",
+                feature1Title: "Unbegrenzte lokale KI",
+                feature1Description: "Führen Sie fortgeschrittene KI-Modelle direkt auf Ihrer Hardware aus. Keine Zensur, keine Token-Beschränkungen, keine Abhängigkeit von externen Diensten.",
+                feature2Title: "Sofortige PDF-Verarbeitung",
+                feature2Description: "Ziehen Sie jede PDF und erhalten Sie Executive Summaries, detaillierte Analysen und spezifische Antworten in Sekunden, nicht Minuten.",
+                feature3Title: "Premium-Inhaltsgenerierung",
+                feature3Description: "Erstellen Sie professionelle Dokumente, Präsentationen, Code und Unternehmensgrafiken ohne Internetverbindung.",
+                feature4Title: "Erweiterte Datenvisualisierung",
+                feature4Description: "Transformieren Sie komplexe Daten in interaktive Diagramme und professionelle Visualisierungen ohne externe Bibliotheken.",
+                feature5Title: "Intelligente Hybridsuche",
+                feature5Description: "Kombinieren Sie lokale und Online-Suchen nach Ihren Wünschen. Kontrollieren Sie vollständig, wann und wie auf das Internet zugegriffen wird.",
+                feature6Title: "Experten-Programmierassistent",
+                feature6Description: "Von einfachen Skripten bis zu vollständigen Anwendungen. Ein Code-Copilot, der Kontext und bewährte Praktiken versteht.",
+                securityTitle: "Ihre Privatsphäre ist heilig",
+                securityDescription: "In einer Welt, in der Ihre Daten an den Meistbietenden verkauft werden, repräsentiert SuitAI eine neue Ära wirklich privater KI. Alle Verarbeitung findet auf Ihrem Gerät statt. Trennen Sie das Internet, wenn Sie möchten: SuitAI wird perfekt weiter funktionieren.",
+                zeroData: "Gesendete Daten",
+                localProcessing: "Lokale Verarbeitung",
+                unlimitedUse: "Unbegrenzte Nutzung",
+                downloadTitle: "Schließen Sie sich der privaten KI-Revolution an",
+                downloadDescription: "Laden Sie SuitAI jetzt herunter und erleben Sie die Zukunft der persönlichen künstlichen Intelligenz. Keine Abonnements, keine Grenzen, keine Verpflichtungen.",
+                noSubscription: "✅ Keine Abonnements • ✅ Einmalige Zahlung • ✅ Kostenlose Updates",
+                footer: "© 2024 SuitAI. Die private und lokale KI-Revolution."
             },
             pl: {
-                tagline: "Całkowicie Lokalna i Bezpieczna Sztuczna Inteligencja",
-                heroTitle: "Rewolucja Lokalnej AI",
-                heroDescription: "Doświadcz mocy sztucznej inteligencji bez narażania prywatności. SuitAI działa całkowicie na Twoim urządzeniu, bez potrzeby internetu.",
-                featuresTitle: "Główne Funkcje",
-                feature1Title: "Lokalny Chat z AI",
-                feature1Description: "Rozmawiaj z zaawansowaną sztuczną inteligencją, która działa całkowicie na Twoim urządzeniu. Bez opóźnień, bez ograniczeń, bez kompromisów w prywatności.",
-                feature2Title: "Podsumowania PDF",
-                feature2Description: "Analizuj i podsumowuj dokumenty PDF natychmiastowo. Wydobywaj kluczowe informacje, generuj streszczenia wykonawcze i rozumiej złożone treści w sekundach.",
-                feature3Title: "Tworzenie Dokumentów",
-                feature3Description: "Generuj pliki PDF, DOC, Excel i tekstowe za pomocą AI. Twórz raporty, prezentacje i profesjonalne dokumenty automatycznie.",
-                feature4Title: "Wykresy Offline",
-                feature4Description: "Twórz imponujące wizualizacje danych całkowicie offline. Generuj interaktywne wykresy, diagramy i grafy bez zewnętrznego połączenia.",
-                feature5Title: "Inteligentne Wyszukiwanie",
-                feature5Description: "Szukaj informacji w internecie gdy potrzebujesz, lub pozostań całkowicie offline. To Ty decydujesz kiedy się połączyć, a kiedy pozostać prywatnym.",
-                feature6Title: "Generowanie Kodu",
-                feature6Description: "Twórz aplikacje, skrypty i kod w wielu językach. Kompletny asystent programistyczny, który działa lokalnie na Twojej maszynie.",
-                securityTitle: "Całkowita Prywatność i Bezpieczeństwo",
-                securityDescription: "SuitAI został zaprojektowany z prywatnością jako priorytetem. Działa całkowicie offline gdy chcesz, zachowując Twoje dane bezpiecznie na urządzeniu. Odłącz się od internetu i kontynuuj pracę ze wszystkimi funkcjonalnościami AI. Twoje rozmowy, dokumenty i dane nigdy nie opuszczają Twojej kontroli.",
-                downloadTitle: "Rozpocznij Swoją Przygodę z SuitAI",
-                downloadDescription: "Pobierz SuitAI i odkryj przyszłość prywatnej sztucznej inteligencji",
-                downloadButton: "Pobierz SuitAI",
-                footer: "© 2024 SuitAI. Lokalna i Bezpieczna Sztuczna Inteligencja."
+                urgencyBanner: "🔥 Dołącz do ponad 50,000 użytkowników ciesząc się prywatną i lokalną AI ⚡",
+                activeUsersLabel: "Aktywni użytkownicy",
+                processedTodayLabel: "Przetworzono dzisiaj",
+                privacyLabel: "Prywatność",
+                heroBadge: "Dostępne teraz - Brak wymaganego połączenia",
+                heroTitle: "AI, która chroni twoją prywatność",
+                heroSubtitle: "Doświadcz przyszłości sztucznej inteligencji działającej całkowicie na twoim urządzeniu. Bez kompromisów danych, bez opóźnień, bez limitów.",
+                downloadWindows: "Pobierz dla Windows",
+                downloadMac: "SuitAI Mac",
+                downloadLinux: "SuitAI Linux",
+                watchDemo: "Zobacz Demo",
+                metric1: "Zadowoleni użytkownicy",
+                metric2: "Przetworzone zapytania",
+                metric3: "Czas działania",
+                metric4: "Dane wysłane do chmury",
+                comparisonTitle: "SuitAI vs Konkurencja",
+                othersTitle: "Inne rozwiązania AI",
+                others1: "Wymagają stałego połączenia",
+                others2: "Twoje dane idą do chmury",
+                others3: "Wysokie miesięczne koszty",
+                others4: "Ograniczenia użytkowania",
+                ourTitle: "SuitAI",
+                our1: "Działa całkowicie offline",
+                our2: "100% prywatne i bezpieczne",
+                our3: "Jednorazowa płatność, bez subskrypcji",
+                our4: "Nieograniczone użytkowanie",
+                assistantName: "Asystent SuitAI",
+                assistantStatus: "Online i gotowy",
+                assistantTitle: "Odkryj wszystko, co możesz robić z SuitAI!",
+                assistantDescription: "SuitAI to rewolucja w dziedzinie osobistej sztucznej inteligencji. Wyobraź sobie ChatGPT działającego całkowicie na twoim komputerze bez wysyłania ani jednego bitu danych do internetu.",
+                chatTitle: "Zaawansowany inteligentny chat",
+                chatDescription: "Naturalne rozmowy z najnowocześniejszą AI. Zobacz pełne rozumowanie stojące za każdą odpowiedzią.",
+                editorTitle: "Profesjonalny edytor kodu",
+                editorDescription: "Zintegrowany terminal, podświetlanie składni, wykonywanie w czasie rzeczywistym i pomoc AI w programowaniu.",
+                ragTitle: "Inteligentna analiza dokumentów",
+                ragDescription: "Wgraj PDFy, dokumenty i otrzymaj natychmiastowe podsumowania, głębokie analizy i precyzyjne odpowiedzi.",
+                privacyTitle: "Maksymalne bezpieczeństwo",
+                privacyDescription: "Twoje dane nigdy nie opuszczają urządzenia. Prawdziwa prywatność, nie puste obietnice.",
+                featuresTitle: "Rewolucyjne funkcje",
+                featuresSubtitle: "Odkryj, dlaczego ponad 50,000 użytkowników wybrało SuitAI jako swoje ostateczne rozwiązanie AI",
+                feature1Title: "Nieograniczona lokalna AI",
+                feature1Description: "Uruchamiaj zaawansowane modele AI bezpośrednio na swoim sprzęcie. Bez censury, bez ograniczeń tokenów, bez zależności od zewnętrznych usług.",
+                feature2Title: "Natychmiastowe przetwarzanie PDF",
+                feature2Description: "Przeciągnij dowolny PDF i otrzymaj podsumowania wykonawcze, szczegółowe analizy i konkretne odpowiedzi w sekundach, nie minutach.",
+                feature3Title: "Generowanie treści premium",
+                feature3Description: "Twórz profesjonalne dokumenty, prezentacje, kod i grafiki klasy korporacyjnej bez połączenia internetowego.",
+                feature4Title: "Zaawansowana wizualizacja danych",
+                feature4Description: "Przekształć złożone dane w interaktywne wykresy i profesjonalne wizualizacje bez zewnętrznych bibliotek.",
+                feature5Title: "Inteligentne wyszukiwanie hybrydowe",
+                feature5Description: "Łącz lokalne i internetowe wyszukiwania według swoich preferencji. Pełna kontrola nad tym, kiedy i jak dostęp do internetu jest uzyskiwany.",
+                feature6Title: "Ekspert asystent programowania",
+                feature6Description: "Od prostych skryptów do kompletnych aplikacji. Kopilot kodu, który rozumie kontekst i najlepsze praktyki.",
+                securityTitle: "Twoja prywatność jest święta",
+                securityDescription: "W świecie, gdzie twoje dane są sprzedawane najwyższemu licytującemu, SuitAI reprezentuje nową erę prawdziwie prywatnej AI. Całe przetwarzanie odbywa się na twoim urządzeniu. Odłącz internet jeśli chcesz: SuitAI będzie działać perfekcyjnie.",
+                zeroData: "Wysłane dane",
+                localProcessing: "Przetwarzanie lokalne",
+                unlimitedUse: "Nieograniczone użycie",
+                downloadTitle: "Dołącz do rewolucji prywatnej AI",
+                downloadDescription: "Pobierz SuitAI teraz i doświadcz przyszłości osobistej sztucznej inteligencji. Bez subskrypcji, bez limitów, bez zobowiązań.",
+                noSubscription: "✅ Bez subskrypcji • ✅ Jednorazowa płatność • ✅ Darmowe aktualizacje",
+                footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI."
             },
             fr: {
-                tagline: "Intelligence Artificielle Complètement Locale et Sécurisée",
-                heroTitle: "La Révolution de l'IA Locale",
-                heroDescription: "Découvrez la puissance de l'intelligence artificielle sans compromettre votre vie privée. SuitAI fonctionne entièrement sur votre appareil, sans besoin d'internet.",
-                featuresTitle: "Fonctionnalités Principales",
-                feature1Title: "Chat Local avec IA",
-                feature1Description: "Conversez avec une intelligence artificielle avancée qui fonctionne entièrement sur votre appareil. Sans latence, sans limites, sans compromis sur la vie privée.",
-                feature2Title: "Résumés PDF",
-                feature2Description: "Analysez et résumez des documents PDF instantanément. Extrayez des informations clés, générez des résumés exécutifs et comprenez du contenu complexe en quelques secondes.",
-                feature3Title: "Création de Documents",
-                feature3Description: "Générez des fichiers PDF, DOC, Excel et texte avec l'IA. Créez automatiquement des rapports, présentations et documents professionnels.",
-                feature4Title: "Graphiques Hors Ligne",
-                feature4Description: "Créez des visualisations de données impressionnantes complètement hors ligne. Générez des graphiques, diagrammes et charts interactifs sans connexion externe.",
-                feature5Title: "Recherche Intelligente",
-                feature5Description: "Recherchez des informations sur internet quand vous en avez besoin, ou restez complètement hors ligne. Vous décidez quand vous connecter et quand rester privé.",
-                feature6Title: "Génération de Code",
-                feature6Description: "Développez des applications, scripts et code dans plusieurs langages. Un assistant de programmation complet qui fonctionne localement sur votre machine.",
-                securityTitle: "Confidentialité et Sécurité Totales",
-                securityDescription: "SuitAI est conçu avec la confidentialité comme priorité. Il fonctionne complètement hors ligne quand vous le souhaitez, gardant vos données en sécurité sur votre appareil. Déconnectez-vous d'internet et continuez à travailler avec toutes les fonctionnalités IA. Vos conversations, documents et données ne quittent jamais votre contrôle.",
-                downloadTitle: "Commencez Votre Expérience SuitAI",
-                downloadDescription: "Téléchargez SuitAI et découvrez l'avenir de l'intelligence artificielle privée",
-                downloadButton: "Télécharger SuitAI",
-                footer: "© 2024 SuitAI. Intelligence Artificielle Locale et Sécurisée."
+                urgencyBanner: "🔥 Rejoignez plus de 50 000 utilisateurs profitant déjà d'une IA privée et locale ⚡",
+                activeUsersLabel: "Utilisateurs actifs",
+                processedTodayLabel: "Traités aujourd'hui",
+                privacyLabel: "Confidentialité",
+                heroBadge: "Disponible maintenant - Aucune connexion requise",
+                heroTitle: "L'IA qui protège votre vie privée",
+                heroSubtitle: "Découvrez l'avenir de l'intelligence artificielle qui fonctionne entièrement sur votre appareil. Sans compromis de données, sans latence, sans limites.",
+                downloadWindows: "Télécharger pour Windows",
+                downloadMac: "SuitAI Mac",
+                downloadLinux: "SuitAI Linux",
+                watchDemo: "Voir la démo",
+                metric1: "Utilisateurs satisfaits",
+                metric2: "Requêtes traitées",
+                metric3: "Temps de fonctionnement",
+                metric4: "Données envoyées au cloud",
+                comparisonTitle: "SuitAI vs Concurrence",
+                othersTitle: "Autres solutions IA",
+                others1: "Nécessitent une connexion constante",
+                others2: "Vos données vont dans le cloud",
+                others3: "Coûts mensuels élevés",
+                others4: "Limitations d'utilisation",
+                ourTitle: "SuitAI",
+                our1: "Fonctionne entièrement hors ligne",
+                our2: "100% privé et sécurisé",
+                our3: "Paiement unique, pas d'abonnements",
+                our4: "Utilisation illimitée",
+                assistantName: "Assistant SuitAI",
+                assistantStatus: "En ligne et prêt",
+                assistantTitle: "Découvrez tout ce que vous pouvez faire avec SuitAI !",
+                assistantDescription: "SuitAI est la révolution dans l'intelligence artificielle personnelle. Imaginez avoir ChatGPT, mais fonctionnant entièrement sur votre ordinateur sans envoyer un seul bit de données sur internet.",
+                chatTitle: "Chat intelligent avancé",
+                chatDescription: "Conversations naturelles avec une IA de pointe. Voyez le raisonnement complet derrière chaque réponse.",
+                editorTitle: "Éditeur de code professionnel",
+                editorDescription: "Terminal intégré, coloration syntaxique, exécution en temps réel et assistance IA pour la programmation.",
+                ragTitle: "Analyse intelligente de documents",
+                ragDescription: "Téléchargez des PDFs, des documents et obtenez des résumés instantanés, des analyses approfondies et des réponses précises.",
+                privacyTitle: "Sécurité maximale",
+                privacyDescription: "Vos données ne quittent jamais votre appareil. Vraie confidentialité, pas de promesses vides.",
+                featuresTitle: "Fonctionnalités révolutionnaires",
+                featuresSubtitle: "Découvrez pourquoi plus de 50 000 utilisateurs ont choisi SuitAI comme leur solution IA définitive",
+                feature1Title: "IA locale illimitée",
+                feature1Description: "Exécutez des modèles IA avancés directement sur votre matériel. Pas de censure, pas de limitations de tokens, pas de dépendance aux services externes.",
+                feature2Title: "Traitement instantané de PDF",
+                feature2Description: "Glissez n'importe quel PDF et obtenez des résumés exécutifs, des analyses détaillées et des réponses spécifiques en secondes, pas en minutes.",
+                feature3Title: "Génération de contenu premium",
+                feature3Description: "Créez des documents professionnels, des présentations, du code et des graphiques de qualité entreprise sans connexion internet.",
+                feature4Title: "Visualisation de données avancée",
+                feature4Description: "Transformez des données complexes en graphiques interactifs et visualisations professionnelles sans bibliothèques externes.",
+                feature5Title: "Recherche hybride intelligente",
+                feature5Description: "Combinez recherches locales et en ligne selon vos préférences. Contrôlez complètement quand et comment l'accès internet est obtenu.",
+                feature6Title: "Assistant de programmation expert",
+                feature6Description: "Des scripts simples aux applications complètes. Un copilote de code qui comprend le contexte et les meilleures pratiques.",
+                securityTitle: "Votre vie privée est sacrée",
+                securityDescription: "Dans un monde où vos données sont vendues au plus offrant, SuitAI représente une nouvelle ère d'IA vraiment privée. Tout le traitement se déroule sur votre appareil. Déconnectez internet si vous voulez : SuitAI continuera à fonctionner parfaitement.",
+                zeroData: "Données envoyées",
+                localProcessing: "Traitement local",
+                unlimitedUse: "Utilisation illimitée",
+                downloadTitle: "Rejoignez la révolution de l'IA privée",
+                downloadDescription: "Téléchargez SuitAI maintenant et découvrez l'avenir de l'intelligence artificielle personnelle. Pas d'abonnements, pas de limites, pas d'engagements.",
+                noSubscription: "✅ Pas d'abonnements • ✅ Paiement unique • ✅ Mises à jour gratuites",
+                footer: "© 2024 SuitAI. La révolution de l'IA privée et locale."
             }
         };
 
-        // Variables globales para idioma
-        let currentLanguage = 'es';
-        const languageFlags = {
-            es: '🇪🇸',
-            en: '🇺🇸', 
-            de: '🇩🇪',
-            pl: '🇵🇱',
-            fr: '🇫🇷'
-        };
+        // Variables globales
+        let currentTheme = localStorage.getItem('suitai-theme') || 'dark';
+        let currentLanguage = localStorage.getItem('suitai-language') || 'es';
 
-        // Función para cambiar idioma
+        // Gestión de tema
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('suitai-theme', theme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            themeToggle.title = theme === 'dark' ? 'Modo claro' : 'Modo oscuro';
+        }
+
+        function toggleTheme() {
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        // Gestión de idiomas
         function changeLanguage(lang) {
             if (!translations[lang]) return;
             
             currentLanguage = lang;
             
-            // Actualizar todos los elementos con data-key
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.getAttribute('data-key');
                 if (translations[lang][key]) {
@@ -1085,150 +1736,191 @@
                 }
             });
             
-            // Actualizar banderas activas
-            document.querySelectorAll('.language-flag').forEach(flag => {
-                flag.classList.remove('active');
-                if (flag.getAttribute('data-lang') === lang) {
-                    flag.classList.add('active');
-                }
+            document.querySelectorAll('.control-btn[data-lang]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
             
-            // Guardar preferencia
             localStorage.setItem('suitai-language', lang);
-            
-            console.log(`Idioma cambiado a: ${lang}`);
         }
 
-        // Función para inicializar el selector de idioma
-        function initLanguageSelector() {
-            // Verificar que todas las banderas estén presentes
-            const allFlags = document.querySelectorAll('.language-flag');
-            console.log(`🌍 Banderas de idioma encontradas: ${allFlags.length}`);
-            
-            if (allFlags.length === 0) {
-                console.error('❌ No se encontraron banderas de idioma');
-                return;
-            }
+        // Crear partículas de fondo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-            allFlags.forEach(flag => {
-                const lang = flag.getAttribute('data-lang');
-                const title = flag.getAttribute('title');
-                console.log(`🏁 ${lang}: ${title} - ${flag.textContent}`);
-            });
-            
-            // Manejar clics en banderas
-            allFlags.forEach(flag => {
-                flag.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const lang = flag.getAttribute('data-lang');
-                    console.log(`🎯 Bandera seleccionada: ${lang}`);
-                    changeLanguage(lang);
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Actualizar estadísticas en tiempo real
+        function updateLiveStats() {
+            const activeUsers = document.getElementById('activeUsers');
+            const processedToday = document.getElementById('processedToday');
+
+            if (activeUsers && processedToday) {
+                setInterval(() => {
+                    const currentUsers = parseInt(activeUsers.textContent.replace(/,/g, ''));
+                    const currentProcessed = parseInt(processedToday.textContent.replace(/,/g, ''));
                     
-                    // Efecto visual de clic
-                    flag.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        flag.style.transform = '';
-                    }, 150);
-                });
-
-                // Efecto hover mejorado
-                flag.addEventListener('mouseenter', () => {
-                    if (!flag.classList.contains('active')) {
-                        flag.style.transform = 'translateY(-8px) scale(1.1)';
+                    if (Math.random() > 0.7) {
+                        activeUsers.textContent = (currentUsers + Math.floor(Math.random() * 5) + 1).toLocaleString();
                     }
-                });
-
-                flag.addEventListener('mouseleave', () => {
-                    if (!flag.classList.contains('active')) {
-                        flag.style.transform = '';
+                    
+                    if (Math.random() > 0.8) {
+                        processedToday.textContent = (currentProcessed + Math.floor(Math.random() * 10) + 1).toLocaleString();
                     }
-                });
-            });
-            
-            // Cargar idioma guardado o español por defecto
-            const savedLanguage = localStorage.getItem('suitai-language') || 'es';
-            if (translations[savedLanguage]) {
-                changeLanguage(savedLanguage);
-            } else {
-                changeLanguage('es');
+                }, 3000);
             }
-
-            console.log('✅ Selector de idiomas flotantes inicializado correctamente');
-            
-            // Limpiar logs después de 3 segundos
-            setTimeout(() => {
-                console.clear();
-            }, 3000);
         }
 
-        // Download button functionality with enhanced effects
-        function openDownloadPage() {
-            // Enlace oficial de descarga de SuitAI
-            window.open('https://mega.nz/folder/xb4TTb4Q#3IPeywjEAAQXQZLlJGlxLg', '_blank');
+        // Mostrar demo interactivo
+        function showDemo() {
+            const demoPreview = document.getElementById('demoPreview');
+            const typingText = document.getElementById('typingText');
             
-            // Add click effect
-            const btn = document.querySelector('.download-btn');
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = '';
-            }, 150);
-        }
-
-        // Page load animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling behavior
-            document.documentElement.style.scrollBehavior = 'smooth';
-            
-            // Initialize optimized effects
-            createParticles();
-            enhanceFeatureCards();
-            createScrollAnimations();
-            enhance3DEffects();
-            initLanguageSelector();
-            
-            // Add mouse movement parallax
-            document.addEventListener('mousemove', handleMouseMove);
-            
-            // Typing effect for tagline
-            setTimeout(() => {
-                const tagline = document.querySelector('.tagline');
-                if (tagline) {
-                    const originalText = tagline.textContent;
-                    typeWriter(tagline, originalText, 30);
+            if (demoPreview.style.display === 'none') {
+                demoPreview.style.display = 'block';
+                demoPreview.scrollIntoView({ behavior: 'smooth' });
+                
+                const messages = [
+                    "La inteligencia artificial es una rama de la informática...",
+                    "Procesando tu consulta localmente...",
+                    "✅ Respuesta generada en 0.3 segundos sin conexión a internet"
+                ];
+                
+                let messageIndex = 0;
+                let charIndex = 0;
+                
+                function typeMessage() {
+                    if (messageIndex < messages.length) {
+                        if (charIndex < messages[messageIndex].length) {
+                            typingText.textContent = messages[messageIndex].substring(0, charIndex + 1);
+                            charIndex++;
+                            setTimeout(typeMessage, 50);
+                        } else {
+                            setTimeout(() => {
+                                messageIndex++;
+                                charIndex = 0;
+                                if (messageIndex < messages.length) {
+                                    typingText.textContent = '';
+                                    setTimeout(typeMessage, 500);
+                                }
+                            }, 1500);
+                        }
+                    }
                 }
-            }, 1000);
-            
-            // Optimized logo interaction
-            const logo = document.querySelector('.logo');
-            logo.addEventListener('mouseenter', () => {
-                logo.style.transform = 'scale(1.03) rotate(1deg)'; /* Simplificado */
-                logo.style.filter = 'drop-shadow(0 8px 16px rgba(0, 212, 255, 0.3))';
-            });
-            logo.addEventListener('mouseleave', () => {
-                logo.style.transform = 'scale(1) rotate(0deg)';
-                logo.style.filter = '';
+                
+                typeMessage();
+            } else {
+                demoPreview.style.display = 'none';
+            }
+        }
+
+        // Animaciones en scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
 
-            // Pause animations when page is not visible
-            document.addEventListener('visibilitychange', () => {
-                const animatedElements = document.querySelectorAll('.feature-icon, .particle, .logo, .security-icon, .download-icon');
-                if (document.hidden) {
-                    animatedElements.forEach(el => el.style.animationPlayState = 'paused');
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Funcionalidad de descarga
+        function openDownloadPage(platform) {
+            const downloadLinks = {
+                linux: 'https://mega.nz/folder/da4zxToY#j6lrbLsvyOgCMdcSIrBn8g',
+                mac: 'https://mega.nz/folder/5TIV2RTI#HJfCpLakG-znxXHwo-WI3Q',
+                windows: 'https://mega.nz/folder/EGhjHQqB#VkMG3VwtbTxa5sHmK-pcHg'
+            };
+            
+            const url = downloadLinks[platform];
+            if (url) {
+                // Crear efecto de llamada a la acción
+                const button = event.target.closest('.btn');
+                if (button) {
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = '';
+                        window.open(url, '_blank');
+                    }, 150);
+                }
+            }
+        }
+
+        // Efectos del header en scroll
+        function handleHeaderScroll() {
+            const header = document.querySelector('.header');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.style.background = currentTheme === 'dark' 
+                        ? 'rgba(10, 10, 10, 0.95)' 
+                        : 'rgba(255, 255, 255, 0.95)';
+                    header.style.borderBottom = `1px solid ${currentTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(148, 163, 184, 0.2)'}`;
                 } else {
-                    animatedElements.forEach(el => el.style.animationPlayState = 'running');
+                    header.style.background = '';
+                    header.style.borderBottom = '';
                 }
+
+                lastScrollY = currentScrollY;
             });
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar tema e idioma inicial
+            setTheme(currentTheme);
+            changeLanguage(currentLanguage);
+
+            // Inicializar funcionalidades
+            createParticles();
+            handleScrollAnimations();
+            handleHeaderScroll();
+            updateLiveStats();
+
+            // Event listeners
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            document.querySelectorAll('.control-btn[data-lang]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    changeLanguage(btn.getAttribute('data-lang'));
+                });
+            });
+
+            // Hacer las funciones globales
+            window.showDemo = showDemo;
+            window.openDownloadPage = openDownloadPage;
+
+            console.log('🚀 SuitAI Enhanced loaded successfully!');
         });
 
-        // Optimized particle regeneration - menos frecuente
-        setInterval(() => {
-            const particles = document.querySelectorAll('.particle');
-            if (particles.length > 0 && document.visibilityState === 'visible') { // Solo si la página es visible
-                const randomParticle = particles[Math.floor(Math.random() * particles.length)];
-                randomParticle.style.left = Math.random() * window.innerWidth + 'px';
-                randomParticle.style.top = Math.random() * window.innerHeight + 'px';
+        // Optimizaciones de rendimiento
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pausar animaciones cuando la página no es visible
+                document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'paused');
+            } else {
+                document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'running');
             }
-        }, 8000); // Reducido de 3s a 8s
+        });
     </script>
 </body>
-</html> 
+</html>
