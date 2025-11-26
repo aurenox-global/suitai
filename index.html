@@ -3,60 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuitAI - Inteligencia Artificial Local</title>
+    <title>SuitAI - Inteligencia Artificial Local y Privada | AI sin Conexión</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SuitAI es la revolución en inteligencia artificial personal que funciona 100% en tu dispositivo. Sin conexión a internet, sin comprometer tus datos, sin límites. Descarga gratis para Windows, Mac y Linux.">
+    <meta name="keywords" content="inteligencia artificial, IA local, AI privada, ChatGPT alternativa, offline AI, procesamiento local, privacidad, SuitAI, machine learning, deep learning, asistente virtual">
+    <meta name="author" content="SuitAI">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://suitai.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suitai.app/">
+    <meta property="og:title" content="SuitAI - Inteligencia Artificial Local y Privada">
+    <meta property="og:description" content="Experimenta el futuro de la IA que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.">
+    <meta property="og:image" content="https://suitai.app/images/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="SuitAI">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://suitai.app/">
+    <meta name="twitter:title" content="SuitAI - Inteligencia Artificial Local y Privada">
+    <meta name="twitter:description" content="La IA que protege tu privacidad. Funciona 100% offline en tu dispositivo.">
+    <meta name="twitter:image" content="https://suitai.app/images/twitter-card.png">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#10b981">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SuitAI">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SuitAI",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": ["Windows", "Mac OS", "Linux"],
+        "description": "Inteligencia artificial personal que funciona 100% en tu dispositivo sin conexión a internet.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "IA 100% local y privada",
+            "Procesamiento offline",
+            "Chat inteligente avanzado",
+            "Análisis de documentos PDF",
+            "Editor de código profesional",
+            "Sin suscripciones mensuales"
+        ]
+    }
+    </script>
+    
+    <!-- Preconnect to external resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <style>
         :root {
-            /* Colores del tema oscuro */
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            /* Colores del tema oscuro - Estilo Glass Futurista */
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #0f0f0f;
+            --bg-card: rgba(16, 185, 129, 0.05);
+            --bg-card-hover: rgba(16, 185, 129, 0.1);
+            --glass-bg: rgba(0, 0, 0, 0.4);
+            --glass-border: rgba(16, 185, 129, 0.2);
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-tertiary: #666666;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #06b6d4;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --border-primary: rgba(255, 255, 255, 0.08);
-            --border-secondary: rgba(255, 255, 255, 0.12);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
-            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.2);
-            --backdrop-blur: 12px;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent-primary: #10b981;
+            --accent-secondary: #3b82f6;
+            --accent-tertiary: #06d6a0;
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #06d6a0 100%);
+            --accent-gradient-hover: linear-gradient(135deg, #34d399 0%, #60a5fa 50%, #34d399 100%);
+            --accent-glow: rgba(16, 185, 129, 0.4);
+            --accent-glow-blue: rgba(59, 130, 246, 0.3);
+            --border-primary: rgba(16, 185, 129, 0.15);
+            --border-secondary: rgba(59, 130, 246, 0.2);
+            --border-glow: rgba(16, 185, 129, 0.4);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.3), 0 0 80px rgba(59, 130, 246, 0.15);
+            --shadow-glow-intense: 0 0 60px rgba(16, 185, 129, 0.5), 0 0 120px rgba(59, 130, 246, 0.25);
+            --backdrop-blur: 20px;
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
+            --neon-green: #00ff88;
+            --neon-blue: #00d4ff;
         }
 
         [data-theme="light"] {
-            /* Colores del tema claro */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --bg-card-hover: rgba(255, 255, 255, 0.9);
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --text-tertiary: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #06b6d4;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            --accent-glow: rgba(59, 130, 246, 0.2);
-            --border-primary: rgba(148, 163, 184, 0.2);
-            --border-secondary: rgba(148, 163, 184, 0.3);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
-            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.1);
-            --backdrop-blur: 8px;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
+            /* Colores del tema claro - Estilo Glass Futurista */
+            --bg-primary: #f0fdf4;
+            --bg-secondary: #ecfdf5;
+            --bg-tertiary: #d1fae5;
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --bg-card-hover: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(16, 185, 129, 0.3);
+            --text-primary: #064e3b;
+            --text-secondary: #047857;
+            --text-tertiary: #10b981;
+            --accent-primary: #059669;
+            --accent-secondary: #2563eb;
+            --accent-tertiary: #10b981;
+            --accent-gradient: linear-gradient(135deg, #059669 0%, #2563eb 50%, #10b981 100%);
+            --accent-gradient-hover: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #059669 100%);
+            --accent-glow: rgba(5, 150, 105, 0.3);
+            --accent-glow-blue: rgba(37, 99, 235, 0.2);
+            --border-primary: rgba(5, 150, 105, 0.25);
+            --border-secondary: rgba(37, 99, 235, 0.2);
+            --border-glow: rgba(5, 150, 105, 0.5);
+            --shadow-sm: 0 1px 2px rgba(5, 150, 105, 0.1);
+            --shadow-md: 0 4px 12px rgba(5, 150, 105, 0.15);
+            --shadow-lg: 0 8px 25px rgba(5, 150, 105, 0.2);
+            --shadow-xl: 0 20px 40px rgba(5, 150, 105, 0.25);
+            --shadow-glow: 0 0 40px rgba(5, 150, 105, 0.2), 0 0 80px rgba(37, 99, 235, 0.1);
+            --shadow-glow-intense: 0 0 60px rgba(5, 150, 105, 0.3), 0 0 120px rgba(37, 99, 235, 0.15);
+            --backdrop-blur: 16px;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --neon-green: #10b981;
+            --neon-blue: #3b82f6;
         }
 
         * {
@@ -100,6 +178,22 @@
             50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
         }
 
+        /* Fondo con grid futurista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         /* Utilidades */
         .container {
             max-width: 1200px;
@@ -112,19 +206,44 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
         }
 
         .glass {
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--backdrop-blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--backdrop-blur)) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .glass-intense {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid var(--border-glow);
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 0 30px rgba(16, 185, 129, 0.2),
+                0 0 60px rgba(59, 130, 246, 0.1);
         }
 
         .glow {
             box-shadow: var(--shadow-glow);
         }
 
-        /* Header mejorado */
+        .neon-border {
+            border: 1px solid var(--accent-primary);
+            box-shadow: 
+                0 0 5px var(--accent-primary),
+                0 0 10px var(--accent-primary),
+                0 0 20px rgba(16, 185, 129, 0.3),
+                inset 0 0 10px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Header mejorado - Glass Futurista */
         .header {
             position: fixed;
             top: 0;
@@ -132,10 +251,12 @@
             right: 0;
             z-index: 1000;
             padding: 16px 0;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border-bottom: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-glow);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(16, 185, 129, 0.1);
         }
 
         .header-content {
@@ -152,13 +273,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
             position: relative;
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
         }
 
         .logo:hover {
             transform: scale(1.05);
-            filter: drop-shadow(0 0 8px var(--accent-glow));
+            filter: drop-shadow(0 0 15px var(--accent-primary));
         }
 
         .header-controls {
@@ -176,7 +298,8 @@
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: var(--bg-tertiary);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-primary);
             color: var(--text-primary);
             cursor: pointer;
@@ -184,37 +307,40 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         .control-btn:hover {
-            background: var(--bg-card-hover);
+            background: rgba(16, 185, 129, 0.15);
             transform: scale(1.05);
-            box-shadow: var(--shadow-glow);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
         }
 
         .control-btn.active {
             background: var(--accent-gradient);
             border-color: var(--accent-primary);
             transform: scale(1.1);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 0 0 50px rgba(59, 130, 246, 0.3);
         }
 
-        /* Estadísticas en tiempo real */
+        /* Estadísticas en tiempo real - Glass */
         .live-stats {
             position: fixed;
             top: 100px;
             right: 20px;
             z-index: 999;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--border-glow);
             border-radius: 16px;
             padding: 16px;
             min-width: 200px;
             animation: slideInRight 0.8s ease;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
         }
 
         .stat-item {
@@ -260,43 +386,77 @@
             padding-top: 100px;
         }
 
-        /* Hero Section mejorado */
+        /* Hero Section - Futurista Glass */
         .hero {
             padding: 80px 0 120px;
             text-align: center;
             position: relative;
-            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: var(--bg-card);
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
             border: 1px solid var(--accent-primary);
-            border-radius: 24px;
+            border-radius: 30px;
             font-size: 14px;
             font-weight: 500;
             color: var(--accent-primary);
             margin-bottom: 32px;
-            backdrop-filter: blur(var(--backdrop-blur));
-            animation: fadeInUp 0.8s ease 0.2s both, glow-pulse 3s ease-in-out infinite;
-            box-shadow: var(--shadow-glow);
+            animation: fadeInUp 0.8s ease 0.2s both, neon-pulse 3s ease-in-out infinite;
+            box-shadow: 
+                0 0 15px rgba(16, 185, 129, 0.3),
+                0 0 30px rgba(16, 185, 129, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .hero-badge::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: var(--success-color);
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
             animation: pulse 2s infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 15px rgba(16, 185, 129, 0.3), 0 0 30px rgba(16, 185, 129, 0.2);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 0 0 50px rgba(16, 185, 129, 0.3), 0 0 75px rgba(59, 130, 246, 0.2);
+            }
         }
 
         @keyframes glow-pulse {
             0%, 100% { box-shadow: var(--shadow-glow); }
-            50% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: var(--shadow-glow-intense); }
         }
 
         .hero-title {
@@ -310,6 +470,7 @@
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 0.8s ease 0.4s both;
             position: relative;
+            filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.3));
         }
 
         .hero-subtitle {
@@ -334,11 +495,11 @@
             align-items: center;
             gap: 8px;
             padding: 16px 32px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             position: relative;
@@ -352,8 +513,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
         }
 
         .btn:hover::before {
@@ -363,39 +524,54 @@
         .btn-primary {
             background: var(--accent-gradient);
             color: white;
-            box-shadow: var(--shadow-md);
+            box-shadow: 
+                0 0 20px rgba(16, 185, 129, 0.4),
+                0 0 40px rgba(59, 130, 246, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.5);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(16, 185, 129, 0.6),
+                0 0 60px rgba(59, 130, 246, 0.3),
+                0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .btn-secondary {
-            background: var(--bg-card);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
             color: var(--text-primary);
-            border: 1px solid var(--border-primary);
-            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-glow);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-card-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+            background: rgba(16, 185, 129, 0.15);
+            transform: translateY(-3px);
+            border-color: var(--accent-primary);
+            box-shadow: 
+                0 0 20px rgba(16, 185, 129, 0.3),
+                0 0 40px rgba(59, 130, 246, 0.15);
         }
 
-        /* Demo interactivo */
+        /* Demo interactivo - Glass */
         .demo-preview {
             max-width: 800px;
             margin: 0 auto;
-            background: var(--bg-card);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 20px;
             padding: 24px;
-            border: 1px solid var(--border-primary);
-            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-glow);
             animation: fadeInUp 0.8s ease 1s both;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(16, 185, 129, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .demo-preview::before {
@@ -406,6 +582,7 @@
             right: 0;
             height: 3px;
             background: var(--accent-gradient);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
         }
 
         .demo-header {
@@ -419,26 +596,29 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
         }
 
-        .demo-dot.red { background: #ff5f56; }
-        .demo-dot.yellow { background: #ffbd2e; }
-        .demo-dot.green { background: #27ca3f; }
+        .demo-dot.red { background: #ff5f56; box-shadow: 0 0 8px #ff5f56; }
+        .demo-dot.yellow { background: #ffbd2e; box-shadow: 0 0 8px #ffbd2e; }
+        .demo-dot.green { background: #27ca3f; box-shadow: 0 0 8px #27ca3f; }
 
         .demo-content {
-            background: var(--bg-tertiary);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 12px;
             padding: 20px;
-            font-family: 'Monaco', monospace;
+            font-family: 'Monaco', 'Consolas', monospace;
             font-size: 14px;
             position: relative;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .typing-cursor {
             display: inline-block;
             width: 2px;
             height: 16px;
-            background: var(--accent-primary);
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
             animation: blink 1s infinite;
         }
 
@@ -447,10 +627,13 @@
             51%, 100% { opacity: 0; }
         }
 
-        /* Métricas impactantes */
+        /* Métricas impactantes - Glass */
         .impact-metrics {
             padding: 80px 0;
-            background: var(--bg-secondary);
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                var(--bg-secondary);
         }
 
         .metrics-grid {
@@ -462,18 +645,40 @@
         .metric-card {
             text-align: center;
             padding: 32px;
-            background: var(--bg-card);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 20px;
-            border: 1px solid var(--border-primary);
-            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-glow);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .metric-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 30px rgba(16, 185, 129, 0.3),
+                0 0 60px rgba(59, 130, 246, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        .metric-card:hover::before {
+            opacity: 1;
         }
 
         .metric-number {
@@ -485,6 +690,7 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
             animation: countUp 2s ease-out;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
         }
 
         .metric-label {
@@ -498,7 +704,7 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* Comparación visual */
+        /* Comparación visual - Glass */
         .comparison-section {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -518,17 +724,21 @@
             padding: 32px;
             border-radius: 20px;
             position: relative;
+            backdrop-filter: blur(15px);
         }
 
         .comparison-item.ours {
-            background: var(--bg-card);
+            background: rgba(16, 185, 129, 0.1);
             border: 2px solid var(--accent-primary);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 30px rgba(16, 185, 129, 0.3),
+                0 0 60px rgba(59, 130, 246, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .comparison-item.others {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0.7;
         }
 
@@ -548,34 +758,42 @@
         .vs-divider {
             font-size: 24px;
             font-weight: 800;
-            color: var(--text-tertiary);
-            background: var(--bg-card);
+            color: var(--accent-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             border-radius: 50%;
             width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border-primary);
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
         }
 
-        /* Assistant Section mejorado */
+        /* Assistant Section - Glass Futurista */
         .assistant-section {
             padding: 80px 0;
-            background: var(--bg-secondary);
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                var(--bg-secondary);
         }
 
         .assistant-card {
             max-width: 900px;
             margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--border-glow);
             border-radius: 24px;
             padding: 32px;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 40px rgba(16, 185, 129, 0.2),
+                0 0 80px rgba(59, 130, 246, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .assistant-card::before {
@@ -586,6 +804,7 @@
             right: 0;
             height: 3px;
             background: var(--accent-gradient);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
         }
 
         .assistant-header {
@@ -632,14 +851,14 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--success-color);
+            background: var(--neon-green);
             animation: pulse 2s infinite;
-            box-shadow: 0 0 10px var(--success-color);
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
         }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
         }
 
         .features-highlights {
@@ -653,16 +872,18 @@
             gap: 16px;
             align-items: flex-start;
             padding: 20px;
-            background: var(--bg-tertiary);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
             border: 1px solid var(--border-primary);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .highlight-item:hover {
-            transform: translateY(-2px);
-            background: var(--bg-card-hover);
-            border-color: var(--border-secondary);
+            transform: translateY(-4px);
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
         .highlight-icon {
@@ -675,6 +896,7 @@
             justify-content: center;
             font-size: 20px;
             flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
         }
 
         .highlight-item strong {
@@ -692,10 +914,13 @@
             margin: 0;
         }
 
-        /* Features Section */
+        /* Features Section - Glass */
         .features {
             padding: 120px 0;
-            background: var(--bg-secondary);
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+                var(--bg-secondary);
         }
 
         .section-header {
@@ -707,7 +932,11 @@
             font-size: clamp(32px, 5vw, 48px);
             font-weight: 700;
             margin-bottom: 16px;
-            color: var(--text-primary);
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
         }
 
         .section-subtitle {
@@ -724,8 +953,9 @@
         }
 
         .feature-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid var(--border-primary);
             border-radius: 20px;
             padding: 32px;
@@ -733,6 +963,7 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .feature-card::before {
@@ -741,17 +972,21 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
+            height: 2px;
             background: var(--accent-gradient);
             transform: scaleX(0);
             transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
-            background: var(--bg-card-hover);
+            background: rgba(16, 185, 129, 0.08);
             border-color: var(--accent-primary);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 30px rgba(16, 185, 129, 0.3),
+                0 0 60px rgba(59, 130, 246, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
         }
 
         .feature-card:hover::before {
@@ -767,13 +1002,15 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
             transition: all 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 35px rgba(16, 185, 129, 0.6),
+                0 0 70px rgba(59, 130, 246, 0.3);
         }
 
         .feature-title {
@@ -788,44 +1025,53 @@
             line-height: 1.6;
         }
 
-        /* Security Section mejorado */
+        /* Security Section - Glass Futurista */
         .security {
             padding: 120px 0;
             text-align: center;
             position: relative;
-            background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.05) 0%, transparent 70%);
+            background: 
+                radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
+                var(--bg-primary);
         }
 
         .security-card {
             max-width: 800px;
             margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--border-glow);
             border-radius: 24px;
             padding: 48px;
             position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 40px rgba(16, 185, 129, 0.2),
+                0 0 80px rgba(59, 130, 246, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .security-icon {
             width: 80px;
             height: 80px;
             border-radius: 20px;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            background: var(--accent-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
             margin: 0 auto 24px;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 
+                0 0 30px rgba(16, 185, 129, 0.5),
+                0 0 60px rgba(59, 130, 246, 0.3);
             animation: shield-pulse 3s ease-in-out infinite;
         }
 
         @keyframes shield-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(16, 185, 129, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(16, 185, 129, 0.7), 0 0 80px rgba(59, 130, 246, 0.4); }
         }
 
         .security-stats {
@@ -841,12 +1087,20 @@
 
         .security-stat {
             text-align: center;
+            padding: 16px 24px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            border: 1px solid var(--border-primary);
         }
 
         .security-stat-number {
             font-size: 24px;
             font-weight: 800;
-            color: var(--success-color);
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.3));
         }
 
         .security-stat-label {
@@ -854,22 +1108,28 @@
             color: var(--text-secondary);
         }
 
-        /* Download Section mejorado */
+        /* Download Section - Glass Futurista */
         .download {
             padding: 120px 0;
-            background: var(--bg-secondary);
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                var(--bg-secondary);
             text-align: center;
         }
 
         .download-card {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--border-glow);
             border-radius: 24px;
             padding: 48px;
-            box-shadow: var(--shadow-glow);
+            box-shadow: 
+                0 0 50px rgba(16, 185, 129, 0.25),
+                0 0 100px rgba(59, 130, 246, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
 
         .download-buttons {
@@ -885,14 +1145,21 @@
             text-align: center;
             color: var(--text-secondary);
             font-size: 14px;
+            padding: 12px 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid var(--border-primary);
         }
 
-        /* Footer */
+        /* Footer - Glass */
         .footer {
             padding: 48px 0;
             text-align: center;
-            border-top: 1px solid var(--border-primary);
+            border-top: 1px solid var(--border-glow);
             color: var(--text-tertiary);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         /* Iconos SVG profesionales */
@@ -925,14 +1192,21 @@
             transform: translateY(0);
         }
 
-        /* Urgencia y escasez */
+        /* Urgencia y escasez - Futurista */
         .urgency-banner {
-            background: linear-gradient(90deg, var(--warning-color), var(--accent-primary));
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+            background-size: 200% 100%;
             color: white;
             padding: 12px 0;
             text-align: center;
             font-weight: 600;
-            animation: urgency-pulse 2s ease-in-out infinite;
+            animation: gradient-shift 3s ease-in-out infinite, urgency-pulse 2s ease-in-out infinite;
+            box-shadow: 0 2px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         @keyframes urgency-pulse {
@@ -1073,85 +1347,161 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* Enhanced Focus Styles for Accessibility */
+        .btn:focus-visible,
+        .control-btn:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 3px;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 8px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 10px;
+        }
+
+        /* Enhanced hover effects */
+        .feature-card:focus-within,
+        .metric-card:focus-within,
+        .highlight-item:focus-within {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .header,
+            .urgency-banner,
+            .live-stats,
+            .bg-particles,
+            .demo-preview {
+                display: none !important;
+            }
+
+            .main {
+                padding-top: 0;
+            }
+
+            body {
+                color: #000;
+                background: #fff;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-primary: rgba(255, 255, 255, 0.5);
+                --border-secondary: rgba(255, 255, 255, 0.7);
+            }
+
+            .btn {
+                border: 2px solid currentColor;
+            }
+        }
+
+        /* Footer nav styling */
+        .footer-nav {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#hero-title" class="skip-link">Saltar al contenido principal</a>
+    
     <!-- Banner de urgencia -->
-    <div class="urgency-banner">
+    <div class="urgency-banner" role="alert" aria-live="polite">
         <span data-key="urgencyBanner">🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡</span>
     </div>
 
     <!-- Partículas de fondo -->
-    <div class="bg-particles" id="particles"></div>
+    <div class="bg-particles" id="particles" aria-hidden="true"></div>
 
     <!-- Estadísticas en vivo -->
-    <div class="live-stats animate-on-scroll">
+    <aside class="live-stats animate-on-scroll" aria-label="Estadísticas en tiempo real">
         <div class="stat-item">
-            <div class="stat-icon">👥</div>
+            <div class="stat-icon" aria-hidden="true">👥</div>
             <div>
-                <div class="stat-number" id="activeUsers">47,832</div>
+                <div class="stat-number" id="activeUsers" aria-live="polite">47,832</div>
                 <div class="stat-text" data-key="activeUsersLabel">Usuarios activos</div>
             </div>
         </div>
         <div class="stat-item">
-            <div class="stat-icon">⚡</div>
+            <div class="stat-icon" aria-hidden="true">⚡</div>
             <div>
-                <div class="stat-number" id="processedToday">1,245</div>
+                <div class="stat-number" id="processedToday" aria-live="polite">1,245</div>
                 <div class="stat-text" data-key="processedTodayLabel">Procesados hoy</div>
             </div>
         </div>
         <div class="stat-item">
-            <div class="stat-icon">🔒</div>
+            <div class="stat-icon" aria-hidden="true">🔒</div>
             <div>
                 <div class="stat-number">100%</div>
                 <div class="stat-text" data-key="privacyLabel">Privacidad</div>
             </div>
         </div>
-    </div>
+    </aside>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">SuitAI</a>
+                <a href="#" class="logo" aria-label="SuitAI - Ir al inicio">SuitAI</a>
                 <div class="header-controls">
-                    <div class="language-selector">
-                        <button class="control-btn active" data-lang="es" title="Español">🇪🇸</button>
-                        <button class="control-btn" data-lang="en" title="English">🇺🇸</button>
-                        <button class="control-btn" data-lang="de" title="Deutsch">🇩🇪</button>
-                        <button class="control-btn" data-lang="pl" title="Polski">🇵🇱</button>
-                        <button class="control-btn" data-lang="fr" title="Français">🇫🇷</button>
-                    </div>
-                    <button class="control-btn" id="themeToggle" title="Cambiar tema">🌙</button>
+                    <nav class="language-selector" aria-label="Seleccionar idioma">
+                        <button class="control-btn active" data-lang="es" title="Español" aria-label="Cambiar a Español">🇪🇸</button>
+                        <button class="control-btn" data-lang="en" title="English" aria-label="Switch to English">🇺🇸</button>
+                        <button class="control-btn" data-lang="de" title="Deutsch" aria-label="Zu Deutsch wechseln">🇩🇪</button>
+                        <button class="control-btn" data-lang="pl" title="Polski" aria-label="Przełącz na Polski">🇵🇱</button>
+                        <button class="control-btn" data-lang="fr" title="Français" aria-label="Passer au Français">🇫🇷</button>
+                    </nav>
+                    <button class="control-btn" id="themeToggle" title="Cambiar tema" aria-label="Cambiar modo claro/oscuro">🌙</button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main" role="main">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-badge">
                     <span data-key="heroBadge">Disponible ahora - Sin conexión requerida</span>
                 </div>
-                <h1 class="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
+                <h1 class="hero-title" id="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
                 <p class="hero-subtitle" data-key="heroSubtitle">Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.</p>
                 <div class="hero-cta">
-                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                        <span>🪟</span>
+                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')" aria-label="Descargar SuitAI para Windows">
+                        <span aria-hidden="true">🪟</span>
                         <span data-key="downloadWindows">Descargar para Windows</span>
                     </button>
-                    <button class="btn btn-secondary" onclick="showDemo()">
-                        <span>▶️</span>
+                    <button class="btn btn-secondary" onclick="showDemo()" aria-label="Ver demostración del producto">
+                        <span aria-hidden="true">▶️</span>
                         <span data-key="watchDemo">Ver Demo</span>
                     </button>
                 </div>
 
                 <!-- Demo interactivo -->
-                <div class="demo-preview" id="demoPreview" style="display: none;">
-                    <div class="demo-header">
+                <article class="demo-preview" id="demoPreview" style="display: none;" aria-label="Demostración interactiva de SuitAI">
+                    <div class="demo-header" aria-hidden="true">
                         <div class="demo-dot red"></div>
                         <div class="demo-dot yellow"></div>
                         <div class="demo-dot green"></div>
@@ -1160,7 +1510,7 @@
                     <div class="demo-content">
                         <div>$ suitai chat "Explícame qué es la inteligencia artificial"</div>
                         <div style="margin: 10px 0; color: var(--accent-primary);">
-                            <span id="typingText"></span><span class="typing-cursor"></span>
+                            <span id="typingText" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -1168,219 +1518,221 @@
         </section>
 
         <!-- Métricas impactantes -->
-        <section class="impact-metrics animate-on-scroll">
+        <section class="impact-metrics animate-on-scroll" aria-label="Estadísticas de SuitAI">
             <div class="container">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-number">50K+</div>
+                <div class="metrics-grid" role="list">
+                    <article class="metric-card" role="listitem">
+                        <div class="metric-number" aria-label="Más de 50 mil">50K+</div>
                         <div class="metric-label" data-key="metric1">Usuarios satisfechos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">2.5M+</div>
+                    </article>
+                    <article class="metric-card" role="listitem">
+                        <div class="metric-number" aria-label="Más de 2.5 millones">2.5M+</div>
                         <div class="metric-label" data-key="metric2">Consultas procesadas</div>
-                    </div>
-                    <div class="metric-card">
+                    </article>
+                    <article class="metric-card" role="listitem">
                         <div class="metric-number">99.9%</div>
                         <div class="metric-label" data-key="metric3">Tiempo de funcionamiento</div>
-                    </div>
-                    <div class="metric-card">
+                    </article>
+                    <article class="metric-card" role="listitem">
                         <div class="metric-number">0</div>
                         <div class="metric-label" data-key="metric4">Datos enviados a la nube</div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Comparación visual -->
-        <section class="comparison-section animate-on-scroll">
+        <section class="comparison-section animate-on-scroll" aria-labelledby="comparison-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
+                    <h2 class="section-title" id="comparison-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
                 </div>
                 <div class="comparison-grid">
-                    <div class="comparison-item others">
+                    <article class="comparison-item others">
                         <h3 data-key="othersTitle">Otras soluciones de IA</h3>
                         <ul>
-                            <li><span>❌</span> <span data-key="others1">Requieren conexión constante</span></li>
-                            <li><span>❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
-                            <li><span>❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
-                            <li><span>❌</span> <span data-key="others4">Limitaciones de uso</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others1">Requieren conexión constante</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others4">Limitaciones de uso</span></li>
                         </ul>
-                    </div>
-                    <div class="vs-divider">VS</div>
-                    <div class="comparison-item ours">
+                    </article>
+                    <div class="vs-divider" aria-hidden="true">VS</div>
+                    <article class="comparison-item ours">
                         <h3 data-key="ourTitle">SuitAI</h3>
                         <ul>
-                            <li><span>✅</span> <span data-key="our1">Funciona completamente offline</span></li>
-                            <li><span>✅</span> <span data-key="our2">100% privado y seguro</span></li>
-                            <li><span>✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
-                            <li><span>✅</span> <span data-key="our4">Uso ilimitado</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our1">Funciona completamente offline</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our2">100% privado y seguro</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our4">Uso ilimitado</span></li>
                         </ul>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Assistant Section mejorado -->
-        <section class="assistant-section">
+        <section class="assistant-section" aria-labelledby="assistant-title">
             <div class="container">
-                <div class="assistant-card animate-on-scroll">
+                <article class="assistant-card animate-on-scroll">
                     <div class="assistant-header">
-                        <div class="assistant-avatar">🤖</div>
+                        <div class="assistant-avatar" aria-hidden="true">🤖</div>
                         <div class="assistant-info">
                             <h3 data-key="assistantName">Asistente SuitAI</h3>
                             <span class="assistant-status">
-                                <span class="status-dot"></span>
+                                <span class="status-dot" aria-hidden="true"></span>
                                 <span data-key="assistantStatus">En línea y listo</span>
                             </span>
                         </div>
                     </div>
                     <div class="assistant-message">
-                        <h4 data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
+                        <h4 id="assistant-title" data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
                         <p data-key="assistantDescription">SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.</p>
                         
-                        <div class="features-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💬</span>
+                        <div class="features-highlights" role="list">
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">💬</span>
                                 <div>
                                     <strong data-key="chatTitle">Chat Inteligente Avanzado</strong>
                                     <p data-key="chatDescription">Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">👨‍💻</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">👨‍💻</span>
                                 <div>
                                     <strong data-key="editorTitle">Editor de Código Profesional</strong>
                                     <p data-key="editorDescription">Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🧠</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">🧠</span>
                                 <div>
                                     <strong data-key="ragTitle">Análisis Inteligente de Documentos</strong>
                                     <p data-key="ragDescription">Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔒</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">🔒</span>
                                 <div>
                                     <strong data-key="privacyTitle">Seguridad Máxima</strong>
                                     <p data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
                                 </div>
-                            </div>
+                            </article>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section class="features" id="features">
+        <section class="features" id="features" aria-labelledby="features-title">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <h2 class="section-title" data-key="featuresTitle">Características Revolucionarias</h2>
+                    <h2 class="section-title" id="features-title" data-key="featuresTitle">Características Revolucionarias</h2>
                     <p class="section-subtitle" data-key="featuresSubtitle">Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva</p>
                 </div>
                 <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🧠</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">🧠</div>
                         <h3 class="feature-title" data-key="feature1Title">IA Local Sin Límites</h3>
                         <p class="feature-description" data-key="feature1Description">Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📄</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📄</div>
                         <h3 class="feature-title" data-key="feature2Title">Procesamiento Instantáneo de PDFs</h3>
                         <p class="feature-description" data-key="feature2Description">Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📝</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📝</div>
                         <h3 class="feature-title" data-key="feature3Title">Generación de Contenido Premium</h3>
                         <p class="feature-description" data-key="feature3Description">Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📊</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📊</div>
                         <h3 class="feature-title" data-key="feature4Title">Visualización de Datos Avanzada</h3>
                         <p class="feature-description" data-key="feature4Description">Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🔍</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">🔍</div>
                         <h3 class="feature-title" data-key="feature5Title">Búsqueda Híbrida Inteligente</h3>
                         <p class="feature-description" data-key="feature5Description">Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">💻</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">💻</div>
                         <h3 class="feature-title" data-key="feature6Title">Asistente de Programación Experto</h3>
                         <p class="feature-description" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Security Section -->
-        <section class="security animate-on-scroll">
+        <section class="security animate-on-scroll" aria-labelledby="security-title">
             <div class="container">
-                <div class="security-card">
-                    <div class="security-icon">🔒</div>
-                    <h2 class="section-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
+                <article class="security-card">
+                    <div class="security-icon" aria-hidden="true">🔒</div>
+                    <h2 class="section-title" id="security-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
                     <p class="section-subtitle" data-key="securityDescription">En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.</p>
-                    <div class="security-stats">
-                        <div class="security-stat">
+                    <div class="security-stats" role="list">
+                        <div class="security-stat" role="listitem">
                             <div class="security-stat-number">0 bytes</div>
                             <div class="security-stat-label" data-key="zeroData">Datos enviados</div>
                         </div>
-                        <div class="security-stat">
+                        <div class="security-stat" role="listitem">
                             <div class="security-stat-number">100%</div>
                             <div class="security-stat-label" data-key="localProcessing">Procesamiento local</div>
                         </div>
-                        <div class="security-stat">
-                            <div class="security-stat-number">∞</div>
+                        <div class="security-stat" role="listitem">
+                            <div class="security-stat-number" aria-label="Uso ilimitado - sin restricciones">∞</div>
                             <div class="security-stat-label" data-key="unlimitedUse">Uso sin límites</div>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Download Section -->
-        <section class="download">
+        <section class="download" aria-labelledby="download-title">
             <div class="container">
-                <div class="download-card animate-on-scroll">
-                    <h2 class="section-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
+                <article class="download-card animate-on-scroll">
+                    <h2 class="section-title" id="download-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
                     <p class="section-subtitle" data-key="downloadDescription">Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.</p>
-                    <div class="download-buttons">
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                            <span>🪟</span>
+                    <div class="download-buttons" role="group" aria-label="Botones de descarga">
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')" aria-label="Descargar SuitAI para Windows">
+                            <span aria-hidden="true">🪟</span>
                             <span data-key="downloadWindows">SuitAI Windows</span>
                         </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')">
-                            <span>🍎</span>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')" aria-label="Descargar SuitAI para Mac">
+                            <span aria-hidden="true">🍎</span>
                             <span data-key="downloadMac">SuitAI Mac</span>
                         </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')">
-                            <span>🐧</span>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')" aria-label="Descargar SuitAI para Linux">
+                            <span aria-hidden="true">🐧</span>
                             <span data-key="downloadLinux">SuitAI Linux</span>
                         </button>
                     </div>
                     <div class="download-note">
                         <span data-key="noSubscription">✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
+            </nav>
         </div>
     </footer>
 
