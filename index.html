@@ -6,57 +6,59 @@
     <title>SuitAI - Inteligencia Artificial Local</title>
     <style>
         :root {
-            /* Colores del tema oscuro */
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-tertiary: #666666;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #06b6d4;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --border-primary: rgba(255, 255, 255, 0.08);
-            --border-secondary: rgba(255, 255, 255, 0.12);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
-            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.2);
-            --backdrop-blur: 12px;
+            /* Colores del tema oscuro - Green, Blue, Black palette */
+            --bg-primary: #030508;
+            --bg-secondary: #0a0f14;
+            --bg-tertiary: #101820;
+            --bg-card: rgba(16, 185, 129, 0.03);
+            --bg-card-hover: rgba(16, 185, 129, 0.08);
+            --text-primary: #f0fdf4;
+            --text-secondary: #9ca3af;
+            --text-tertiary: #6b7280;
+            --accent-primary: #10b981;
+            --accent-secondary: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #059669 100%);
+            --accent-glow: rgba(16, 185, 129, 0.4);
+            --border-primary: rgba(16, 185, 129, 0.15);
+            --border-secondary: rgba(59, 130, 246, 0.25);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.6);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.7);
+            --shadow-glow: 0 0 50px rgba(16, 185, 129, 0.3), 0 0 80px rgba(59, 130, 246, 0.15);
+            --backdrop-blur: 20px;
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
+            --glass-shine: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(16, 185, 129, 0.05) 100%);
         }
 
         [data-theme="light"] {
-            /* Colores del tema claro */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.7);
+            /* Colores del tema claro - Green, Blue, Black palette */
+            --bg-primary: #f0fdf4;
+            --bg-secondary: #ecfdf5;
+            --bg-tertiary: #d1fae5;
+            --bg-card: rgba(255, 255, 255, 0.75);
             --bg-card-hover: rgba(255, 255, 255, 0.9);
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --text-tertiary: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #06b6d4;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-            --accent-glow: rgba(59, 130, 246, 0.2);
-            --border-primary: rgba(148, 163, 184, 0.2);
-            --border-secondary: rgba(148, 163, 184, 0.3);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
-            --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.1);
-            --backdrop-blur: 8px;
+            --text-primary: #022c22;
+            --text-secondary: #374151;
+            --text-tertiary: #6b7280;
+            --accent-primary: #059669;
+            --accent-secondary: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #059669 0%, #2563eb 50%, #047857 100%);
+            --accent-glow: rgba(5, 150, 105, 0.3);
+            --border-primary: rgba(5, 150, 105, 0.2);
+            --border-secondary: rgba(37, 99, 235, 0.3);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.18);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.22);
+            --shadow-glow: 0 0 50px rgba(5, 150, 105, 0.2), 0 0 80px rgba(37, 99, 235, 0.1);
+            --backdrop-blur: 16px;
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --danger-color: #ef4444;
+            --glass-shine: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, transparent 50%, rgba(5, 150, 105, 0.1) 100%);
         }
 
         * {
@@ -116,8 +118,68 @@
 
         .glass {
             background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
+            backdrop-filter: blur(var(--backdrop-blur)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--backdrop-blur)) saturate(180%);
             border: 1px solid var(--border-primary);
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.1),
+                var(--shadow-md);
+            position: relative;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glass-shine);
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        .glass-futuristic {
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.08) 0%,
+                rgba(59, 130, 246, 0.05) 50%,
+                rgba(16, 185, 129, 0.08) 100%);
+            backdrop-filter: blur(var(--backdrop-blur)) saturate(200%);
+            -webkit-backdrop-filter: blur(var(--backdrop-blur)) saturate(200%);
+            border: 1px solid var(--border-primary);
+            box-shadow: 
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+                0 0 40px rgba(16, 185, 129, 0.1),
+                var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-futuristic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(16, 185, 129, 0.5),
+                rgba(59, 130, 246, 0.5),
+                transparent);
+        }
+
+        .glass-futuristic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glass-shine);
+            pointer-events: none;
         }
 
         .glow {
@@ -887,6 +949,221 @@
             font-size: 14px;
         }
 
+        /* CEO Section */
+        .ceo-section {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--accent-primary),
+                var(--accent-secondary),
+                transparent);
+        }
+
+        .ceo-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.08) 0%,
+                rgba(59, 130, 246, 0.05) 50%,
+                rgba(16, 185, 129, 0.08) 100%);
+            backdrop-filter: blur(var(--backdrop-blur)) saturate(200%);
+            -webkit-backdrop-filter: blur(var(--backdrop-blur)) saturate(200%);
+            border: 1px solid var(--border-primary);
+            border-radius: 28px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+                0 0 60px rgba(16, 185, 129, 0.15),
+                var(--shadow-xl);
+        }
+
+        .ceo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        .ceo-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glass-shine);
+            pointer-events: none;
+        }
+
+        .ceo-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ceo-avatar-container {
+            flex-shrink: 0;
+        }
+
+        .ceo-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 24px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            box-shadow: 
+                0 0 40px rgba(16, 185, 129, 0.3),
+                var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-avatar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+        }
+
+        .ceo-info {
+            flex: 1;
+        }
+
+        .ceo-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
+        }
+
+        .ceo-name {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .ceo-role {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .ceo-quote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.7;
+            position: relative;
+            padding-left: 24px;
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .ceo-quote::before {
+            content: '"';
+            position: absolute;
+            left: 24px;
+            top: -10px;
+            font-size: 48px;
+            color: var(--accent-primary);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .ceo-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .ceo-social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .ceo-social-link:hover {
+            background: var(--accent-gradient);
+            border-color: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        @media (max-width: 768px) {
+            .ceo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ceo-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+
+            .ceo-quote {
+                padding-left: 0;
+                border-left: none;
+                border-top: 3px solid var(--accent-primary);
+                padding-top: 16px;
+            }
+
+            .ceo-quote::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .ceo-social {
+                justify-content: center;
+            }
+
+            .ceo-card {
+                padding: 32px 24px;
+            }
+        }
+
         /* Footer */
         .footer {
             padding: 48px 0;
@@ -1349,6 +1626,36 @@
             </div>
         </section>
 
+        <!-- CEO Section -->
+        <section class="ceo-section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title" data-key="ceoSectionTitle">Liderazgo Visionario</h2>
+                    <p class="section-subtitle" data-key="ceoSectionSubtitle">Conoce a la mente detrás de la revolución de la IA privada</p>
+                </div>
+                <div class="ceo-card animate-on-scroll">
+                    <div class="ceo-content">
+                        <div class="ceo-avatar-container">
+                            <div class="ceo-avatar" role="img" aria-label="CEO Avatar">👤</div>
+                        </div>
+                        <div class="ceo-info">
+                            <div class="ceo-title" data-key="ceoLabel">CEO & Fundador</div>
+                            <h3 class="ceo-name" data-key="ceoName">Alex Renaud</h3>
+                            <p class="ceo-role" data-key="ceoRoleDescription">Pionero en Inteligencia Artificial Privada</p>
+                            <blockquote class="ceo-quote" data-key="ceoQuote">
+                                Creemos que la inteligencia artificial debe servir a las personas, no explotarlas. SuitAI nació de la convicción de que la privacidad no es un lujo, es un derecho fundamental.
+                            </blockquote>
+                            <div class="ceo-social">
+                                <a class="ceo-social-link" href="#" aria-label="LinkedIn" title="LinkedIn">💼</a>
+                                <a class="ceo-social-link" href="#" aria-label="Twitter" title="Twitter">🐦</a>
+                                <a class="ceo-social-link" href="#" aria-label="GitHub" title="GitHub">💻</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Download Section -->
         <section class="download">
             <div class="container">
@@ -1448,7 +1755,13 @@
                 downloadTitle: "Únete a la Revolución de la IA Privada",
                 downloadDescription: "Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.",
                 noSubscription: "✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas",
-                footer: "© 2024 SuitAI. La revolución de la IA privada y local."
+                footer: "© 2024 SuitAI. La revolución de la IA privada y local.",
+                ceoSectionTitle: "Liderazgo Visionario",
+                ceoSectionSubtitle: "Conoce a la mente detrás de la revolución de la IA privada",
+                ceoLabel: "CEO & Fundador",
+                ceoName: "Alex Renaud",
+                ceoRoleDescription: "Pionero en Inteligencia Artificial Privada",
+                ceoQuote: "Creemos que la inteligencia artificial debe servir a las personas, no explotarlas. SuitAI nació de la convicción de que la privacidad no es un lujo, es un derecho fundamental."
             },
             en: {
                 urgencyBanner: "🔥 Join 50,000+ users already enjoying private and local AI ⚡",
@@ -1511,7 +1824,13 @@
                 downloadTitle: "Join the Private AI Revolution",
                 downloadDescription: "Download SuitAI now and experience the future of personal artificial intelligence. No subscriptions, no limits, no commitments.",
                 noSubscription: "✅ No subscriptions • ✅ One-time payment • ✅ Free updates",
-                footer: "© 2024 SuitAI. The private and local AI revolution."
+                footer: "© 2024 SuitAI. The private and local AI revolution.",
+                ceoSectionTitle: "Visionary Leadership",
+                ceoSectionSubtitle: "Meet the mind behind the private AI revolution",
+                ceoLabel: "CEO & Founder",
+                ceoName: "Alex Renaud",
+                ceoRoleDescription: "Pioneer in Private Artificial Intelligence",
+                ceoQuote: "We believe that artificial intelligence should serve people, not exploit them. SuitAI was born from the conviction that privacy is not a luxury, it's a fundamental right."
             },
             de: {
                 urgencyBanner: "🔥 Schließen Sie sich 50.000+ Nutzern an, die bereits private und lokale KI genießen ⚡",
@@ -1574,7 +1893,13 @@
                 downloadTitle: "Schließen Sie sich der privaten KI-Revolution an",
                 downloadDescription: "Laden Sie SuitAI jetzt herunter und erleben Sie die Zukunft der persönlichen künstlichen Intelligenz. Keine Abonnements, keine Grenzen, keine Verpflichtungen.",
                 noSubscription: "✅ Keine Abonnements • ✅ Einmalige Zahlung • ✅ Kostenlose Updates",
-                footer: "© 2024 SuitAI. Die private und lokale KI-Revolution."
+                footer: "© 2024 SuitAI. Die private und lokale KI-Revolution.",
+                ceoSectionTitle: "Visionäre Führung",
+                ceoSectionSubtitle: "Lernen Sie den Kopf hinter der privaten KI-Revolution kennen",
+                ceoLabel: "CEO & Gründer",
+                ceoName: "Alex Renaud",
+                ceoRoleDescription: "Pionier der privaten künstlichen Intelligenz",
+                ceoQuote: "Wir glauben, dass künstliche Intelligenz den Menschen dienen sollte, nicht sie ausbeuten. SuitAI entstand aus der Überzeugung, dass Privatsphäre kein Luxus ist, sondern ein Grundrecht."
             },
             pl: {
                 urgencyBanner: "🔥 Dołącz do ponad 50,000 użytkowników ciesząc się prywatną i lokalną AI ⚡",
@@ -1637,7 +1962,13 @@
                 downloadTitle: "Dołącz do rewolucji prywatnej AI",
                 downloadDescription: "Pobierz SuitAI teraz i doświadcz przyszłości osobistej sztucznej inteligencji. Bez subskrypcji, bez limitów, bez zobowiązań.",
                 noSubscription: "✅ Bez subskrypcji • ✅ Jednorazowa płatność • ✅ Darmowe aktualizacje",
-                footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI."
+                footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI.",
+                ceoSectionTitle: "Wizjonerskie przywództwo",
+                ceoSectionSubtitle: "Poznaj umysł stojący za rewolucją prywatnej AI",
+                ceoLabel: "CEO i Założyciel",
+                ceoName: "Alex Renaud",
+                ceoRoleDescription: "Pionier prywatnej sztucznej inteligencji",
+                ceoQuote: "Wierzymy, że sztuczna inteligencja powinna służyć ludziom, a nie ich eksploatować. SuitAI narodził się z przekonania, że prywatność to nie luksus, to prawo podstawowe."
             },
             fr: {
                 urgencyBanner: "🔥 Rejoignez plus de 50 000 utilisateurs profitant déjà d'une IA privée et locale ⚡",
@@ -1700,7 +2031,13 @@
                 downloadTitle: "Rejoignez la révolution de l'IA privée",
                 downloadDescription: "Téléchargez SuitAI maintenant et découvrez l'avenir de l'intelligence artificielle personnelle. Pas d'abonnements, pas de limites, pas d'engagements.",
                 noSubscription: "✅ Pas d'abonnements • ✅ Paiement unique • ✅ Mises à jour gratuites",
-                footer: "© 2024 SuitAI. La révolution de l'IA privée et locale."
+                footer: "© 2024 SuitAI. La révolution de l'IA privée et locale.",
+                ceoSectionTitle: "Leadership Visionnaire",
+                ceoSectionSubtitle: "Rencontrez l'esprit derrière la révolution de l'IA privée",
+                ceoLabel: "PDG & Fondateur",
+                ceoName: "Alex Renaud",
+                ceoRoleDescription: "Pionnier de l'Intelligence Artificielle Privée",
+                ceoQuote: "Nous croyons que l'intelligence artificielle doit servir les personnes, pas les exploiter. SuitAI est né de la conviction que la vie privée n'est pas un luxe, c'est un droit fondamental."
             }
         };
 
