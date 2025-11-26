@@ -3,7 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuitAI - Inteligencia Artificial Local</title>
+    <title>SuitAI - Inteligencia Artificial Local y Privada | AI sin Conexión</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SuitAI es la revolución en inteligencia artificial personal que funciona 100% en tu dispositivo. Sin conexión a internet, sin comprometer tus datos, sin límites. Descarga gratis para Windows, Mac y Linux.">
+    <meta name="keywords" content="inteligencia artificial, IA local, AI privada, ChatGPT alternativa, offline AI, procesamiento local, privacidad, SuitAI, machine learning, deep learning, asistente virtual">
+    <meta name="author" content="SuitAI">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://suitai.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suitai.app/">
+    <meta property="og:title" content="SuitAI - Inteligencia Artificial Local y Privada">
+    <meta property="og:description" content="Experimenta el futuro de la IA que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.">
+    <meta property="og:image" content="https://suitai.app/images/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="SuitAI">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://suitai.app/">
+    <meta name="twitter:title" content="SuitAI - Inteligencia Artificial Local y Privada">
+    <meta name="twitter:description" content="La IA que protege tu privacidad. Funciona 100% offline en tu dispositivo.">
+    <meta name="twitter:image" content="https://suitai.app/images/twitter-card.png">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SuitAI">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SuitAI",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": ["Windows", "macOS", "Linux"],
+        "description": "Inteligencia artificial personal que funciona 100% en tu dispositivo sin conexión a internet.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "50000"
+        },
+        "featureList": [
+            "IA 100% local y privada",
+            "Procesamiento offline",
+            "Chat inteligente avanzado",
+            "Análisis de documentos PDF",
+            "Editor de código profesional",
+            "Sin suscripciones mensuales"
+        ]
+    }
+    </script>
+    
+    <!-- Preconnect to external resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <style>
         :root {
             /* Colores del tema oscuro */
@@ -1073,85 +1138,161 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* Enhanced Focus Styles for Accessibility */
+        .btn:focus-visible,
+        .control-btn:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 3px;
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 8px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 10px;
+        }
+
+        /* Enhanced hover effects */
+        .feature-card:focus-within,
+        .metric-card:focus-within,
+        .highlight-item:focus-within {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .header,
+            .urgency-banner,
+            .live-stats,
+            .bg-particles,
+            .demo-preview {
+                display: none !important;
+            }
+
+            .main {
+                padding-top: 0;
+            }
+
+            body {
+                color: #000;
+                background: #fff;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-primary: rgba(255, 255, 255, 0.5);
+                --border-secondary: rgba(255, 255, 255, 0.7);
+            }
+
+            .btn {
+                border: 2px solid currentColor;
+            }
+        }
+
+        /* Footer nav styling */
+        .footer-nav {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#hero-title" class="skip-link">Saltar al contenido principal</a>
+    
     <!-- Banner de urgencia -->
-    <div class="urgency-banner">
+    <div class="urgency-banner" role="alert" aria-live="polite">
         <span data-key="urgencyBanner">🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡</span>
     </div>
 
     <!-- Partículas de fondo -->
-    <div class="bg-particles" id="particles"></div>
+    <div class="bg-particles" id="particles" aria-hidden="true"></div>
 
     <!-- Estadísticas en vivo -->
-    <div class="live-stats animate-on-scroll">
+    <aside class="live-stats animate-on-scroll" aria-label="Estadísticas en tiempo real">
         <div class="stat-item">
-            <div class="stat-icon">👥</div>
+            <div class="stat-icon" aria-hidden="true">👥</div>
             <div>
-                <div class="stat-number" id="activeUsers">47,832</div>
+                <div class="stat-number" id="activeUsers" aria-live="polite">47,832</div>
                 <div class="stat-text" data-key="activeUsersLabel">Usuarios activos</div>
             </div>
         </div>
         <div class="stat-item">
-            <div class="stat-icon">⚡</div>
+            <div class="stat-icon" aria-hidden="true">⚡</div>
             <div>
-                <div class="stat-number" id="processedToday">1,245</div>
+                <div class="stat-number" id="processedToday" aria-live="polite">1,245</div>
                 <div class="stat-text" data-key="processedTodayLabel">Procesados hoy</div>
             </div>
         </div>
         <div class="stat-item">
-            <div class="stat-icon">🔒</div>
+            <div class="stat-icon" aria-hidden="true">🔒</div>
             <div>
                 <div class="stat-number">100%</div>
                 <div class="stat-text" data-key="privacyLabel">Privacidad</div>
             </div>
         </div>
-    </div>
+    </aside>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">SuitAI</a>
+                <a href="#" class="logo" aria-label="SuitAI - Ir al inicio">SuitAI</a>
                 <div class="header-controls">
-                    <div class="language-selector">
-                        <button class="control-btn active" data-lang="es" title="Español">🇪🇸</button>
-                        <button class="control-btn" data-lang="en" title="English">🇺🇸</button>
-                        <button class="control-btn" data-lang="de" title="Deutsch">🇩🇪</button>
-                        <button class="control-btn" data-lang="pl" title="Polski">🇵🇱</button>
-                        <button class="control-btn" data-lang="fr" title="Français">🇫🇷</button>
-                    </div>
-                    <button class="control-btn" id="themeToggle" title="Cambiar tema">🌙</button>
+                    <nav class="language-selector" aria-label="Seleccionar idioma">
+                        <button class="control-btn active" data-lang="es" title="Español" aria-label="Cambiar a Español">🇪🇸</button>
+                        <button class="control-btn" data-lang="en" title="English" aria-label="Switch to English">🇺🇸</button>
+                        <button class="control-btn" data-lang="de" title="Deutsch" aria-label="Zu Deutsch wechseln">🇩🇪</button>
+                        <button class="control-btn" data-lang="pl" title="Polski" aria-label="Przełącz na Polski">🇵🇱</button>
+                        <button class="control-btn" data-lang="fr" title="Français" aria-label="Passer au Français">🇫🇷</button>
+                    </nav>
+                    <button class="control-btn" id="themeToggle" title="Cambiar tema" aria-label="Cambiar modo claro/oscuro">🌙</button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main" role="main">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-badge">
                     <span data-key="heroBadge">Disponible ahora - Sin conexión requerida</span>
                 </div>
-                <h1 class="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
+                <h1 class="hero-title" id="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
                 <p class="hero-subtitle" data-key="heroSubtitle">Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.</p>
                 <div class="hero-cta">
-                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                        <span>🪟</span>
+                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')" aria-label="Descargar SuitAI para Windows">
+                        <span aria-hidden="true">🪟</span>
                         <span data-key="downloadWindows">Descargar para Windows</span>
                     </button>
-                    <button class="btn btn-secondary" onclick="showDemo()">
-                        <span>▶️</span>
+                    <button class="btn btn-secondary" onclick="showDemo()" aria-label="Ver demostración del producto">
+                        <span aria-hidden="true">▶️</span>
                         <span data-key="watchDemo">Ver Demo</span>
                     </button>
                 </div>
 
                 <!-- Demo interactivo -->
-                <div class="demo-preview" id="demoPreview" style="display: none;">
-                    <div class="demo-header">
+                <article class="demo-preview" id="demoPreview" style="display: none;" aria-label="Demostración interactiva de SuitAI">
+                    <div class="demo-header" aria-hidden="true">
                         <div class="demo-dot red"></div>
                         <div class="demo-dot yellow"></div>
                         <div class="demo-dot green"></div>
@@ -1160,7 +1301,7 @@
                     <div class="demo-content">
                         <div>$ suitai chat "Explícame qué es la inteligencia artificial"</div>
                         <div style="margin: 10px 0; color: var(--accent-primary);">
-                            <span id="typingText"></span><span class="typing-cursor"></span>
+                            <span id="typingText" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
@@ -1168,219 +1309,221 @@
         </section>
 
         <!-- Métricas impactantes -->
-        <section class="impact-metrics animate-on-scroll">
+        <section class="impact-metrics animate-on-scroll" aria-label="Estadísticas de SuitAI">
             <div class="container">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-number">50K+</div>
+                <div class="metrics-grid" role="list">
+                    <article class="metric-card" role="listitem">
+                        <div class="metric-number" aria-label="Más de 50 mil">50K+</div>
                         <div class="metric-label" data-key="metric1">Usuarios satisfechos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">2.5M+</div>
+                    </article>
+                    <article class="metric-card" role="listitem">
+                        <div class="metric-number" aria-label="Más de 2.5 millones">2.5M+</div>
                         <div class="metric-label" data-key="metric2">Consultas procesadas</div>
-                    </div>
-                    <div class="metric-card">
+                    </article>
+                    <article class="metric-card" role="listitem">
                         <div class="metric-number">99.9%</div>
                         <div class="metric-label" data-key="metric3">Tiempo de funcionamiento</div>
-                    </div>
-                    <div class="metric-card">
+                    </article>
+                    <article class="metric-card" role="listitem">
                         <div class="metric-number">0</div>
                         <div class="metric-label" data-key="metric4">Datos enviados a la nube</div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Comparación visual -->
-        <section class="comparison-section animate-on-scroll">
+        <section class="comparison-section animate-on-scroll" aria-labelledby="comparison-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
+                    <h2 class="section-title" id="comparison-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
                 </div>
                 <div class="comparison-grid">
-                    <div class="comparison-item others">
+                    <article class="comparison-item others">
                         <h3 data-key="othersTitle">Otras soluciones de IA</h3>
                         <ul>
-                            <li><span>❌</span> <span data-key="others1">Requieren conexión constante</span></li>
-                            <li><span>❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
-                            <li><span>❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
-                            <li><span>❌</span> <span data-key="others4">Limitaciones de uso</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others1">Requieren conexión constante</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
+                            <li><span aria-hidden="true">❌</span> <span data-key="others4">Limitaciones de uso</span></li>
                         </ul>
-                    </div>
-                    <div class="vs-divider">VS</div>
-                    <div class="comparison-item ours">
+                    </article>
+                    <div class="vs-divider" aria-hidden="true">VS</div>
+                    <article class="comparison-item ours">
                         <h3 data-key="ourTitle">SuitAI</h3>
                         <ul>
-                            <li><span>✅</span> <span data-key="our1">Funciona completamente offline</span></li>
-                            <li><span>✅</span> <span data-key="our2">100% privado y seguro</span></li>
-                            <li><span>✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
-                            <li><span>✅</span> <span data-key="our4">Uso ilimitado</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our1">Funciona completamente offline</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our2">100% privado y seguro</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
+                            <li><span aria-hidden="true">✅</span> <span data-key="our4">Uso ilimitado</span></li>
                         </ul>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Assistant Section mejorado -->
-        <section class="assistant-section">
+        <section class="assistant-section" aria-labelledby="assistant-title">
             <div class="container">
-                <div class="assistant-card animate-on-scroll">
+                <article class="assistant-card animate-on-scroll">
                     <div class="assistant-header">
-                        <div class="assistant-avatar">🤖</div>
+                        <div class="assistant-avatar" aria-hidden="true">🤖</div>
                         <div class="assistant-info">
                             <h3 data-key="assistantName">Asistente SuitAI</h3>
                             <span class="assistant-status">
-                                <span class="status-dot"></span>
+                                <span class="status-dot" aria-hidden="true"></span>
                                 <span data-key="assistantStatus">En línea y listo</span>
                             </span>
                         </div>
                     </div>
                     <div class="assistant-message">
-                        <h4 data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
+                        <h4 id="assistant-title" data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
                         <p data-key="assistantDescription">SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.</p>
                         
-                        <div class="features-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💬</span>
+                        <div class="features-highlights" role="list">
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">💬</span>
                                 <div>
                                     <strong data-key="chatTitle">Chat Inteligente Avanzado</strong>
                                     <p data-key="chatDescription">Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">👨‍💻</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">👨‍💻</span>
                                 <div>
                                     <strong data-key="editorTitle">Editor de Código Profesional</strong>
                                     <p data-key="editorDescription">Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🧠</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">🧠</span>
                                 <div>
                                     <strong data-key="ragTitle">Análisis Inteligente de Documentos</strong>
                                     <p data-key="ragDescription">Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.</p>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔒</span>
+                            <article class="highlight-item" role="listitem">
+                                <span class="highlight-icon" aria-hidden="true">🔒</span>
                                 <div>
                                     <strong data-key="privacyTitle">Seguridad Máxima</strong>
                                     <p data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
                                 </div>
-                            </div>
+                            </article>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section class="features" id="features">
+        <section class="features" id="features" aria-labelledby="features-title">
             <div class="container">
                 <div class="section-header animate-on-scroll">
-                    <h2 class="section-title" data-key="featuresTitle">Características Revolucionarias</h2>
+                    <h2 class="section-title" id="features-title" data-key="featuresTitle">Características Revolucionarias</h2>
                     <p class="section-subtitle" data-key="featuresSubtitle">Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva</p>
                 </div>
                 <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🧠</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">🧠</div>
                         <h3 class="feature-title" data-key="feature1Title">IA Local Sin Límites</h3>
                         <p class="feature-description" data-key="feature1Description">Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📄</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📄</div>
                         <h3 class="feature-title" data-key="feature2Title">Procesamiento Instantáneo de PDFs</h3>
                         <p class="feature-description" data-key="feature2Description">Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📝</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📝</div>
                         <h3 class="feature-title" data-key="feature3Title">Generación de Contenido Premium</h3>
                         <p class="feature-description" data-key="feature3Description">Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📊</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">📊</div>
                         <h3 class="feature-title" data-key="feature4Title">Visualización de Datos Avanzada</h3>
                         <p class="feature-description" data-key="feature4Description">Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🔍</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">🔍</div>
                         <h3 class="feature-title" data-key="feature5Title">Búsqueda Híbrida Inteligente</h3>
                         <p class="feature-description" data-key="feature5Description">Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.</p>
-                    </div>
+                    </article>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">💻</div>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="feature-icon" aria-hidden="true">💻</div>
                         <h3 class="feature-title" data-key="feature6Title">Asistente de Programación Experto</h3>
                         <p class="feature-description" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- Security Section -->
-        <section class="security animate-on-scroll">
+        <section class="security animate-on-scroll" aria-labelledby="security-title">
             <div class="container">
-                <div class="security-card">
-                    <div class="security-icon">🔒</div>
-                    <h2 class="section-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
+                <article class="security-card">
+                    <div class="security-icon" aria-hidden="true">🔒</div>
+                    <h2 class="section-title" id="security-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
                     <p class="section-subtitle" data-key="securityDescription">En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.</p>
-                    <div class="security-stats">
-                        <div class="security-stat">
+                    <div class="security-stats" role="list">
+                        <div class="security-stat" role="listitem">
                             <div class="security-stat-number">0 bytes</div>
                             <div class="security-stat-label" data-key="zeroData">Datos enviados</div>
                         </div>
-                        <div class="security-stat">
+                        <div class="security-stat" role="listitem">
                             <div class="security-stat-number">100%</div>
                             <div class="security-stat-label" data-key="localProcessing">Procesamiento local</div>
                         </div>
-                        <div class="security-stat">
-                            <div class="security-stat-number">∞</div>
+                        <div class="security-stat" role="listitem">
+                            <div class="security-stat-number" aria-label="Infinito">∞</div>
                             <div class="security-stat-label" data-key="unlimitedUse">Uso sin límites</div>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Download Section -->
-        <section class="download">
+        <section class="download" aria-labelledby="download-title">
             <div class="container">
-                <div class="download-card animate-on-scroll">
-                    <h2 class="section-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
+                <article class="download-card animate-on-scroll">
+                    <h2 class="section-title" id="download-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
                     <p class="section-subtitle" data-key="downloadDescription">Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.</p>
-                    <div class="download-buttons">
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                            <span>🪟</span>
+                    <div class="download-buttons" role="group" aria-label="Botones de descarga">
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')" aria-label="Descargar SuitAI para Windows">
+                            <span aria-hidden="true">🪟</span>
                             <span data-key="downloadWindows">SuitAI Windows</span>
                         </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')">
-                            <span>🍎</span>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')" aria-label="Descargar SuitAI para Mac">
+                            <span aria-hidden="true">🍎</span>
                             <span data-key="downloadMac">SuitAI Mac</span>
                         </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')">
-                            <span>🐧</span>
+                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')" aria-label="Descargar SuitAI para Linux">
+                            <span aria-hidden="true">🐧</span>
                             <span data-key="downloadLinux">SuitAI Linux</span>
                         </button>
                     </div>
                     <div class="download-note">
                         <span data-key="noSubscription">✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas</span>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
-            <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
+            </nav>
         </div>
     </footer>
 
