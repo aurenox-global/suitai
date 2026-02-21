@@ -4,1741 +4,590 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuitAI - Inteligencia Artificial Local</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        suit: {
+                            cyan: '#00A0FA',
+                            green: '#50FFAA',
+                            dark: '#050505',
+                            card: '#0F1115',
+                            border: '#1F2229'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Satoshi', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            /* Futuristic Glass Theme - Dark Mode (Default) */
-            --bg-primary: #030305;
-            --bg-secondary: #0a0a12;
-            --bg-tertiary: #12121f;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.08);
-            --text-primary: #ffffff;
-            --text-secondary: #b4b4c0;
-            --text-tertiary: #707080;
-            
-            /* Neon Accents */
-            --accent-primary: #00f3ff;
-            --accent-secondary: #bc13fe;
-            --accent-tertiary: #4d4dff;
-            --accent-gradient: linear-gradient(135deg, #00f3ff 0%, #bc13fe 50%, #4d4dff 100%);
-            --accent-glow: rgba(0, 243, 255, 0.4);
-            
-            /* Glass Borders */
-            --border-primary: rgba(255, 255, 255, 0.1);
-            --border-secondary: rgba(255, 255, 255, 0.15);
-            --border-glow: rgba(0, 243, 255, 0.3);
-            
-            /* Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
-            --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.7);
-            --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.15);
-            --shadow-neon: 0 0 15px var(--accent-primary), 0 0 30px var(--accent-secondary);
-            
-            --backdrop-blur: 20px;
-            --success-color: #00ff9d;
-            --warning-color: #ffbd2e;
-            --danger-color: #ff2e51;
-            
-            --font-heading: 'Inter', sans-serif;
-            --font-mono: 'Fira Code', monospace;
-        }
-
-        [data-theme="light"] {
-            /* Futuristic Light Mode */
-            --bg-primary: #f0f2f5;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #eef2f6;
-            --bg-card: rgba(255, 255, 255, 0.8);
-            --bg-card-hover: rgba(255, 255, 255, 0.95);
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a6a;
-            --text-tertiary: #8a8a9a;
-            
-            --accent-primary: #0066ff;
-            --accent-secondary: #9900ff;
-            --accent-tertiary: #00ccff;
-            --accent-gradient: linear-gradient(135deg, #0066ff 0%, #9900ff 100%);
-            --accent-glow: rgba(0, 102, 255, 0.2);
-            
-            --border-primary: rgba(0, 0, 0, 0.08);
-            --border-secondary: rgba(0, 0, 0, 0.12);
-            --border-glow: rgba(0, 102, 255, 0.2);
-            
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-            --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.15);
-            --shadow-glow: 0 0 20px rgba(0, 102, 255, 0.1);
-            --shadow-neon: 0 0 15px rgba(0, 102, 255, 0.2);
-            
-            --backdrop-blur: 12px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: var(--font-heading);
-            background: radial-gradient(circle at 50% 0%, var(--bg-secondary), var(--bg-primary));
-            color: var(--text-primary);
-            line-height: 1.6;
+            background-color: #050505;
+            color: #e2e8f0;
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Fondo animado con partículas */
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.4;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.05) 0%, transparent 25%);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1F2229; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00A0FA; }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(15, 17, 21, 0.8) 0%, rgba(15, 17, 21, 0.4) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 160, 250, 0.3);
+            box-shadow: 0 0 30px rgba(0, 160, 250, 0.05);
+            transform: translateY(-2px);
         }
 
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-primary);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0; }
-            50% { transform: translateY(-100px) translateX(20px); opacity: 0.8; }
-        }
-
-        /* Utilidades */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .gradient-text {
-            background: var(--accent-gradient);
-            background-clip: text;
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(90deg, #00A0FA, #50FFAA);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+        .text-gradient-green {
+            background: linear-gradient(90deg, #50FFAA, #00A0FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .glass {
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-        
-        .glass-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .glass-card:hover {
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-neon);
-            transform: translateY(-5px) scale(1.02);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-        }
-
-        .glow {
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* Header mejorado */
-        .header {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 1200px;
-            z-index: 1000;
-            padding: 12px 24px;
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-primary);
-            border-radius: 100px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-        }
-        
-        .header.scrolled {
-            width: 95%;
-            top: 10px;
-            background: var(--bg-secondary);
-            border-color: var(--accent-primary);
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo::before {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent-primary);
-        }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .language-selector {
-            display: flex;
-            gap: 8px;
-        }
-
-        .control-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border-primary);
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            background: var(--accent-primary);
-            color: #000;
-            box-shadow: 0 0 20px var(--accent-primary);
-            border-color: transparent;
-        }
-
-        .control-btn.active {
-            background: var(--accent-gradient);
-            border-color: transparent;
-            color: #fff;
-        }
-
-        /* Estadísticas en tiempo real */
-        .live-stats {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            z-index: 999;
-            background: rgba(10, 10, 18, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-primary);
-            border-left: 3px solid var(--accent-primary);
-            border-radius: 12px;
-            padding: 20px;
-            min-width: 220px;
-            box-shadow: var(--shadow-lg);
-            animation: slideInRight 0.8s ease;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .stat-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .stat-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.05);
-            color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            border: 1px solid var(--border-primary);
-        }
-
-        .stat-text {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-tertiary);
-            margin-bottom: 2px;
-        }
-
-        .stat-number {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-family: var(--font-mono);
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Main Content */
-        .main {
-            padding-top: 140px;
-        }
-
-        /* Hero Section mejorado */
-        .hero {
-            padding: 100px 0 150px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
+        /* Button Glow */
+        .btn-glow { position: relative; overflow: hidden; }
+        .btn-glow::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, transparent 70%);
-            filter: blur(60px);
-            z-index: -1;
-            animation: pulse-glow 5s infinite alternate;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
-        
-        @keyframes pulse-glow {
-            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        .btn-glow:hover::after { left: 100%; }
+
+        /* Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 24px;
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--accent-primary);
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--accent-primary);
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            box-shadow: 0 0 10px var(--accent-primary);
-            animation: blink 1s infinite;
-        }
-
-        .hero-title {
-            font-size: clamp(56px, 8vw, 96px);
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 32px;
-            color: var(--text-primary);
-            text-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
-            animation: fadeInUp 0.8s ease 0.4s both;
-            position: relative;
-            letter-spacing: -2px;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 48px;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.8s both;
-            margin-bottom: 48px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 40px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn::before {
-            content: '';
+        /* Particles */
+        .particle {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
+            width: 2px; height: 2px;
+            background: #00A0FA;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0, 160, 250, 0.3);
+            animation: particle-float 12s ease-in-out infinite;
+        }
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { transform: translateY(-80px) translateX(15px); opacity: 0.4; }
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: var(--accent-gradient);
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.05);
-            color: var(--text-primary);
-            border: 1px solid var(--border-primary);
-            backdrop-filter: blur(var(--backdrop-blur));
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        /* Hero Image */
-        .hero-image-container {
-            margin-top: 60px;
-            perspective: 1000px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 0.8s ease 1s both;
-        }
-        
-        .hero-glass {
-            transform: rotateX(10deg) scale(0.9);
-            transition: all 0.5s ease;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-            padding: 10px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            /* Slider styles */
+        /* Hero Slider */
+        .slider-container {
             display: grid;
             grid-template-areas: "stack";
         }
-        
-        .hero-glass:hover {
-            transform: rotateX(0) scale(1);
-            box-shadow: 0 20px 60px rgba(0, 243, 255, 0.2);
-        }
-        
         .hero-img {
             grid-area: stack;
             width: 100%;
             height: auto;
-            border-radius: 16px;
+            border-radius: 12px;
             display: block;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
-        
         .hero-img.active {
             opacity: 1;
             z-index: 1;
         }
 
-        /* Métricas impactantes */
-        .impact-metrics {
-            padding: 100px 0;
-            background: transparent;
-            position: relative;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .metric-card {
-            text-align: center;
-            padding: 40px 24px;
-            background: var(--bg-card);
-            border-radius: 30px;
-            border: 1px solid var(--border-primary);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.1);
-        }
-        
-        .metric-card:hover::before {
-            opacity: 1;
-        }
-
-        .metric-number {
-            font-size: 64px;
-            font-weight: 900;
-            background: var(--accent-gradient);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 16px;
-            animation: countUp 2s ease-out;
-            filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.3));
-            font-family: var(--font-mono);
-        }
-
-        .metric-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        @keyframes countUp {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Comparación visual */
-        .comparison-section {
-            padding: 80px 0;
-            background: var(--bg-primary);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 32px;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .comparison-item {
-            text-align: center;
-            padding: 32px;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .comparison-item.ours {
-            background: var(--bg-card);
-            border: 2px solid var(--accent-primary);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .comparison-item.others {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            opacity: 0.7;
-        }
-
-        .comparison-item ul {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        .comparison-item li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .vs-divider {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-tertiary);
-            background: var(--bg-card);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-primary);
-        }
-
-        /* Assistant Section mejorado */
-        .assistant-section {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-
-        .assistant-card {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(var(--backdrop-blur));
-            border: 1px solid var(--border-primary);
-            border-radius: 24px;
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .assistant-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent-gradient);
-        }
-
-        .assistant-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .assistant-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: var(--shadow-md);
-            animation: float-gentle 3s ease-in-out infinite;
-        }
-
-        @keyframes float-gentle {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .assistant-info h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .assistant-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success-color);
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px var(--success-color);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
-        }
-
-        .features-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 24px;
-        }
-
-        .highlight-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            padding: 20px;
-            background: var(--bg-tertiary);
-            border-radius: 16px;
-            border: 1px solid var(--border-primary);
-            transition: all 0.2s ease;
-        }
-
-        .highlight-item:hover {
-            transform: translateY(-2px);
-            background: var(--bg-card-hover);
-            border-color: var(--border-secondary);
-        }
-
-        .highlight-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .highlight-item strong {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .highlight-item p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 150px 0;
-            background: transparent;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 100px;
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--accent-gradient);
-            border-radius: 2px;
-            box-shadow: 0 0 20px var(--accent-primary);
-        }
-
-        .section-title {
-            font-size: clamp(40px, 5vw, 64px);
-            font-weight: 900;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-primary);
-            border-radius: 30px;
-            padding: 40px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-        
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            background: var(--accent-primary);
-            filter: blur(80px);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-            border-radius: 50%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-        
-        .feature-card:hover::after {
-            opacity: 0.2;
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 24px;
-            background: rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 32px;
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
-            border: 1px solid var(--border-primary);
-            transition: all 0.4s ease;
-            font-size: 32px;
-            color: var(--accent-primary);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(10deg);
-            background: var(--accent-gradient);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
-            border-color: transparent;
-        }
-        
-        /* CEO Section */
-        .ceo-section {
-            padding: 150px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ceo-card {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            background: var(--bg-card);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--border-primary);
-            border-radius: 40px;
-            padding: 60px;
-            position: relative;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-        }
-        
-        .ceo-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--accent-primary), transparent, var(--accent-secondary));
-            z-index: -1;
-            border-radius: 42px;
-            opacity: 0.3;
-        }
-        
-        .ceo-content h3 {
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-primary);
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-        
-        .ceo-content h2 {
-            font-size: 48px;
-            font-weight: 900;
-            margin-bottom: 24px;
-            background: linear-gradient(to right, #fff, #aaa);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .ceo-bio {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-        
-        .ceo-signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 32px;
-            color: var(--text-primary);
-            opacity: 0.8;
-        }
-        
-        /* Gallery Section */
-        .gallery-section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-        
-        .gallery-item {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border-primary);
-            position: relative;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            aspect-ratio: 16/9;
-            cursor: pointer;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent-primary);
-            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.2);
-            z-index: 10;
-        }
-        
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.05);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            color: #fff;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
+        /* Gallery hover */
         .gallery-item:hover .gallery-caption {
             transform: translateY(0);
         }
-
-        .feature-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-primary);
+        .gallery-caption {
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        .feature-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        /* Security Section mejorado */
-        .security {
-            padding: 150px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .security::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(239, 68, 68, 0.05) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .security-card {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--border-primary);
-            border-radius: 40px;
-            padding: 60px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-        }
-        
-        .security-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--danger-color), transparent);
-        }
-
-        .security-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin: 0 auto 32px;
-            box-shadow: 0 20px 50px rgba(239, 68, 68, 0.4);
-            animation: shield-pulse 3s ease-in-out infinite;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .security-icon::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: 35px;
-            border: 1px solid rgba(255,255,255,0.2);
-            z-index: -1;
-        }
-
-        @keyframes shield-pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 20px 50px rgba(239, 68, 68, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 20px 70px rgba(239, 68, 68, 0.6); }
-        }
-
-        .security-stats {
-            margin-top: 48px;
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-primary);
-        }
-
-        .security-stat {
-            text-align: center;
-        }
-
-        .security-stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--success-color);
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-            margin-bottom: 8px;
-        }
-
-        .security-stat-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Download Section mejorado */
-        .download {
-            padding: 150px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .download-card {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--border-primary);
-            border-radius: 40px;
-            padding: 80px 40px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .download-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% -20%, rgba(0, 243, 255, 0.15), transparent 60%);
-            pointer-events: none;
-        }
-
-        .download-buttons {
-            margin-top: 48px;
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .download-note {
-            margin-top: 32px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-            opacity: 0.7;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 48px 0;
-            text-align: center;
-            border-top: 1px solid var(--border-primary);
-            color: var(--text-tertiary);
-        }
-
-        /* Iconos SVG profesionales */
-        .icon-svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* Animaciones */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .animate-on-scroll.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Urgencia y escasez */
-        .urgency-banner {
-            background: linear-gradient(90deg, var(--warning-color), var(--accent-primary));
-            color: white;
-            padding: 12px 0;
-            text-align: center;
-            font-weight: 600;
-            animation: urgency-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes urgency-pulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .header-controls {
-                gap: 8px;
-            }
-
-            .language-selector {
-                gap: 4px;
-            }
-
-            .control-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-
-            .live-stats {
-                position: static;
-                margin: 20px auto;
-                max-width: 300px;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .vs-divider {
-                transform: rotate(90deg);
-            }
-
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .metric-number {
-                font-size: 32px;
-            }
-
-            .hero {
-                padding: 60px 0 80px;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .features-highlights {
-                grid-template-columns: 1fr;
-            }
-
-            .highlight-item {
-                padding: 16px;
-            }
-
-            .highlight-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-
-            .assistant-card {
-                padding: 24px;
-            }
-
-            .assistant-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
-
-            .assistant-avatar {
-                width: 56px;
-                height: 56px;
-                font-size: 24px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .feature-card {
-                padding: 24px;
-            }
-
-            .security-card,
-            .download-card {
-                padding: 32px 24px;
-            }
-
-            .security-stats {
-                gap: 16px;
-            }
-
-            .features,
-            .security,
-            .download {
-                padding: 80px 0;
-            }
-
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .download-buttons .btn {
-                max-width: 300px;
-            }
-        }
-
-        /* Reducir movimiento */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        /* Language button active */
+        .lang-btn.active {
+            background: rgba(0, 160, 250, 0.15);
+            border-color: rgba(0, 160, 250, 0.3);
+            color: #00A0FA;
         }
     </style>
 </head>
-<body>
-    <!-- Banner de urgencia -->
-    <div class="urgency-banner">
-        <span data-key="urgencyBanner">🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡</span>
-    </div>
+<body class="antialiased selection:bg-suit-cyan selection:text-black">
 
-    <!-- Partículas de fondo -->
-    <div class="bg-particles" id="particles"></div>
+    <!-- Background Elements -->
+    <div class="fixed inset-0 bg-grid pointer-events-none z-0" id="particles"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-suit-cyan/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-suit-green/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
-    <!-- Estadísticas en vivo -->
-    <div class="live-stats animate-on-scroll">
-        <div class="stat-item">
-            <div class="stat-icon">👥</div>
-            <div>
-                <div class="stat-number" id="activeUsers">47,832</div>
-                <div class="stat-text" data-key="activeUsersLabel">Usuarios activos</div>
-            </div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-icon">⚡</div>
-            <div>
-                <div class="stat-number" id="processedToday">1,245</div>
-                <div class="stat-text" data-key="processedTodayLabel">Procesados hoy</div>
-            </div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-icon">🔒</div>
-            <div>
-                <div class="stat-number">100%</div>
-                <div class="stat-text" data-key="privacyLabel">Privacidad</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">SuitAI</a>
-                <div class="header-controls">
-                    <div class="language-selector">
-                        <button class="control-btn active" data-lang="es" title="Español">🇪🇸</button>
-                        <button class="control-btn" data-lang="en" title="English">🇺🇸</button>
-                        <button class="control-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 border-b border-white/5 bg-suit-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-suit-cyan to-suit-green flex items-center justify-center text-black font-bold">S</div>
+                    <span class="font-bold text-xl tracking-tight text-white">SuitAI</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-sm font-medium text-gray-400 hover:text-suit-cyan transition-colors" data-key="navFeatures">Características</a>
+                    <a href="#comparison" class="text-sm font-medium text-gray-400 hover:text-suit-cyan transition-colors" data-key="navComparison">Comparativa</a>
+                    <a href="#download" class="text-sm font-medium text-gray-400 hover:text-suit-cyan transition-colors" data-key="navDownload">Descargas</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <!-- Language Selector -->
+                    <div class="hidden md:flex items-center gap-1">
+                        <button class="lang-btn active w-9 h-9 rounded-full border border-white/10 bg-white/5 text-sm flex items-center justify-center hover:bg-suit-cyan/15 hover:border-suit-cyan/30 transition-all cursor-pointer" data-lang="es" title="Español">🇪🇸</button>
+                        <button class="lang-btn w-9 h-9 rounded-full border border-white/10 bg-white/5 text-sm flex items-center justify-center hover:bg-suit-cyan/15 hover:border-suit-cyan/30 transition-all cursor-pointer" data-lang="en" title="English">🇺🇸</button>
+                        <button class="lang-btn w-9 h-9 rounded-full border border-white/10 bg-white/5 text-sm flex items-center justify-center hover:bg-suit-cyan/15 hover:border-suit-cyan/30 transition-all cursor-pointer" data-lang="de" title="Deutsch">🇩🇪</button>
                     </div>
-                    <button class="control-btn" id="themeToggle" title="Cambiar tema">🌙</button>
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="w-9 h-9 rounded-full border border-white/10 bg-white/5 text-sm flex items-center justify-center hover:bg-suit-cyan/15 hover:border-suit-cyan/30 transition-all cursor-pointer" title="Cambiar tema">🌙</button>
+                    <!-- Status -->
+                    <div class="hidden md:flex items-center gap-2 text-xs font-mono text-suit-green bg-suit-green/10 px-3 py-1 rounded-full border border-suit-green/20">
+                        <span class="w-2 h-2 rounded-full bg-suit-green animate-pulse"></span>
+                        <span data-key="systemStatus">Sistema Operativo</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-badge">
-                    <span data-key="heroBadge">Disponible ahora - Sin conexión requerida</span>
-                </div>
-                <h1 class="hero-title" data-key="heroTitle">La IA que protege tu privacidad</h1>
-                <p class="hero-subtitle" data-key="heroSubtitle">Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.</p>
-                <div class="hero-cta">
-                    <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                        <span>🪟</span>
+    <!-- Hero Section -->
+    <section class="relative z-10 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-suit-cyan/20 bg-suit-cyan/5 text-suit-cyan text-sm font-medium mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-suit-cyan animate-pulse"></span>
+                <span data-key="heroBadge">Disponible ahora - Sin conexión requerida</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight" data-key="heroTitle">
+                La IA que protege <br class="hidden md:block" />
+                <span class="text-gradient">tu privacidad</span>
+            </h1>
+
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400" data-key="heroSubtitle">
+                Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="openDownloadPage('windows')" class="btn-glow group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-r from-suit-cyan to-suit-green opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i>
                         <span data-key="downloadWindows">Descargar para Windows</span>
-                    </button>
-                    <button class="btn btn-secondary" onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})">
-                        <span>▶️</span>
-                        <span data-key="watchDemo">Ver Demo</span>
-                    </button>
-                </div>
+                    </span>
+                </button>
+                <button onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 rounded-lg border border-white/10 hover:border-suit-cyan/50 text-white font-medium transition-all hover:bg-white/5 flex items-center gap-2 cursor-pointer">
+                    <i data-lucide="play-circle" class="w-5 h-5"></i>
+                    <span data-key="watchDemo">Ver Demo</span>
+                </button>
+            </div>
 
-                <!-- Hero Image Slider -->
-                <div class="hero-image-container animate-on-scroll">
-                    <div class="glass-card hero-glass slider-container">
-                        <img src="img/home.png" alt="SuitAI Dashboard" class="hero-img active">
-                        <img src="img/chat.png" alt="SuitAI Chat" class="hero-img">
-                        <img src="img/editor_de_codigo.png" alt="SuitAI Editor" class="hero-img">
-                        <img src="img/chat_con_pdf.png" alt="SuitAI PDF Analysis" class="hero-img">
-                        <img src="img/generacion_imagen.png" alt="SuitAI Image Gen" class="hero-img">
-                    </div>
+            <!-- Hero Image Slider -->
+            <div class="mt-16 max-w-5xl mx-auto">
+                <div class="glass-card slider-container rounded-2xl p-2 border border-white/5 shadow-2xl">
+                    <img src="img/home.png" alt="SuitAI Dashboard" class="hero-img active">
+                    <img src="img/chat.png" alt="SuitAI Chat" class="hero-img">
+                    <img src="img/editor_de_codigo.png" alt="SuitAI Editor" class="hero-img">
+                    <img src="img/chat_con_pdf.png" alt="SuitAI PDF Analysis" class="hero-img">
+                    <img src="img/generacion_imagen.png" alt="SuitAI Image Gen" class="hero-img">
                 </div>
             </div>
-        </section>
 
-        <!-- Métricas impactantes -->
-        <section class="impact-metrics animate-on-scroll">
-            <div class="container">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-number">50K+</div>
-                        <div class="metric-label" data-key="metric1">Usuarios satisfechos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">2.5M+</div>
-                        <div class="metric-label" data-key="metric2">Consultas procesadas</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">99.9%</div>
-                        <div class="metric-label" data-key="metric3">Tiempo de funcionamiento</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-number">0</div>
-                        <div class="metric-label" data-key="metric4">Datos enviados a la nube</div>
-                    </div>
+            <!-- Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-8 max-w-4xl mx-auto">
+                <div>
+                    <div class="text-3xl font-bold text-white" id="activeUsers">47,832</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1" data-key="activeUsersLabel">Usuarios activos</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-suit-green" id="processedToday">1,245</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1" data-key="processedTodayLabel">Procesados hoy</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-suit-cyan">100%</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1" data-key="privacyLabel">Privacidad</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">0</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider mt-1" data-key="metric4">Datos enviados a la nube</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Comparación visual -->
-        <section class="comparison-section animate-on-scroll">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" data-key="comparisonTitle">SuitAI vs Competencia</h2>
+    <!-- Metrics Section -->
+    <section class="relative z-10 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-3">50K+</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider" data-key="metric1">Usuarios satisfechos</div>
                 </div>
-                <div class="comparison-grid">
-                    <div class="comparison-item others">
-                        <h3 data-key="othersTitle">Otras soluciones de IA</h3>
-                        <ul>
-                            <li><span>❌</span> <span data-key="others1">Requieren conexión constante</span></li>
-                            <li><span>❌</span> <span data-key="others2">Tus datos van a la nube</span></li>
-                            <li><span>❌</span> <span data-key="others3">Costos mensuales elevados</span></li>
-                            <li><span>❌</span> <span data-key="others4">Limitaciones de uso</span></li>
-                        </ul>
-                    </div>
-                    <div class="vs-divider">VS</div>
-                    <div class="comparison-item ours">
-                        <h3 data-key="ourTitle">SuitAI</h3>
-                        <ul>
-                            <li><span>✅</span> <span data-key="our1">Funciona completamente offline</span></li>
-                            <li><span>✅</span> <span data-key="our2">100% privado y seguro</span></li>
-                            <li><span>✅</span> <span data-key="our3">Pago único, sin suscripciones</span></li>
-                            <li><span>✅</span> <span data-key="our4">Uso ilimitado</span></li>
-                        </ul>
-                    </div>
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-3">2.5M+</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider" data-key="metric2">Consultas procesadas</div>
+                </div>
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-3">99.9%</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider" data-key="metric3">Tiempo de funcionamiento</div>
+                </div>
+                <div class="glass-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient mb-3">0</div>
+                    <div class="text-sm text-gray-500 uppercase tracking-wider" data-key="metric4">Datos enviados a la nube</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Assistant Section mejorado -->
-        <section class="assistant-section">
-            <div class="container">
-                <div class="assistant-card animate-on-scroll">
-                    <div class="assistant-header">
-                        <div class="assistant-avatar">🤖</div>
-                        <div class="assistant-info">
-                            <h3 data-key="assistantName">Asistente SuitAI</h3>
-                            <span class="assistant-status">
-                                <span class="status-dot"></span>
+    <!-- Comparison Section -->
+    <section id="comparison" class="relative z-10 py-20 bg-suit-card/30 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" data-key="comparisonTitle">SuitAI vs Competencia</h2>
+                <p class="text-gray-400">La diferencia entre la soberanía digital y la dependencia.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Competitors -->
+                <div class="glass-card p-8 rounded-2xl opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                    <h3 class="text-xl font-bold text-gray-400 mb-6 flex items-center gap-2" data-key="othersTitle">
+                        <i data-lucide="cloud-off" class="w-6 h-6"></i> Otras soluciones de IA
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span data-key="others1">Requieren conexión constante</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span data-key="others2">Tus datos van a la nube</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span data-key="others3">Costos mensuales elevados</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span data-key="others4">Limitaciones de uso</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- SuitAI -->
+                <div class="glass-card p-8 rounded-2xl border-suit-cyan/30 bg-gradient-to-b from-suit-cyan/5 to-transparent relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-suit-cyan/20 blur-[50px]"></div>
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2" data-key="ourTitle">
+                        <i data-lucide="cpu" class="w-6 h-6 text-suit-cyan"></i> SuitAI
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our1">Funciona completamente offline</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our2">100% privado y seguro</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our3">Pago único, sin suscripciones</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our4">Uso ilimitado</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assistant Section -->
+    <section class="relative z-10 py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 border border-white/5 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-suit-cyan to-suit-green opacity-60"></div>
+                <div class="absolute top-0 right-0 w-64 h-64 bg-suit-cyan/10 blur-[80px] rounded-full"></div>
+
+                <div class="relative z-10">
+                    <!-- Header -->
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-suit-cyan to-suit-green flex items-center justify-center text-2xl shadow-lg animate-float">
+                            🤖
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white" data-key="assistantName">Asistente SuitAI</h3>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span class="w-2 h-2 rounded-full bg-suit-green animate-pulse shadow-[0_0_6px_rgba(80,255,170,0.3)]"></span>
                                 <span data-key="assistantStatus">En línea y listo</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="assistant-message">
-                        <h4 data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
-                        <p data-key="assistantDescription">SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.</p>
-                        
-                        <div class="features-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">💬</span>
-                                <div>
-                                    <strong data-key="chatTitle">Chat Inteligente Avanzado</strong>
-                                    <p data-key="chatDescription">Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="highlight-item">
-                                <span class="highlight-icon">👨‍💻</span>
-                                <div>
-                                    <strong data-key="editorTitle">Editor de Código Profesional</strong>
-                                    <p data-key="editorDescription">Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🧠</span>
-                                <div>
-                                    <strong data-key="ragTitle">Análisis Inteligente de Documentos</strong>
-                                    <p data-key="ragDescription">Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="highlight-item">
-                                <span class="highlight-icon">🔒</span>
-                                <div>
-                                    <strong data-key="privacyTitle">Seguridad Máxima</strong>
-                                    <p data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Features Section -->
-        <section class="features" id="features">
-            <div class="container">
-                <div class="section-header animate-on-scroll">
-                    <h2 class="section-title" data-key="featuresTitle">Características Revolucionarias</h2>
-                    <p class="section-subtitle" data-key="featuresSubtitle">Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🧠</div>
-                        <h3 class="feature-title" data-key="feature1Title">IA Local Sin Límites</h3>
-                        <p class="feature-description" data-key="feature1Description">Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.</p>
-                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-3" data-key="assistantTitle">¡Descubre todo lo que puedes hacer con SuitAI!</h4>
+                    <p class="text-gray-400 mb-8" data-key="assistantDescription">SuitAI es la revolución en inteligencia artificial personal. Imagina tener ChatGPT, pero que funcione completamente en tu ordenador sin enviar ni un solo dato a internet.</p>
 
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📄</div>
-                        <h3 class="feature-title" data-key="feature2Title">Procesamiento Instantáneo de PDFs</h3>
-                        <p class="feature-description" data-key="feature2Description">Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.</p>
-                    </div>
-
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📝</div>
-                        <h3 class="feature-title" data-key="feature3Title">Generación de Contenido Premium</h3>
-                        <p class="feature-description" data-key="feature3Description">Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.</p>
-                    </div>
-
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">📊</div>
-                        <h3 class="feature-title" data-key="feature4Title">Visualización de Datos Avanzada</h3>
-                        <p class="feature-description" data-key="feature4Description">Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.</p>
-                    </div>
-
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">🔍</div>
-                        <h3 class="feature-title" data-key="feature5Title">Búsqueda Híbrida Inteligente</h3>
-                        <p class="feature-description" data-key="feature5Description">Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.</p>
-                    </div>
-
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">💻</div>
-                        <h3 class="feature-title" data-key="feature6Title">Asistente de Programación Experto</h3>
-                        <p class="feature-description" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Section -->
-        <section class="security animate-on-scroll">
-            <div class="container">
-                <div class="security-card">
-                    <div class="security-icon">🔒</div>
-                    <h2 class="section-title" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
-                    <p class="section-subtitle" data-key="securityDescription">En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.</p>
-                    <div class="security-stats">
-                        <div class="security-stat">
-                            <div class="security-stat-number">0 bytes</div>
-                            <div class="security-stat-label" data-key="zeroData">Datos enviados</div>
+                    <!-- Highlights Grid -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-suit-cyan/10 flex items-center justify-center text-suit-cyan flex-shrink-0">
+                                <i data-lucide="message-square" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1" data-key="chatTitle">Chat Inteligente Avanzado</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed" data-key="chatDescription">Conversaciones naturales con IA de última generación. Ve el razonamiento completo detrás de cada respuesta.</p>
+                            </div>
                         </div>
-                        <div class="security-stat">
-                            <div class="security-stat-number">100%</div>
-                            <div class="security-stat-label" data-key="localProcessing">Procesamiento local</div>
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-suit-green/10 flex items-center justify-center text-suit-green flex-shrink-0">
+                                <i data-lucide="code-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1" data-key="editorTitle">Editor de Código Profesional</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed" data-key="editorDescription">Terminal integrado, sintaxis destacada, ejecución en tiempo real y asistencia de IA para programar.</p>
+                            </div>
                         </div>
-                        <div class="security-stat">
-                            <div class="security-stat-number">∞</div>
-                            <div class="security-stat-label" data-key="unlimitedUse">Uso sin límites</div>
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1" data-key="ragTitle">Análisis Inteligente de Documentos</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed" data-key="ragDescription">Sube PDFs, documentos y obtén resúmenes instantáneos, análisis profundos y respuestas precisas.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-suit-cyan/10 flex items-center justify-center text-suit-cyan flex-shrink-0">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1" data-key="privacyTitle">Seguridad Máxima</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed" data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CEO Section -->
-        <section class="ceo-section animate-on-scroll">
-            <div class="container">
-                <div class="ceo-card">
+    <!-- Features Grid -->
+    <section id="features" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="featuresTitle">Características <span class="text-gradient-green">Revolucionarias</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-key="featuresSubtitle">Descubre por qué más de 50,000 usuarios han elegido SuitAI como su solución de IA definitiva</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-cyan/10 flex items-center justify-center text-suit-cyan mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature1Title">IA Local Sin Límites</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature1Description">Ejecuta modelos de IA avanzados directamente en tu hardware. Sin censura, sin limitaciones de tokens, sin dependencia de servicios externos.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-green/10 flex items-center justify-center text-suit-green mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature2Title">Procesamiento Instantáneo de PDFs</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature2Description">Arrastra cualquier PDF y obtén resúmenes ejecutivos, análisis detallados y respuestas específicas en segundos, no minutos.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature3Title">Generación de Contenido Premium</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature3Description">Crea documentos profesionales, presentaciones, código y gráficos de calidad empresarial sin conexión a internet.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-cyan/10 flex items-center justify-center text-suit-cyan mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature4Title">Visualización de Datos Avanzada</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature4Description">Transforma datos complejos en gráficos interactivos y visualizaciones profesionales sin bibliotecas externas.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-green/10 flex items-center justify-center text-suit-green mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="search" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature5Title">Búsqueda Híbrida Inteligente</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature5Description">Combina búsquedas locales y en línea según tu preferencia. Controla completamente cuándo y cómo se accede a internet.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature6Title">Asistente de Programación Experto</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="ceo-content">
-                        <h3>Visionary & Founder</h3>
-                        <h2>Andres MAG</h2>
-                        <p class="ceo-bio">
-                            "Creemos en un futuro donde la inteligencia artificial no comprometa la privacidad humana. SuitAI nació de la necesidad de democratizar el acceso a modelos de lenguaje avanzados, devolviendo el control total al usuario. No somos solo una herramienta, somos un movimiento hacia la soberanía digital."
-                        </p>
-                        <div class="ceo-signature">Andres MAG</div>
+    <!-- Security / Privacy Section -->
+    <section class="relative z-10 py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 border border-suit-cyan/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-suit-cyan/10 blur-[80px] rounded-full"></div>
+                <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-suit-cyan to-suit-green flex items-center justify-center mb-8 shadow-lg">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-black"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6" data-key="securityTitle">Tu Privacidad es Sagrada</h2>
+                    <p class="text-gray-300 text-lg mb-8 max-w-3xl mx-auto" data-key="securityDescription">
+                        En un mundo donde tus datos son vendidos al mejor postor, SuitAI representa una nueva era de IA verdaderamente privada. Todo el procesamiento ocurre en tu dispositivo. Desconecta internet si quieres: SuitAI seguirá funcionando perfectamente.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-8 md:gap-16 text-center pt-8 border-t border-white/5">
+                        <div>
+                            <div class="text-4xl font-bold text-suit-cyan mb-1">0 bytes</div>
+                            <div class="text-sm text-gray-500 uppercase" data-key="zeroData">Datos enviados</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-suit-green mb-1">100%</div>
+                            <div class="text-sm text-gray-500 uppercase" data-key="localProcessing">Procesamiento local</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-1">∞</div>
+                            <div class="text-sm text-gray-500 uppercase" data-key="unlimitedUse">Uso sin límites</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Gallery Section -->
-        <section class="gallery-section animate-on-scroll">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Interfaz del Futuro</h2>
-                    <p class="section-subtitle">Diseñado para la productividad, construido para la privacidad.</p>
-                </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="img/chat.png" alt="Chat Interface" class="gallery-img">
-                        <div class="gallery-caption">Chat Inteligente</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/chat_con_grafica.png" alt="Data Visualization" class="gallery-img">
-                        <div class="gallery-caption">Visualización de Datos</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/chat_con_pdf.png" alt="PDF Analysis" class="gallery-img">
-                        <div class="gallery-caption">Análisis de Documentos</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/editor_de_codigo.png" alt="Code Editor" class="gallery-img">
-                        <div class="gallery-caption">Editor de Código</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/generacion_imagen.png" alt="Image Generation" class="gallery-img">
-                        <div class="gallery-caption">Generación de Imágenes</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="img/chat_tutorial.png" alt="Tutorials" class="gallery-img">
-                        <div class="gallery-caption">Asistente Interactivo</div>
-                    </div>
+    <!-- CEO / Founder Section -->
+    <section class="relative z-10 py-24 bg-gradient-to-b from-transparent to-suit-card/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-suit-cyan to-suit-green p-[2px] mb-6">
+                <div class="w-full h-full rounded-full bg-suit-dark flex items-center justify-center overflow-hidden">
+                    <i data-lucide="user" class="w-10 h-10 text-gray-400"></i>
                 </div>
             </div>
-        </section>
+            <blockquote class="text-2xl md:text-3xl font-medium text-gray-200 mb-8 italic">
+                "Creemos en un futuro donde la inteligencia artificial no comprometa la privacidad humana. SuitAI nació de la necesidad de democratizar el acceso a modelos de lenguaje avanzados, devolviendo el control total al usuario."
+            </blockquote>
+            <div>
+                <div class="font-bold text-white text-lg">Andres MAG</div>
+                <div class="text-suit-cyan text-sm">Visionary & Founder</div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Download Section -->
-        <section class="download">
-            <div class="container">
-                <div class="download-card animate-on-scroll">
-                    <h2 class="section-title" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
-                    <p class="section-subtitle" data-key="downloadDescription">Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.</p>
-                    <div class="download-buttons">
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('windows')">
-                            <span>🪟</span>
-                            <span data-key="downloadWindows">SuitAI Windows</span>
-                        </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('mac')">
-                            <span>🍎</span>
-                            <span data-key="downloadMac">SuitAI Mac</span>
-                        </button>
-                        <button class="btn btn-primary glow" onclick="openDownloadPage('linux')">
-                            <span>🐧</span>
-                            <span data-key="downloadLinux">SuitAI Linux</span>
-                        </button>
-                    </div>
-                    <div class="download-note">
-                        <span data-key="noSubscription">✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas</span>
-                    </div>
+    <!-- Gallery Section -->
+    <section id="gallery" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">Interfaz del <span class="text-gradient">Futuro</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Diseñado para la productividad, construido para la privacidad.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/chat.png" alt="Chat Interface" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Chat Inteligente</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/chat_con_grafica.png" alt="Data Visualization" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Visualización de Datos</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/chat_con_pdf.png" alt="PDF Analysis" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Análisis de Documentos</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/editor_de_codigo.png" alt="Code Editor" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Editor de Código</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/generacion_imagen.png" alt="Image Generation" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Generación de Imágenes</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+                    <img src="img/chat_tutorial.png" alt="Tutorials" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Asistente Interactivo</div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p data-key="footer">&copy; 2024 SuitAI. La revolución de la IA privada y local.</p>
+    <!-- Download / CTA Footer -->
+    <footer id="download" class="relative z-10 border-t border-white/5 bg-suit-dark pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto" data-key="downloadDescription">
+                Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center mb-16">
+                <button onclick="openDownloadPage('windows')" class="flex items-center justify-center gap-3 px-8 py-4 bg-suit-card border border-white/10 rounded-xl hover:border-suit-cyan hover:text-suit-cyan transition-all group cursor-pointer">
+                    <i data-lucide="monitor" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold" data-key="downloadWindows">SuitAI Windows</span>
+                </button>
+                <button onclick="openDownloadPage('mac')" class="flex items-center justify-center gap-3 px-8 py-4 bg-suit-card border border-white/10 rounded-xl hover:border-suit-green hover:text-suit-green transition-all group cursor-pointer">
+                    <i data-lucide="apple" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold" data-key="downloadMac">SuitAI Mac</span>
+                </button>
+                <button onclick="openDownloadPage('linux')" class="flex items-center justify-center gap-3 px-8 py-4 bg-suit-card border border-white/10 rounded-xl hover:border-white hover:text-white transition-all group cursor-pointer">
+                    <i data-lucide="terminal" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold" data-key="downloadLinux">SuitAI Linux</span>
+                </button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 border-t border-white/5 pt-8">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Sin suscripciones
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Pago único
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Actualizaciones gratuitas
+                </div>
+            </div>
+
+            <div class="mt-8 text-sm text-gray-600" data-key="footer">
+                &copy; 2024 SuitAI. La revolución de la IA privada y local.
+            </div>
         </div>
     </footer>
 
     <script>
-        // Traducciones completas y corregidas
+        // Traducciones completas
         const translations = {
             es: {
-                urgencyBanner: "🔥 Únete a más de 50,000 usuarios que ya disfrutan de IA privada y local ⚡",
                 activeUsersLabel: "Usuarios activos",
                 processedTodayLabel: "Procesados hoy",
                 privacyLabel: "Privacidad",
@@ -1751,7 +600,7 @@
                 watchDemo: "Ver Demo",
                 metric1: "Usuarios satisfechos",
                 metric2: "Consultas procesadas",
-                metric3: "Tiempo de funcionamiento", 
+                metric3: "Tiempo de funcionamiento",
                 metric4: "Datos enviados a la nube",
                 comparisonTitle: "SuitAI vs Competencia",
                 othersTitle: "Otras soluciones de IA",
@@ -1801,7 +650,6 @@
                 footer: "© 2024 SuitAI. La revolución de la IA privada y local."
             },
             en: {
-                urgencyBanner: "🔥 Join 50,000+ users already enjoying private and local AI ⚡",
                 activeUsersLabel: "Active users",
                 processedTodayLabel: "Processed today",
                 privacyLabel: "Privacy",
@@ -1864,7 +712,6 @@
                 footer: "© 2024 SuitAI. The private and local AI revolution."
             },
             de: {
-                urgencyBanner: "🔥 Schließen Sie sich 50.000+ Nutzern an, die bereits private und lokale KI genießen ⚡",
                 activeUsersLabel: "Aktive Nutzer",
                 processedTodayLabel: "Heute verarbeitet",
                 privacyLabel: "Datenschutz",
@@ -1917,7 +764,7 @@
                 feature6Title: "Experten-Programmierassistent",
                 feature6Description: "Von einfachen Skripten bis zu vollständigen Anwendungen. Ein Code-Copilot, der Kontext und bewährte Praktiken versteht.",
                 securityTitle: "Ihre Privatsphäre ist heilig",
-                securityDescription: "In einer Welt, in der Ihre Daten an den Meistbietenden verkauft werden, repräsentiert SuitAI eine neue Ära wirklich privater KI. Alle Verarbeitung findet auf Ihrem Gerät statt. Trennen Sie das Internet, wenn Sie möchten: SuitAI wird perfekt weiter funktionieren.",
+                securityDescription: "In einer Welt, in der Ihre Daten an den Meistbietenden verkauft werden, repräsentiert SuitAI eine neue Ära wirklich privater KI. Alle Verarbeitung findet auf Ihrem Gerät statt.",
                 zeroData: "Gesendete Daten",
                 localProcessing: "Lokale Verarbeitung",
                 unlimitedUse: "Unbegrenzte Nutzung",
@@ -1927,7 +774,6 @@
                 footer: "© 2024 SuitAI. Die private und lokale KI-Revolution."
             },
             pl: {
-                urgencyBanner: "🔥 Dołącz do ponad 50,000 użytkowników ciesząc się prywatną i lokalną AI ⚡",
                 activeUsersLabel: "Aktywni użytkownicy",
                 processedTodayLabel: "Przetworzono dzisiaj",
                 privacyLabel: "Prywatność",
@@ -1980,7 +826,7 @@
                 feature6Title: "Ekspert asystent programowania",
                 feature6Description: "Od prostych skryptów do kompletnych aplikacji. Kopilot kodu, który rozumie kontekst i najlepsze praktyki.",
                 securityTitle: "Twoja prywatność jest święta",
-                securityDescription: "W świecie, gdzie twoje dane są sprzedawane najwyższemu licytującemu, SuitAI reprezentuje nową erę prawdziwie prywatnej AI. Całe przetwarzanie odbywa się na twoim urządzeniu. Odłącz internet jeśli chcesz: SuitAI będzie działać perfekcyjnie.",
+                securityDescription: "W świecie, gdzie twoje dane są sprzedawane najwyższemu licytującemu, SuitAI reprezentuje nową erę prawdziwie prywatnej AI. Całe przetwarzanie odbywa się na twoim urządzeniu.",
                 zeroData: "Wysłane dane",
                 localProcessing: "Przetwarzanie lokalne",
                 unlimitedUse: "Nieograniczone użycie",
@@ -1990,7 +836,6 @@
                 footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI."
             },
             fr: {
-                urgencyBanner: "🔥 Rejoignez plus de 50 000 utilisateurs profitant déjà d'une IA privée et locale ⚡",
                 activeUsersLabel: "Utilisateurs actifs",
                 processedTodayLabel: "Traités aujourd'hui",
                 privacyLabel: "Confidentialité",
@@ -2043,7 +888,7 @@
                 feature6Title: "Assistant de programmation expert",
                 feature6Description: "Des scripts simples aux applications complètes. Un copilote de code qui comprend le contexte et les meilleures pratiques.",
                 securityTitle: "Votre vie privée est sacrée",
-                securityDescription: "Dans un monde où vos données sont vendues au plus offrant, SuitAI représente une nouvelle ère d'IA vraiment privée. Tout le traitement se déroule sur votre appareil. Déconnectez internet si vous voulez : SuitAI continuera à fonctionner parfaitement.",
+                securityDescription: "Dans un monde où vos données sont vendues au plus offrant, SuitAI représente une nouvelle ère d'IA vraiment privée. Tout le traitement se déroule sur votre appareil.",
                 zeroData: "Données envoyées",
                 localProcessing: "Traitement local",
                 unlimitedUse: "Utilisation illimitée",
@@ -2055,70 +900,46 @@
         };
 
         // Variables globales
-        let currentTheme = localStorage.getItem('suitai-theme') || 'dark';
         let currentLanguage = localStorage.getItem('suitai-language') || 'es';
-
-        // Gestión de tema
-        function setTheme(theme) {
-            currentTheme = theme;
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('suitai-theme', theme);
-            
-            const themeToggle = document.getElementById('themeToggle');
-            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-            themeToggle.title = theme === 'dark' ? 'Modo claro' : 'Modo oscuro';
-        }
-
-        function toggleTheme() {
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        }
 
         // Gestión de idiomas
         function changeLanguage(lang) {
             if (!translations[lang]) return;
-            
             currentLanguage = lang;
-            
+
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.getAttribute('data-key');
                 if (translations[lang][key]) {
                     element.textContent = translations[lang][key];
                 }
             });
-            
-            document.querySelectorAll('.control-btn[data-lang]').forEach(btn => {
+
+            document.querySelectorAll('.lang-btn[data-lang]').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
-            
+
             localStorage.setItem('suitai-language', lang);
         }
 
         // Crear partículas de fondo
         function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 100;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random position
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                // Random size for depth
-                const size = Math.random() * 4 + 1;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Random opacity
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // Random animation
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                particle.style.animationDuration = (10 + Math.random() * 20) + 's';
-                
-                particlesContainer.appendChild(particle);
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                const size = Math.random() * 2 + 0.5;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.opacity = Math.random() * 0.25 + 0.05;
+                if (Math.random() > 0.6) {
+                    p.style.background = '#50FFAA';
+                    p.style.boxShadow = '0 0 4px rgba(80, 255, 170, 0.2)';
+                }
+                p.style.animationDelay = Math.random() * 8 + 's';
+                p.style.animationDuration = (15 + Math.random() * 25) + 's';
+                container.appendChild(p);
             }
         }
 
@@ -2126,19 +947,12 @@
         function updateLiveStats() {
             const activeUsers = document.getElementById('activeUsers');
             const processedToday = document.getElementById('processedToday');
-
             if (activeUsers && processedToday) {
                 setInterval(() => {
-                    const currentUsers = parseInt(activeUsers.textContent.replace(/,/g, ''));
-                    const currentProcessed = parseInt(processedToday.textContent.replace(/,/g, ''));
-                    
-                    if (Math.random() > 0.7) {
-                        activeUsers.textContent = (currentUsers + Math.floor(Math.random() * 5) + 1).toLocaleString();
-                    }
-                    
-                    if (Math.random() > 0.8) {
-                        processedToday.textContent = (currentProcessed + Math.floor(Math.random() * 10) + 1).toLocaleString();
-                    }
+                    const cu = parseInt(activeUsers.textContent.replace(/,/g, ''));
+                    const cp = parseInt(processedToday.textContent.replace(/,/g, ''));
+                    if (Math.random() > 0.7) activeUsers.textContent = (cu + Math.floor(Math.random() * 5) + 1).toLocaleString();
+                    if (Math.random() > 0.8) processedToday.textContent = (cp + Math.floor(Math.random() * 10) + 1).toLocaleString();
                 }, 3000);
             }
         }
@@ -2147,9 +961,7 @@
         function startHeroSlider() {
             const images = document.querySelectorAll('.hero-img');
             if (images.length === 0) return;
-            
             let currentIndex = 0;
-            
             setInterval(() => {
                 images[currentIndex].classList.remove('active');
                 currentIndex = (currentIndex + 1) % images.length;
@@ -2157,35 +969,16 @@
             }, 3000);
         }
 
-        // Animaciones en scroll
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            elements.forEach(el => observer.observe(el));
-        }
-
         // Funcionalidad de descarga
         function openDownloadPage(platform) {
-            const downloadLinks = {
+            const links = {
                 linux: 'https://mega.nz/folder/da4zxToY#j6lrbLsvyOgCMdcSIrBn8g',
                 mac: 'https://mega.nz/folder/5TIV2RTI#HJfCpLakG-znxXHwo-WI3Q',
                 windows: 'https://mega.nz/folder/EGhjHQqB#VkMG3VwtbTxa5sHmK-pcHg'
             };
-            
-            const url = downloadLinks[platform];
+            const url = links[platform];
             if (url) {
-                // Crear efecto de llamada a la acción
-                const button = event.target.closest('.btn');
+                const button = event.target.closest('button');
                 if (button) {
                     button.style.transform = 'scale(0.95)';
                     setTimeout(() => {
@@ -2196,60 +989,29 @@
             }
         }
 
-        // Efectos del header en scroll
-        function handleHeaderScroll() {
-            const header = document.querySelector('.header');
-            let lastScrollY = window.scrollY;
-
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
-                
-                if (currentScrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-
-                lastScrollY = currentScrollY;
-            });
-        }
-
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
-            // Configurar tema e idioma inicial
-            setTheme(currentTheme);
             changeLanguage(currentLanguage);
-
-            // Inicializar funcionalidades
             createParticles();
-            handleScrollAnimations();
-            handleHeaderScroll();
             updateLiveStats();
             startHeroSlider();
+            lucide.createIcons();
 
-            // Event listeners
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-            
-            document.querySelectorAll('.control-btn[data-lang]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    changeLanguage(btn.getAttribute('data-lang'));
-                });
+            // Language buttons
+            document.querySelectorAll('.lang-btn[data-lang]').forEach(btn => {
+                btn.addEventListener('click', () => changeLanguage(btn.getAttribute('data-lang')));
             });
 
-            // Hacer las funciones globales
+            // Make global
             window.openDownloadPage = openDownloadPage;
 
-            console.log('🚀 SuitAI Enhanced loaded successfully!');
+            console.log('🚀 SuitAI loaded successfully!');
         });
 
         // Optimizaciones de rendimiento
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Pausar animaciones cuando la página no es visible
-                document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'paused');
-            } else {
-                document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'running');
-            }
+            const state = document.hidden ? 'paused' : 'running';
+            document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = state);
         });
     </script>
 </body>
