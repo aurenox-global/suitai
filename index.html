@@ -218,6 +218,13 @@
                         <span data-key="downloadWindows">Descargar para Windows</span>
                     </span>
                 </button>
+                <button onclick="document.getElementById('android').scrollIntoView({behavior: 'smooth'})" class="btn-glow group relative px-8 py-4 bg-gradient-to-r from-suit-green/20 to-suit-cyan/20 border border-suit-green/30 text-white font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-r from-suit-green to-suit-cyan opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                    <span class="flex items-center gap-2">
+                        <i data-lucide="smartphone" class="w-5 h-5"></i>
+                        <span data-key="downloadAndroid">Descargar Android</span>
+                    </span>
+                </button>
                 <button onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 rounded-lg border border-white/10 hover:border-suit-cyan/50 text-white font-medium transition-all hover:bg-white/5 flex items-center gap-2 cursor-pointer">
                     <i data-lucide="play-circle" class="w-5 h-5"></i>
                     <span data-key="watchDemo">Ver Demo</span>
@@ -507,6 +514,90 @@
         </div>
     </section>
 
+    <!-- Android Section -->
+    <section id="android" class="relative z-10 py-24 bg-gradient-to-b from-suit-card/30 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-suit-green/20 bg-suit-green/5 text-suit-green text-sm font-medium mb-6 animate-float">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+                    <span data-key="androidBadge">Ahora disponible en Android</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="androidTitle">SuitAI en tu <span class="text-gradient-green">Android</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-key="androidSubtitle">Toda la potencia de la inteligencia artificial privada ahora cabe en tu bolsillo. Sin conexión, sin límites, directamente en tu smartphone.</p>
+            </div>
+
+            <!-- Feature highlights -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                <div class="glass-card p-6 rounded-2xl text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-suit-green/10 flex items-center justify-center text-suit-green mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature1Title">Chat IA Offline</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature1Desc">Conversaciones inteligentes sin necesitar ningún dato de internet.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-suit-cyan/10 flex items-center justify-center text-suit-cyan mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature2Title">Análisis de PDFs</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature2Desc">Lee y analiza documentos desde tu móvil con privacidad total.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group relative overflow-hidden">
+                    <span class="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Pronto</span>
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="image" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature3Title">Generación de Imágenes</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature3Desc">Crea imágenes con IA directamente desde tu smartphone.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature4Title">Asistente de Código</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature4Desc">Programa y depura código con tu copiloto IA personal en Android.</p>
+                </div>
+            </div>
+
+            <!-- Screenshots grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto1.jpeg" alt="SuitAI Android Chat" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Chat Inteligente</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto2.jpeg" alt="SuitAI Android PDF" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Análisis de Documentos</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto3.jpeg" alt="SuitAI Android Imágenes" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Generación de Imágenes</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto4.jpeg" alt="SuitAI Android Código" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Asistente de Código</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto5.jpeg" alt="SuitAI Android Privacidad" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Privacidad Total</div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
+                    <img src="foto/foto6.jpeg" alt="SuitAI Android Panel" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Panel Principal</div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center">
+                <button onclick="openDownloadPage('android')" class="btn-glow inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-suit-green to-suit-cyan text-black font-bold rounded-xl hover:scale-105 transition-all cursor-pointer shadow-lg shadow-suit-green/20">
+                    <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    <span data-key="downloadAndroid">Descargar para Android</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section id="gallery" class="relative z-10 py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -563,6 +654,10 @@
                 <button onclick="openDownloadPage('linux')" class="flex items-center justify-center gap-3 px-8 py-4 bg-suit-card border border-white/10 rounded-xl hover:border-white hover:text-white transition-all group cursor-pointer">
                     <i data-lucide="terminal" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
                     <span class="font-bold" data-key="downloadLinux">SuitAI Linux</span>
+                </button>
+                <button onclick="openDownloadPage('android')" class="flex items-center justify-center gap-3 px-8 py-4 bg-suit-card border border-suit-green/20 rounded-xl hover:border-suit-green hover:text-suit-green transition-all group cursor-pointer">
+                    <i data-lucide="smartphone" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold" data-key="downloadAndroid">SuitAI Android</span>
                 </button>
             </div>
 
@@ -647,7 +742,19 @@
                 downloadTitle: "Únete a la Revolución de la IA Privada",
                 downloadDescription: "Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.",
                 noSubscription: "✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas",
-                footer: "© 2024 SuitAI. La revolución de la IA privada y local."
+                footer: "© 2024 SuitAI. La revolución de la IA privada y local.",
+                downloadAndroid: "Descargar Android",
+                androidBadge: "Ahora disponible en Android",
+                androidTitle: "SuitAI en tu Android",
+                androidSubtitle: "Toda la potencia de la inteligencia artificial privada ahora cabe en tu bolsillo. Sin conexión, sin límites, directamente en tu smartphone.",
+                androidFeature1Title: "Chat IA Offline",
+                androidFeature1Desc: "Conversaciones inteligentes sin necesitar ningún dato de internet.",
+                androidFeature2Title: "Análisis de PDFs",
+                androidFeature2Desc: "Lee y analiza documentos desde tu móvil con privacidad total.",
+                androidFeature3Title: "Generación de Imágenes",
+                androidFeature3Desc: "Crea imágenes con IA directamente desde tu smartphone.",
+                androidFeature4Title: "Asistente de Código",
+                androidFeature4Desc: "Programa y depura código con tu copiloto IA personal en Android."
             },
             en: {
                 activeUsersLabel: "Active users",
@@ -709,7 +816,19 @@
                 downloadTitle: "Join the Private AI Revolution",
                 downloadDescription: "Download SuitAI now and experience the future of personal artificial intelligence. No subscriptions, no limits, no commitments.",
                 noSubscription: "✅ No subscriptions • ✅ One-time payment • ✅ Free updates",
-                footer: "© 2024 SuitAI. The private and local AI revolution."
+                footer: "© 2024 SuitAI. The private and local AI revolution.",
+                downloadAndroid: "Download Android",
+                androidBadge: "Now available on Android",
+                androidTitle: "SuitAI on your Android",
+                androidSubtitle: "The full power of private artificial intelligence now fits in your pocket. No connection, no limits, directly on your smartphone.",
+                androidFeature1Title: "Offline AI Chat",
+                androidFeature1Desc: "Intelligent conversations without needing any internet data.",
+                androidFeature2Title: "PDF Analysis",
+                androidFeature2Desc: "Read and analyze documents from your phone with total privacy.",
+                androidFeature3Title: "Image Generation",
+                androidFeature3Desc: "Create AI images directly from your smartphone.",
+                androidFeature4Title: "Code Assistant",
+                androidFeature4Desc: "Code and debug with your personal AI copilot on Android."
             },
             de: {
                 activeUsersLabel: "Aktive Nutzer",
@@ -771,7 +890,19 @@
                 downloadTitle: "Schließen Sie sich der privaten KI-Revolution an",
                 downloadDescription: "Laden Sie SuitAI jetzt herunter und erleben Sie die Zukunft der persönlichen künstlichen Intelligenz. Keine Abonnements, keine Grenzen, keine Verpflichtungen.",
                 noSubscription: "✅ Keine Abonnements • ✅ Einmalige Zahlung • ✅ Kostenlose Updates",
-                footer: "© 2024 SuitAI. Die private und lokale KI-Revolution."
+                footer: "© 2024 SuitAI. Die private und lokale KI-Revolution.",
+                downloadAndroid: "Android herunterladen",
+                androidBadge: "Jetzt auf Android verfügbar",
+                androidTitle: "SuitAI auf Ihrem Android",
+                androidSubtitle: "Die volle Leistung privater KI passt jetzt in Ihre Tasche. Ohne Verbindung, ohne Grenzen, direkt auf Ihrem Smartphone.",
+                androidFeature1Title: "Offline KI-Chat",
+                androidFeature1Desc: "Intelligente Gespräche ohne Internetdaten.",
+                androidFeature2Title: "PDF-Analyse",
+                androidFeature2Desc: "Lesen und analysieren Sie Dokumente vom Handy mit totaler Privatsphäre.",
+                androidFeature3Title: "Bildgenerierung",
+                androidFeature3Desc: "Erstellen Sie KI-Bilder direkt von Ihrem Smartphone.",
+                androidFeature4Title: "Code-Assistent",
+                androidFeature4Desc: "Programmieren und debuggen Sie mit Ihrem persönlichen KI-Copiloten auf Android."
             },
             pl: {
                 activeUsersLabel: "Aktywni użytkownicy",
@@ -833,7 +964,19 @@
                 downloadTitle: "Dołącz do rewolucji prywatnej AI",
                 downloadDescription: "Pobierz SuitAI teraz i doświadcz przyszłości osobistej sztucznej inteligencji. Bez subskrypcji, bez limitów, bez zobowiązań.",
                 noSubscription: "✅ Bez subskrypcji • ✅ Jednorazowa płatność • ✅ Darmowe aktualizacje",
-                footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI."
+                footer: "© 2024 SuitAI. Rewolucja prywatnej i lokalnej AI.",
+                downloadAndroid: "Pobierz Android",
+                androidBadge: "Teraz dostępne na Androida",
+                androidTitle: "SuitAI na twoim Androidzie",
+                androidSubtitle: "Pełna moc prywatnej sztucznej inteligencji teraz mieści się w twojej kieszeni. Bez połączenia, bez limitów, bezpośrednio na twoim smartfonie.",
+                androidFeature1Title: "Czat AI Offline",
+                androidFeature1Desc: "Inteligentne rozmowy bez potrzeby danych internetowych.",
+                androidFeature2Title: "Analiza PDF",
+                androidFeature2Desc: "Czytaj i analizuj dokumenty z telefonu z pełną prywatnością.",
+                androidFeature3Title: "Generowanie Obrazów",
+                androidFeature3Desc: "Twórz obrazy AI bezpośrednio ze swojego smartfona.",
+                androidFeature4Title: "Asystent Kodu",
+                androidFeature4Desc: "Programuj i debuguj z osobistym kopliotem AI na Androidzie."
             },
             fr: {
                 activeUsersLabel: "Utilisateurs actifs",
@@ -895,7 +1038,19 @@
                 downloadTitle: "Rejoignez la révolution de l'IA privée",
                 downloadDescription: "Téléchargez SuitAI maintenant et découvrez l'avenir de l'intelligence artificielle personnelle. Pas d'abonnements, pas de limites, pas d'engagements.",
                 noSubscription: "✅ Pas d'abonnements • ✅ Paiement unique • ✅ Mises à jour gratuites",
-                footer: "© 2024 SuitAI. La révolution de l'IA privée et locale."
+                footer: "© 2024 SuitAI. La révolution de l'IA privée et locale.",
+                downloadAndroid: "Télécharger Android",
+                androidBadge: "Disponible maintenant sur Android",
+                androidTitle: "SuitAI sur votre Android",
+                androidSubtitle: "Toute la puissance de l'IA privée tient maintenant dans votre poche. Sans connexion, sans limites, directement sur votre smartphone.",
+                androidFeature1Title: "Chat IA Hors Ligne",
+                androidFeature1Desc: "Conversations intelligentes sans avoir besoin de données internet.",
+                androidFeature2Title: "Analyse de PDF",
+                androidFeature2Desc: "Lisez et analysez des documents depuis votre mobile avec une confidentialité totale.",
+                androidFeature3Title: "Génération d'Images",
+                androidFeature3Desc: "Créez des images avec l'IA directement depuis votre smartphone.",
+                androidFeature4Title: "Assistant de Code",
+                androidFeature4Desc: "Programmez et déboguez avec votre copilote IA personnel sur Android."
             }
         };
 
@@ -974,7 +1129,8 @@
             const links = {
                 linux: 'https://mega.nz/folder/da4zxToY#j6lrbLsvyOgCMdcSIrBn8g',
                 mac: 'https://mega.nz/folder/5TIV2RTI#HJfCpLakG-znxXHwo-WI3Q',
-                windows: 'https://github.com/aurenox-global/suitai/releases/download/v2.0/SuitAI_PRO_2.0.exe'
+                windows: 'https://github.com/aurenox-global/suitai/releases/download/v2.0/SuitAI_PRO_2.0.exe',
+                android: 'https://github.com/aurenox-global/suitai/releases/download/v2.0/SuitAIPro_v2.0.apk' // TODO: reemplazar con el enlace de descarga del APK
             };
             const url = links[platform];
             if (url) {
