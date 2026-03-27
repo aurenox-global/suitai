@@ -1,4 +1,4 @@
-# SuitAI PRO v2.1
+# SuitAI PRO v2.2
 
 SuitAI PRO es una plataforma local de inteligencia artificial diseñada para crear, investigar y producir contenido en un solo entorno.
 
