@@ -1,11 +1,22 @@
-# SuitAI PRO v2.2
+# SuitAI PRO v2.3
 
 SuitAI PRO es una plataforma local de inteligencia artificial diseñada para crear, investigar y producir contenido en un solo entorno.
 
 SuitAI PRO is a local AI platform built to help you create, research, and produce content from one unified workspace.
 
 ---
+>> Mejoras :
+>> 28.3.2026
 
+-- v2.3 
+
+- se agrego soporte para modelos qwen3.5
+- agrego para descargar los modelos a parte de importar
+- se agrego soporte para modelos de vision VL
+- se agrego para desde el chat analizar imagenes
+- se agrego importar modelos VL - modelo + mmproj en local
+
+----------------------------------------------------------------------------------------------------------------------------
 ## 🇪🇸 Presentación
 
 ### ¿Qué hace SuitAI PRO?
