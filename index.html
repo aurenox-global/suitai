@@ -3,7 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuitAI Pro</title>
+    
+    <!-- Etiquetas SEO (Search Engine Optimization) -->
+    <title>SuitAI Pro | Inteligencia Artificial Privada, Local y Offline</title>
+    <meta name="title" content="SuitAI Pro | Inteligencia Artificial Privada, Local y Offline">
+    <meta name="description" content="SuitAI Pro: La revolución de la inteligencia artificial personal. Ejecuta modelos avanzados 100% offline y en privado. Integración con Ollama, RAG y modelos de visión para PC y Android.">
+    <meta name="keywords" content="IA local, inteligencia artificial privada, SuitAI Pro, IA offline, alternativa ChatGPT, RAG local, modelos de visión local, Ollama GUI, LLM local, IA Android y PC">
+    <meta name="author" content="Andres MAG">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    
+    <!-- Enlaces Canónicos e Idiomas (Hreflang) -->
+    <link rel="canonical" href="https://aurenox-global.github.io/suitai/" />
+    <link rel="alternate" hreflang="es" href="https://aurenox-global.github.io/suitai/" />
+    <link rel="alternate" hreflang="en" href="https://aurenox-global.github.io/suitai/?lang=en" />
+    <link rel="alternate" hreflang="de" href="https://aurenox-global.github.io/suitai/?lang=de" />
+    <link rel="alternate" hreflang="pl" href="https://aurenox-global.github.io/suitai/?lang=pl" />
+    <link rel="alternate" hreflang="zh" href="https://aurenox-global.github.io/suitai/?lang=zh" />
+    <link rel="alternate" hreflang="x-default" href="https://aurenox-global.github.io/suitai/" />
+
+    <!-- Open Graph / Meta Ads (Para Facebook, LinkedIn, Discord, etc) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aurenox-global.github.io/suitai/">
+    <meta property="og:title" content="SuitAI Pro | Inteligencia Artificial Privada, Local y Offline">
+    <meta property="og:description" content="Experimenta el futuro de la IA que funciona completamente en tu dispositivo. Modelos Custom, Visión, RAG y soporte Android/PC sin comprometer datos.">
+    <meta property="og:image" content="https://aurenox-global.github.io/suitai/img/home.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aurenox-global.github.io/suitai/">
+    <meta property="twitter:title" content="SuitAI Pro | Inteligencia Artificial Privada, Local y Offline">
+    <meta property="twitter:description" content="Experimenta el futuro de la IA que funciona completamente en tu dispositivo. Modelos Custom, Visión, RAG y soporte Android/PC sin comprometer datos.">
+    <meta property="twitter:image" content="https://aurenox-global.github.io/suitai/img/home.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -101,6 +133,17 @@
             background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
             mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+        /* Terminal Animation */
+        @keyframes terminalLineFade {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .anim-terminal-line {
+            opacity: 0;
+            animation: terminalLineFade 0.4s ease-out forwards;
         }
 
         /* Particles */
@@ -251,16 +294,27 @@
                 <span class="text-gradient">tu privacidad</span>
             </h1>
 
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400" data-key="heroSubtitle">
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400" data-key="heroSubtitle" style="animation: fadeIn 1.5s ease-out, slideUp 1s ease-out;">
                 Experimenta el futuro de la inteligencia artificial que funciona completamente en tu dispositivo. Sin comprometer datos, sin latencias, sin límites.
             </p>
 
+            <style>
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from { transform: translateY(20px); }
+                    to { transform: translateY(0); }
+                }
+            </style>
+
             <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button onclick="openDownloadPage('windows')" class="btn-glow group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
+                <button id="heroDownloadBtn" onclick="openDownloadPage('windows')" class="btn-glow group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-r from-suit-cyan to-suit-green opacity-0 group-hover:opacity-20 transition-opacity"></div>
                     <span class="flex items-center gap-2">
-                        <i data-lucide="download" class="w-5 h-5"></i>
-                        <span data-key="downloadWindows">Descargar para Windows</span>
+                        <i id="heroDownloadIcon" data-lucide="download" class="w-5 h-5"></i>
+                        <span id="heroDownloadText" data-key="downloadWindows">Descargar para Windows</span>
                     </span>
                 </button>
                 <button onclick="document.getElementById('android').scrollIntoView({behavior: 'smooth'})" class="btn-glow group relative px-8 py-4 bg-gradient-to-r from-suit-green/20 to-suit-cyan/20 border border-suit-green/30 text-white font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
@@ -273,6 +327,12 @@
                 <button onclick="document.getElementById('gallery').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 rounded-lg border border-white/10 hover:border-suit-cyan/50 text-white font-medium transition-all hover:bg-white/5 flex items-center gap-2 cursor-pointer">
                     <i data-lucide="play-circle" class="w-5 h-5"></i>
                     <span data-key="watchDemo">Ver Demo</span>
+                </button>
+                
+                <!-- Botón de Novedades de versión -->
+                <button onclick="openChangelogModal()" class="px-8 py-4 rounded-lg border border-suit-cyan/30 bg-suit-cyan/5 hover:bg-suit-cyan/10 text-suit-cyan font-medium transition-all flex items-center gap-2 cursor-pointer tooltip-trigger">
+                    <i data-lucide="history" class="w-5 h-5"></i>
+                    <span>Novedades</span>
                 </button>
             </div>
 
@@ -359,6 +419,15 @@
                         <li class="flex items-center gap-3 text-red-400/80">
                             <i data-lucide="x" class="w-5 h-5"></i> <span data-key="others4">Limitaciones de uso</span>
                         </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span>Ecosistema cerrado y rígido</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span>Mala retención de contexto largo</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-red-400/80">
+                            <i data-lucide="x" class="w-5 h-5"></i> <span>Sin control real sobre el modelo</span>
+                        </li>
                     </ul>
                 </div>
                 <!-- SuitAI -->
@@ -380,7 +449,40 @@
                         <li class="flex items-center gap-3 text-suit-green">
                             <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our4">Uso ilimitado</span>
                         </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our5">Integración Ollama y DevOps</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our6">Memoria de contexto suprema para Roleplay</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-suit-green">
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our7">Auditoría total y modelos custom</span>
+                        </li>
                     </ul>
+
+                    <!-- Terminal Animation Block -->
+                    <div class="mt-8 rounded-xl bg-[#0a0f18] border border-gray-800 p-4 font-mono text-sm shadow-inner relative overflow-hidden group">
+                        <!-- Terminal Header -->
+                        <div class="flex items-center gap-2 mb-3 border-b border-gray-800/50 pb-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            <span class="ml-2 text-gray-500 text-xs font-sans tracking-wider">suitaipro-core ~ terminal local</span>
+                        </div>
+                        
+                        <!-- Terminal Body -->
+                        <div class="space-y-1.5 h-36 overflow-hidden flex flex-col justify-end pb-2">
+                            <div class="anim-terminal-line text-suit-cyan/70" style="animation-delay: 0.5s;">> Cargando kernel SuitAI Pro...</div>
+                            <div class="anim-terminal-line text-suit-cyan/70" style="animation-delay: 1.5s;">> Iniciando entorno RAG offline... [OK]</div>
+                            <div class="anim-terminal-line text-suit-cyan/70" style="animation-delay: 2.2s;">> Conectando instancia Ollama local...</div>
+                            <div class="anim-terminal-line text-suit-cyan/70" style="animation-delay: 3s;">> Modelo Llama-3 cargado (8192 ctx) en VRAM</div>
+                            <div class="anim-terminal-line text-gray-400" style="animation-delay: 4s;">> sys.auth: usuario master verificado</div>
+                            <div class="anim-terminal-line text-suit-green" style="animation-delay: 5s;">> Analizando prompt: "Generar estructura backend"</div>
+                            <div class="anim-terminal-line text-white mt-1 pt-1 border-t border-gray-800/50" style="animation-delay: 6s;">
+                                >>> Procesando modelo sin depender de la nube... <span class="animate-pulse font-bold text-suit-cyan">_</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -449,6 +551,24 @@
                                 <p class="text-sm text-gray-400 leading-relaxed" data-key="privacyDescription">Tus datos nunca salen de tu dispositivo. Privacidad real, no promesas vacías.</p>
                             </div>
                         </div>
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 flex-shrink-0">
+                                <i data-lucide="git-merge" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1">Automatización y DevOps</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed">Integra Ollama sin esfuerzo. Automatiza tareas, gestiona el versionado, optimiza rendimiento y depura desde la terminal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start p-5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all">
+                            <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-400 flex-shrink-0">
+                                <i data-lucide="monitor-smartphone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block mb-1">Personalización Multimodal Extrema</strong>
+                                <p class="text-sm text-gray-400 leading-relaxed">Cross-platform nativo (macOS, Linux, Windows 10/11, Android). Soporta modelos custom, visión, OCR, TTS avanzado, roleplay y más.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -504,6 +624,48 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3" data-key="feature6Title">Asistente de Programación Experto</h3>
                     <p class="text-gray-400 text-sm leading-relaxed" data-key="feature6Description">Desde scripts simples hasta aplicaciones completas. Un copiloto de código que entiende contexto y mejores prácticas.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="git-merge" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature7Title">Integración Ollama y DevOps</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature7Description">Integra SuitAI con Ollama, automatiza tareas, gestión de versionado y despliegues en tus flujos DevOps sin interrupciones.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-cyan/10 flex items-center justify-center text-suit-cyan mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature8Title">Modelos Personalizados y Hardware</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature8Description">Carga modelos adaptados, define configuraciones personalizadas por modelo y exprime al máximo la optimización por hardware local.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-suit-green/10 flex items-center justify-center text-suit-green mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature9Title">Contexto Supremo y Roleplay</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature9Description">Gestión de contexto ultramejorada para una coherencia impecable en conversaciones largas y sesiones de roleplay envolventes.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature10Title">Multimodal y Personalización</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature10Description">Análisis de imágenes, OCR, transcripción de audio, TTS, traducción, formato, búsqueda web y procesamiento en tiempo real con control de velocidad.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="terminal" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature11Title">Auditoría y Debugging Avanzado</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature11Description">Depuración integral, optimización de rendimiento y modo de auditoría profesional directamente desde la terminal.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="monitor-smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-key="feature12Title">Cross-Platform y Control</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed" data-key="feature12Description">Soporte nativo para macOS, Linux, Windows 10/11 y Android. Un entorno que incluye más fricción deliberada al integrar nuevos modelos para garantizar máximo control experto.</p>
                 </div>
             </div>
         </div>
@@ -568,12 +730,12 @@
                     <i data-lucide="smartphone" class="w-4 h-4"></i>
                     <span data-key="androidBadge">Ahora disponible en Android</span>
                 </div>
-                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="androidTitle">SuitAIPro v2.4 en tu <span class="text-gradient-green">Android</span></h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="androidTitle">SuitAIPro v2.4.2 en tu <span class="text-gradient-green">Android</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto" data-key="androidSubtitle">Toda la potencia de la inteligencia artificial privada ahora cabe en tu bolsillo. Sin conexión, sin límites, directamente en tu smartphone.</p>
             </div>
 
             <!-- Feature highlights -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                 <div class="glass-card p-6 rounded-2xl text-center group">
                     <div class="w-12 h-12 rounded-xl bg-suit-green/10 flex items-center justify-center text-suit-green mx-auto mb-4 group-hover:scale-110 transition-transform">
                         <i data-lucide="message-circle" class="w-6 h-6"></i>
@@ -603,33 +765,47 @@
                     <h4 class="font-bold text-white mb-2" data-key="androidFeature4Title">Asistente de Código</h4>
                     <p class="text-gray-400 text-sm" data-key="androidFeature4Desc">Programa y depura código con tu copiloto IA personal en Android.</p>
                 </div>
+                <div class="glass-card p-6 rounded-2xl text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature5Title">Modelos de Visión</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature5Desc">Analiza y entiende imágenes utilizando avanzados modelos de visión locales de forma nativa.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-white mb-2" data-key="androidFeature6Title">RAG y Visor de Documentos</h4>
+                    <p class="text-gray-400 text-sm" data-key="androidFeature6Desc">Aplica tecnología RAG integrada y visualiza documentos de todo tipo de manera universal sin salir de la app.</p>
+                </div>
             </div>
 
             <!-- Screenshots grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12 justify-items-center">
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto1.jpeg" alt="SuitAI Android Chat" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Chat Inteligente</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid1">Chat Inteligente</div>
                 </div>
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto2.jpeg" alt="SuitAI Android PDF" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Análisis de Documentos</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid2">Análisis de Documentos</div>
                 </div>
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto3.jpeg" alt="SuitAI Android Imágenes" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Generación de Imágenes</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid3">Generación de Imágenes</div>
                 </div>
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto4.jpeg" alt="SuitAI Android Código" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Asistente de Código</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid4">Asistente de Código</div>
                 </div>
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto5.jpeg" alt="SuitAI Android Privacidad" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Privacidad Total</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid5">Privacidad Total</div>
                 </div>
                 <div class="gallery-item w-full max-w-[220px] rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-green/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(80,255,170,0.08)]">
                     <img src="foto/foto6.jpeg" alt="SuitAI Android Panel" class="w-full aspect-[9/16] object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium">Panel Principal</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent text-white text-sm font-medium" data-key="galleryAndroid6">Panel Principal</div>
                 </div>
             </div>
 
@@ -647,33 +823,33 @@
     <section id="gallery" class="relative z-10 py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">Interfaz del <span class="text-gradient">Futuro</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Diseñado para la productividad, construido para la privacidad.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="galleryTitle">Interfaz del <span class="text-gradient">Futuro</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-key="gallerySubtitle">Diseñado para la productividad, construido para la privacidad.</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/chat.png" alt="Chat Interface" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Chat Inteligente</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC1">Chat Inteligente</div>
                 </div>
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/chat_con_grafica.png" alt="Data Visualization" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Visualización de Datos</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC2">Visualización de Datos</div>
                 </div>
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/chat_con_pdf.png" alt="PDF Analysis" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Análisis de Documentos</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC3">Análisis de Documentos</div>
                 </div>
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/editor_de_codigo.png" alt="Code Editor" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Editor de Código</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC4">Editor de Código</div>
                 </div>
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/generacion_imagen.png" alt="Image Generation" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Generación de Imágenes</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC5">Generación de Imágenes</div>
                 </div>
                 <div class="gallery-item rounded-2xl overflow-hidden border border-white/5 relative group cursor-pointer hover:border-suit-cyan/30 transition-all hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
                     <img src="img/chat_tutorial.png" alt="Tutorials" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium">Asistente Interactivo</div>
+                    <div class="gallery-caption absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent text-white font-medium" data-key="galleryPC6">Asistente Interactivo</div>
                 </div>
             </div>
         </div>
@@ -708,13 +884,13 @@
 
             <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 border-t border-white/5 pt-8">
                 <div class="flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Sin suscripciones
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge1">Sin suscripciones</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Pago único
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge2">Pago único</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> Actualizaciones gratuitas
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge3">Actualizaciones gratuitas</span>
                 </div>
             </div>
 
@@ -724,10 +900,238 @@
         </div>
     </footer>
 
+    <!-- Ventana Flotante (Modal) de Mejoras / Changelog -->
+    <div id="changelogModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="changelogContent" class="glass-panel relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-suit-cyan/20 shadow-[0_0_50px_rgba(0,160,250,0.15)] p-6 md:p-10 transform scale-95 transition-all duration-300 bg-suit-dark/95">
+            <!-- Botón cerrar Modal -->
+            <button onclick="closeChangelogModal()" class="absolute top-6 right-6 p-2 text-gray-400 hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-suit-cyan/30 bg-suit-cyan/10 text-suit-cyan text-xs font-bold uppercase tracking-wider mb-4">
+                    Novedades
+                </div>
+                <h2 class="text-3xl font-bold text-white">Historial de Versiones</h2>
+                <p class="text-gray-400 mt-2">Todo lo nuevo que hemos construido para ti.</p>
+            </div>
+
+            <!-- Lista de versiones -->
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-suit-cyan/20 before:to-transparent">
+                <!-- V2.3.1 / V2.4.2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-suit-dark bg-suit-cyan text-black font-bold shadow-[0_0_15px_rgba(0,160,250,0.5)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl border-suit-cyan/30 relative">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-white">PC v2.3.1 / Android v2.4.2</h3>
+                            <span class="text-xs font-medium px-2 py-1 bg-suit-green/20 text-suit-green rounded-lg">Actual</span>
+                        </div>
+                        <ul class="space-y-2 mt-4 text-sm text-gray-300">
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-suit-cyan shrink-0 mt-0.5"></i> Integración nativa con Ollama y flujos DevOps.</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-suit-cyan shrink-0 mt-0.5"></i> Modelos de Visión y RAG avanzado en Android.</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-suit-cyan shrink-0 mt-0.5"></i> Depuración de rendimiento desde terminal.</li>
+                            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-suit-cyan shrink-0 mt-0.5"></i> Soporte multi-plataforma total (Win/Mac/Linux/Android).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- V2.0 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-suit-dark bg-gray-700 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors group-hover:bg-suit-green">
+                        <i data-lucide="rocket" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl opacity-60 group-hover:opacity-100 transition-opacity">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-white">Versión 2.0</h3>
+                            <span class="text-xs font-medium text-gray-400">Oct 2025</span>
+                        </div>
+                        <ul class="space-y-2 mt-4 text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                            <li class="flex gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i> Interfaz RAG optimizada para grandes documentos.</li>
+                            <li class="flex gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i> Editor de código profesional incorporado.</li>
+                            <li class="flex gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i> Aumento de velocidad de inferencia en un 40%.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- V1.0 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-suit-dark bg-gray-800 text-gray-400 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <i data-lucide="flag" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl opacity-40">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-bold text-lg text-gray-300">Versión 1.0</h3>
+                            <span class="text-xs font-medium text-gray-500">Jul 2025</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2">Lanzamiento inicial de SuitAI. Chat offline y privacidad 100% local asegurada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Asistente FAQ -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-[90] flex flex-col items-end">
+        <!-- Chat Window -->
+        <div id="chatbot-window" class="glass-panel w-80 sm:w-96 rounded-2xl mb-4 overflow-hidden shadow-2xl border border-suit-cyan/20 transform transition-all duration-300 origin-bottom-right scale-0 opacity-0 pointer-events-none flex flex-col h-[400px]">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-suit-cyan/20 to-suit-green/20 p-4 border-b border-white/5 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-suit-cyan/20 flex items-center justify-center relative text-lg">
+                        🤖
+                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-suit-green rounded-full border-2 border-[#151921]"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">SuitAI Asistente</h4>
+                        <span class="text-xs text-suit-green">En línea</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatbot()" class="text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Messages Area -->
+            <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-3 custom-scrollbar">
+                <!-- Bot Welcome -->
+                <div class="flex gap-2">
+                    <div class="w-8 h-8 rounded-full bg-suit-cyan/20 flex-shrink-0 flex items-center justify-center text-lg">🤖</div>
+                    <div class="bg-white/5 p-3 rounded-2xl rounded-tl-sm text-sm text-gray-200">
+                        ¡Hola! Soy el asistente de SuitAI. Aquí tienes algunas preguntas frecuentes que te pueden interesar:
+                    </div>
+                </div>
+                
+                <!-- FAQ Options -->
+                <div id="chatbot-options" class="flex flex-col gap-2 pl-10">
+                    <button onclick="chatbotAsk(0)" class="text-left text-xs bg-suit-cyan/10 hover:bg-suit-cyan/20 border border-suit-cyan/30 text-suit-cyan px-3 py-2 rounded-lg transition-colors">¿Qué es SuitAI Pro?</button>
+                    <button onclick="chatbotAsk(1)" class="text-left text-xs bg-suit-cyan/10 hover:bg-suit-cyan/20 border border-suit-cyan/30 text-suit-cyan px-3 py-2 rounded-lg transition-colors">¿Necesito internet para usarlo?</button>
+                    <button onclick="chatbotAsk(2)" class="text-left text-xs bg-suit-cyan/10 hover:bg-suit-cyan/20 border border-suit-cyan/30 text-suit-cyan px-3 py-2 rounded-lg transition-colors">¿Tiene costos mensuales?</button>
+                    <button onclick="chatbotAsk(3)" class="text-left text-xs bg-suit-cyan/10 hover:bg-suit-cyan/20 border border-suit-cyan/30 text-suit-cyan px-3 py-2 rounded-lg transition-colors">¿En qué sistemas operativos funciona?</button>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-3 border-t border-white/5 bg-black/20 text-center">
+                <p class="text-xs text-gray-500">Selecciona una de las opciones arriba</p>
+            </div>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button id="chatbot-toggle" onclick="toggleChatbot()" class="w-14 h-14 rounded-full bg-gradient-to-r from-suit-cyan to-suit-green flex items-center justify-center shadow-[0_0_20px_rgba(0,160,250,0.3)] hover:shadow-[0_0_30px_rgba(0,160,250,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 group">
+            <i data-lucide="message-circle" class="w-6 h-6 text-white group-hover:scale-110 transition-transform"></i>
+        </button>
+    </div>
+
     <script>
+        // Funciones para el Modal de Novedades (Changelog)
+        const changelogModal = document.getElementById('changelogModal');
+        const changelogContent = document.getElementById('changelogContent');
+
+        function openChangelogModal() {
+            changelogModal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                changelogContent.classList.remove('scale-95');
+                changelogContent.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevenir scroll de fondo
+        }
+
+        function closeChangelogModal() {
+            changelogContent.classList.remove('scale-100');
+            changelogContent.classList.add('scale-95');
+            changelogModal.classList.add('opacity-0');
+            setTimeout(() => {
+                changelogModal.classList.add('pointer-events-none');
+            }, 300);
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+
+        // Cerrar modal haciendo clic fuera de él
+        changelogModal.addEventListener('click', (e) => {
+            if (e.target === changelogModal) {
+                closeChangelogModal();
+            }
+        });
+
+        // Funciones para el Asistente FAQ (Chatbot)
+        const faqAnswers = [
+            "SuitAI Pro es un ecosistema de IA 100% privado y seguro que funciona completamente en tu dispositivo. Integrado con capacidades para DevOps, terminal, Ollama y RAG, te ofrece total soberanía digital sin dependencias de la nube.",
+            "No. SuitAI Pro funciona de forma completamente offline garantizando que tus datos, código y documentos nunca salgan de tu equipo ni se compartan con nadie.",
+            "¡No! SuitAI Pro ofrece un pago único para uso ilimitado. Sin suscripciones, sin cobros por tokens, tú administras tu propia infraestructura de IA.",
+            "SuitAI Pro es multiplataforma. Está disponible como software de PC para Windows, Mac y Linux, así como una aplicación robusta para dispositivos móviles Android con funciones RAG y modelos de visión locales."
+        ];
+
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('chatbot-window');
+            if (chatWindow.classList.contains('scale-0')) {
+                chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+                chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function chatbotAsk(index) {
+            const optionsDiv = document.getElementById('chatbot-options');
+            const buttonText = optionsDiv.children[index].textContent;
+            const messagesDiv = document.getElementById('chatbot-messages');
+            
+            optionsDiv.style.display = 'none';
+
+            const userContainer = document.createElement('div');
+            userContainer.className = 'flex justify-end gap-2 mt-2';
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-suit-cyan/20 p-3 rounded-2xl rounded-tr-sm text-sm text-white max-w-[85%] border border-suit-cyan/30';
+            userMsg.textContent = buttonText;
+            userContainer.appendChild(userMsg);
+            messagesDiv.appendChild(userContainer);
+
+            const typingContainer = document.createElement('div');
+            typingContainer.className = 'flex gap-2 mt-2';
+            typingContainer.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-suit-cyan/20 flex-shrink-0 flex items-center justify-center text-lg">🤖</div>
+                <div class="bg-white/5 p-3 rounded-2xl rounded-tl-sm text-sm flex gap-1 items-center h-10 w-16 justify-center">
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                </div>
+            `;
+            messagesDiv.appendChild(typingContainer);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            setTimeout(() => {
+                typingContainer.remove();
+                
+                const botContainer = document.createElement('div');
+                botContainer.className = 'flex gap-2 mt-2';
+                const botIcon = document.createElement('div');
+                botIcon.className = 'w-8 h-8 rounded-full bg-suit-cyan/20 flex-shrink-0 flex items-center justify-center text-lg';
+                botIcon.textContent = '🤖';
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-white/5 p-3 rounded-2xl rounded-tl-sm text-sm text-gray-200';
+                botMsg.textContent = faqAnswers[index];
+                
+                botContainer.appendChild(botIcon);
+                botContainer.appendChild(botMsg);
+                messagesDiv.appendChild(botContainer);
+                
+                optionsDiv.style.display = 'flex';
+                messagesDiv.appendChild(optionsDiv); // Mover las opciones debajo del nuevo mensaje
+                
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 1000);
+        }
+
         // Traducciones completas
         const translations = {
             es: {
+                navFeatures: "Características",
+                navComparison: "Comparativa",
+                navDownload: "Descargas",
+                systemStatus: "Sistema Operativo",
                 activeUsersLabel: "Usuarios activos",
                 processedTodayLabel: "Procesados hoy",
                 privacyLabel: "Privacidad",
@@ -799,9 +1203,51 @@
                 androidFeature3Title: "Generación de Imágenes",
                 androidFeature3Desc: "Crea imágenes con IA directamente desde tu smartphone.",
                 androidFeature4Title: "Asistente de Código",
-                androidFeature4Desc: "Programa y depura código con tu copiloto IA personal en Android."
+                androidFeature4Desc: "Programa y depura código con tu copiloto IA personal en Android.",
+                androidFeature5Title: "Modelos de Visión",
+                androidFeature5Desc: "Analiza y entiende imágenes utilizando avanzados modelos de visión locales de forma nativa.",
+                androidFeature6Title: "RAG y Visor de Documentos",
+                androidFeature6Desc: "Aplica tecnología RAG integrada y visualiza documentos de todo tipo de manera universal sin salir de la app.",
+                our5: "Integración Ollama y DevOps",
+                our6: "Memoria de contexto suprema para Roleplay",
+                our7: "Auditoría total y modelos custom",
+                feature7Title: "Integración Ollama y DevOps",
+                feature7Description: "Integra SuitAI con Ollama, automatiza tareas, gestión de versionado y despliegues en tus flujos DevOps sin interrupciones.",
+                feature8Title: "Modelos Personalizados y Hardware",
+                feature8Description: "Carga modelos adaptados, define configuraciones personalizadas por modelo y exprime al máximo la optimización por hardware local.",
+                feature9Title: "Contexto Supremo y Roleplay",
+                feature9Description: "Gestión de contexto ultramejorada para una coherencia impecable en conversaciones largas y sesiones de roleplay envolventes.",
+                feature10Title: "Multimodal y Personalización",
+                feature10Description: "Análisis de imágenes, OCR, transcripción de audio, TTS, traducción, formato, búsqueda web y procesamiento en tiempo real con control de velocidad.",
+                feature11Title: "Auditoría y Debugging Avanzado",
+                feature11Description: "Depuración integral, optimización de rendimiento y modo de auditoría profesional directamente desde la terminal.",
+                feature12Title: "Cross-Platform y Control",
+                feature12Description: "Soporte nativo para macOS, Linux, Windows 10/11 y Android. Un entorno que incluye más fricción deliberada al integrar nuevos modelos para garantizar máximo control experto.",
+                founderQuote: "\"Creemos en un futuro donde la inteligencia artificial no comprometa la privacidad humana. SuitAI Pro nació de la necesidad de democratizar el acceso a modelos de lenguaje avanzados, devolviendo el control total al usuario.\"",
+                founderRole: "Visionary & Founder",
+                galleryTitle: "Interfaz del Futuro",
+                gallerySubtitle: "Diseñado para la productividad, construido para la privacidad.",
+                galleryAndroid1: "Chat Inteligente",
+                galleryAndroid2: "Análisis de Documentos",
+                galleryAndroid3: "Generación de Imágenes",
+                galleryAndroid4: "Asistente de Código",
+                galleryAndroid5: "Privacidad Total",
+                galleryAndroid6: "Panel Principal",
+                galleryPC1: "Chat Inteligente",
+                galleryPC2: "Visualización de Datos",
+                galleryPC3: "Análisis de Documentos",
+                galleryPC4: "Editor de Código",
+                galleryPC5: "Generación de Imágenes",
+                galleryPC6: "Asistente Interactivo",
+                badge1: "Sin suscripciones",
+                badge2: "Pago único",
+                badge3: "Actualizaciones gratuitas",
             },
             en: {
+                navFeatures: "Features",
+                navComparison: "Comparison",
+                navDownload: "Downloads",
+                systemStatus: "Operating System",
                 activeUsersLabel: "Active users",
                 processedTodayLabel: "Processed today",
                 privacyLabel: "Privacy",
@@ -873,9 +1319,51 @@
                 androidFeature3Title: "Image Generation",
                 androidFeature3Desc: "Create AI images directly from your smartphone.",
                 androidFeature4Title: "Code Assistant",
-                androidFeature4Desc: "Code and debug with your personal AI copilot on Android."
+                androidFeature4Desc: "Code and debug with your personal AI copilot on Android.",
+                androidFeature5Title: "Vision Models",
+                androidFeature5Desc: "Analyze and understand images using advanced local vision models natively.",
+                androidFeature6Title: "RAG & Document Viewer",
+                androidFeature6Desc: "Apply integrated RAG technology and view all types of documents universally without leaving the app.",
+                our5: "Ollama & DevOps Integration",
+                our6: "Supreme Context Memory for Roleplay",
+                our7: "Full Auditability & Custom Models",
+                feature7Title: "Ollama & DevOps Integration",
+                feature7Description: "Integrate SuitAI with Ollama, automate tasks, manage versioning and deployments in your DevOps workflows without interruptions.",
+                feature8Title: "Custom Models & Hardware",
+                feature8Description: "Load tailored models, define per-model custom configurations and squeeze maximum performance from your local hardware.",
+                feature9Title: "Supreme Context & Roleplay",
+                feature9Description: "Ultra-enhanced context management for flawless coherence in long conversations and immersive roleplay sessions.",
+                feature10Title: "Multimodal & Customization",
+                feature10Description: "Image analysis, OCR, audio transcription, TTS, translation, formatting, web search and real-time processing with speed control.",
+                feature11Title: "Audit & Advanced Debugging",
+                feature11Description: "Comprehensive debugging, performance optimization and professional audit mode directly from the terminal.",
+                feature12Title: "Cross-Platform & Control",
+                feature12Description: "Native support for macOS, Linux, Windows 10/11 and Android. An environment with deliberate friction when integrating new models to ensure maximum expert control.",
+                founderQuote: "\"We believe in a future where artificial intelligence does not compromise human privacy. SuitAI Pro was born from the need to democratize access to advanced language models, returning total control to the user.\"",
+                founderRole: "Visionary & Founder",
+                galleryTitle: "Interface of the Future",
+                gallerySubtitle: "Designed for productivity, built for privacy.",
+                galleryAndroid1: "Smart Chat",
+                galleryAndroid2: "Document Analysis",
+                galleryAndroid3: "Image Generation",
+                galleryAndroid4: "Code Assistant",
+                galleryAndroid5: "Total Privacy",
+                galleryAndroid6: "Main Dashboard",
+                galleryPC1: "Smart Chat",
+                galleryPC2: "Data Visualization",
+                galleryPC3: "Document Analysis",
+                galleryPC4: "Code Editor",
+                galleryPC5: "Image Generation",
+                galleryPC6: "Interactive Assistant",
+                badge1: "No subscriptions",
+                badge2: "One-time payment",
+                badge3: "Free updates",
             },
             de: {
+                navFeatures: "Funktionen",
+                navComparison: "Vergleich",
+                navDownload: "Downloads",
+                systemStatus: "Betriebssystem",
                 activeUsersLabel: "Aktive Nutzer",
                 processedTodayLabel: "Heute verarbeitet",
                 privacyLabel: "Datenschutz",
@@ -947,9 +1435,51 @@
                 androidFeature3Title: "Bildgenerierung",
                 androidFeature3Desc: "Erstellen Sie KI-Bilder direkt von Ihrem Smartphone.",
                 androidFeature4Title: "Code-Assistent",
-                androidFeature4Desc: "Programmieren und debuggen Sie mit Ihrem persönlichen KI-Copiloten auf Android."
+                androidFeature4Desc: "Programmieren und debuggen Sie mit Ihrem persönlichen KI-Copiloten auf Android.",
+                androidFeature5Title: "Vision-Modelle",
+                androidFeature5Desc: "Analysieren und verstehen Sie Bilder mit fortschrittlichen lokalen Vision-Modellen nativ.",
+                androidFeature6Title: "RAG & Dokumenten-Viewer",
+                androidFeature6Desc: "Wenden Sie integrierte RAG-Technologie an und zeigen Sie alle Dokumentarten universell an, ohne die App zu verlassen.",
+                our5: "Ollama & DevOps-Integration",
+                our6: "Überlegenes Kontext-Gedächtnis für Rollenspiele",
+                our7: "Vollständige Prüfbarkeit & eigene Modelle",
+                feature7Title: "Ollama & DevOps-Integration",
+                feature7Description: "Integrieren Sie SuitAI mit Ollama, automatisieren Sie Aufgaben, verwalten Sie Versionierung und Deployments in Ihren DevOps-Workflows unterbrechungsfrei.",
+                feature8Title: "Eigene Modelle & Hardware",
+                feature8Description: "Laden Sie angepasste Modelle, definieren Sie modellspezifische Konfigurationen und schöpfen Sie maximale Leistung aus Ihrer lokalen Hardware.",
+                feature9Title: "Überlegener Kontext & Rollenspiel",
+                feature9Description: "Ultraverbessertes Kontextmanagement für makellose Kohärenz in langen Gesprächen und immersiven Rollenspielsitzungen.",
+                feature10Title: "Multimodal & Anpassung",
+                feature10Description: "Bildanalyse, OCR, Audiotranskription, TTS, Übersetzung, Formatierung, Websuche und Echtzeit-Verarbeitung mit Geschwindigkeitskontrolle.",
+                feature11Title: "Audit & Erweitertes Debugging",
+                feature11Description: "Umfassendes Debugging, Leistungsoptimierung und professioneller Audit-Modus direkt vom Terminal.",
+                feature12Title: "Cross-Platform & Kontrolle",
+                feature12Description: "Native Unterstützung für macOS, Linux, Windows 10/11 und Android. Eine Umgebung mit bewusster Reibung bei der Integration neuer Modelle für maximale Expertenkontrolle.",
+                founderQuote: "\"Wir glauben an eine Zukunft, in der künstliche Intelligenz die menschliche Privatsphäre nicht gefährdet. SuitAI Pro entstand aus dem Bedarf, den Zugang zu fortschrittlichen Sprachmodellen zu demokratisieren und die vollständige Kontrolle an den Nutzer zurückzugeben.\"",
+                founderRole: "Visionär & Gründer",
+                galleryTitle: "Oberfläche der Zukunft",
+                gallerySubtitle: "Für Produktivität gestaltet, für Datenschutz gebaut.",
+                galleryAndroid1: "Intelligenter Chat",
+                galleryAndroid2: "Dokumentenanalyse",
+                galleryAndroid3: "Bildgenerierung",
+                galleryAndroid4: "Code-Assistent",
+                galleryAndroid5: "Totale Privatsphäre",
+                galleryAndroid6: "Hauptübersicht",
+                galleryPC1: "Intelligenter Chat",
+                galleryPC2: "Datenvisualisierung",
+                galleryPC3: "Dokumentenanalyse",
+                galleryPC4: "Code-Editor",
+                galleryPC5: "Bildgenerierung",
+                galleryPC6: "Interaktiver Assistent",
+                badge1: "Keine Abonnements",
+                badge2: "Einmalige Zahlung",
+                badge3: "Kostenlose Updates",
             },
             pl: {
+                navFeatures: "Funkcje",
+                navComparison: "Porównanie",
+                navDownload: "Pobierania",
+                systemStatus: "System Operacyjny",
                 activeUsersLabel: "Aktywni użytkownicy",
                 processedTodayLabel: "Przetworzono dzisiaj",
                 privacyLabel: "Prywatność",
@@ -1021,9 +1551,51 @@
                 androidFeature3Title: "Generowanie Obrazów",
                 androidFeature3Desc: "Twórz obrazy AI bezpośrednio ze swojego smartfona.",
                 androidFeature4Title: "Asystent Kodu",
-                androidFeature4Desc: "Programuj i debuguj z osobistym kopliotem AI na Androidzie."
+                androidFeature4Desc: "Programuj i debuguj z osobistym kopliotem AI na Androidzie.",
+                androidFeature5Title: "Modele Wizyjne",
+                androidFeature5Desc: "Analizuj i rozumiej obrazy używając zaawansowanych lokalnych modeli wizji natywnie.",
+                androidFeature6Title: "RAG i Przeglądarka Dokumentów",
+                androidFeature6Desc: "Zastosuj zintegrowaną technologię RAG i przeglądaj wszystkie typy dokumentów uniwersalnie bez wychodzenia z aplikacji.",
+                our5: "Integracja z Ollama i DevOps",
+                our6: "Najwyższa pamięć kontekstu na potrzeby Roleplay",
+                our7: "Pełna audytowalność i modele niestandardowe",
+                feature7Title: "Integracja z Ollama i DevOps",
+                feature7Description: "Integruj SuitAI z Ollama, automatyzuj zadania, zarządzaj wersjonowaniem i wdrożeniami w przepływach DevOps bez przestojów.",
+                feature8Title: "Niestandardowe Modele i Sprzęt",
+                feature8Description: "Ładuj dostosowane modele, definiuj konfiguracje per model i wyciągaj maksymalną wydajność z lokalnego sprzętu.",
+                feature9Title: "Najwyższy Kontekst i Roleplay",
+                feature9Description: "Ultrazaawansowane zarządzanie kontekstem dla nienagannej spójności w długich rozmowach i wciągających sesjach roleplay.",
+                feature10Title: "Multimodalne i Personalizacja",
+                feature10Description: "Analiza obrazów, OCR, transkrypcja audio, TTS, tłumaczenie, formatowanie, wyszukiwanie w sieci i przetwarzanie w czasie rzeczywistym z kontrolą prędkości.",
+                feature11Title: "Audyt i Zaawansowany Debugging",
+                feature11Description: "Kompleksowe debugowanie, optymalizacja wydajności i profesjonalny tryb audytu bezpośrednio z terminala.",
+                feature12Title: "Cross-Platform i Kontrola",
+                feature12Description: "Natywna obsługa macOS, Linux, Windows 10/11 i Android. Środowisko z celowym oporem przy integracji nowych modeli dla maksymalnej kontroli eksperta.",
+                founderQuote: "\"Wierzymy w przyszłość, w której sztuczna inteligencja nie narusza prywatności człowieka. SuitAI Pro powstał z potrzeby demokratyzacji dostępu do zaawansowanych modeli językowych, zwracając użytkownikowi pełną kontrolę.\"",
+                founderRole: "Wizjoner i Założyciel",
+                galleryTitle: "Interfejs Przyszłości",
+                gallerySubtitle: "Zaprojektowany dla produktywności, zbudowany dla prywatności.",
+                galleryAndroid1: "Inteligentny Czat",
+                galleryAndroid2: "Analiza Dokumentów",
+                galleryAndroid3: "Generowanie Obrazów",
+                galleryAndroid4: "Asystent Kodu",
+                galleryAndroid5: "Całkowita Prywatność",
+                galleryAndroid6: "Panel Główny",
+                galleryPC1: "Inteligentny Czat",
+                galleryPC2: "Wizualizacja Danych",
+                galleryPC3: "Analiza Dokumentów",
+                galleryPC4: "Edytor Kodu",
+                galleryPC5: "Generowanie Obrazów",
+                galleryPC6: "Interaktywny Asystent",
+                badge1: "Bez subskrypcji",
+                badge2: "Jednorazowa płatność",
+                badge3: "Darmowe aktualizacje",
             },
             fr: {
+                navFeatures: "Fonctionnalités",
+                navComparison: "Comparatif",
+                navDownload: "Téléchargements",
+                systemStatus: "Système d'exploitation",
                 activeUsersLabel: "Utilisateurs actifs",
                 processedTodayLabel: "Traités aujourd'hui",
                 privacyLabel: "Confidentialité",
@@ -1095,7 +1667,45 @@
                 androidFeature3Title: "Génération d'Images",
                 androidFeature3Desc: "Créez des images avec l'IA directement depuis votre smartphone.",
                 androidFeature4Title: "Assistant de Code",
-                androidFeature4Desc: "Programmez et déboguez avec votre copilote IA personnel sur Android."
+                androidFeature4Desc: "Programmez et déboguez avec votre copilote IA personnel sur Android.",
+                androidFeature5Title: "Modèles de Vision",
+                androidFeature5Desc: "Analysez et comprenez des images en utilisant des modèles de vision locaux avancés de manière native.",
+                androidFeature6Title: "RAG & Visionneuse de Documents",
+                androidFeature6Desc: "Appliquez la technologie RAG intégrée et visualisez tous types de documents universellement sans quitter l'application.",
+                our5: "Intégration Ollama & DevOps",
+                our6: "Mémoire de contexte suprême pour les JdR",
+                our7: "Auditabilité totale & modèles personnalisés",
+                feature7Title: "Intégration Ollama & DevOps",
+                feature7Description: "Intégrez SuitAI avec Ollama, automatisez les tâches, gérez le versionnage et les déploiements dans vos flux DevOps sans interruptions.",
+                feature8Title: "Modèles Personnalisés & Matériel",
+                feature8Description: "Chargez des modèles adaptés, définissez des configurations personnalisées par modèle et exploitez au maximum l'optimisation matérielle locale.",
+                feature9Title: "Contexte Suprême & Roleplay",
+                feature9Description: "Gestion de contexte ultra-améliorée pour une cohérence irréprochable dans les longues conversations et sessions de roleplay immersives.",
+                feature10Title: "Multimodal & Personnalisation",
+                feature10Description: "Analyse d'images, OCR, transcription audio, TTS, traduction, formatage, recherche web et traitement en temps réel avec contrôle de vitesse.",
+                feature11Title: "Audit & Débogage Avancé",
+                feature11Description: "Débogage complet, optimisation des performances et mode audit professionnel directement depuis le terminal.",
+                feature12Title: "Cross-Platform & Contrôle",
+                feature12Description: "Support natif pour macOS, Linux, Windows 10/11 et Android. Un environnement avec une friction délibérée lors de l'intégration de nouveaux modèles pour garantir un contrôle expert maximal.",
+                founderQuote: "\"Nous croyons en un avenir où l'intelligence artificielle ne compromet pas la vie privée humaine. SuitAI Pro est né du besoin de démocratiser l'accès aux modèles de langage avancés, redonnant le contrôle total à l'utilisateur.\"",
+                founderRole: "Visionnaire & Fondateur",
+                galleryTitle: "Interface du Futur",
+                gallerySubtitle: "Conçu pour la productivité, construit pour la confidentialité.",
+                galleryAndroid1: "Chat Intelligent",
+                galleryAndroid2: "Analyse de Documents",
+                galleryAndroid3: "Génération d'Images",
+                galleryAndroid4: "Assistant de Code",
+                galleryAndroid5: "Confidentialité Totale",
+                galleryAndroid6: "Tableau de Bord Principal",
+                galleryPC1: "Chat Intelligent",
+                galleryPC2: "Visualisation de Données",
+                galleryPC3: "Analyse de Documents",
+                galleryPC4: "Éditeur de Code",
+                galleryPC5: "Génération d'Images",
+                galleryPC6: "Assistant Interactif",
+                badge1: "Pas d'abonnements",
+                badge2: "Paiement unique",
+                badge3: "Mises à jour gratuites",
             }
         };
 
@@ -1119,6 +1729,11 @@
             });
 
             localStorage.setItem('suitai-language', lang);
+            
+            if (typeof updateHeroButtonForOS === 'function') {
+                updateHeroButtonForOS();
+                if (window.lucide) window.lucide.createIcons();
+            }
         }
 
         // Crear partículas de fondo
@@ -1167,6 +1782,48 @@
                 currentIndex = (currentIndex + 1) % images.length;
                 images[currentIndex].classList.add('active');
             }, 3000);
+        }
+
+        // Detección de OS
+        function updateHeroButtonForOS() {
+            const userAgent = window.navigator.userAgent || window.navigator.vendor || window.opera;
+            let os = 'windows';
+            if (/windows phone/i.test(userAgent)) os = 'windows';
+            else if (/android/i.test(userAgent)) os = 'android';
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) os = 'mac';
+            else if (/Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent)) os = 'mac';
+            else if (/Linux/.test(userAgent)) os = 'linux';
+            
+            const btn = document.getElementById('heroDownloadBtn');
+            const icon = document.getElementById('heroDownloadIcon');
+            const text = document.getElementById('heroDownloadText');
+            
+            if (!btn || !text || !icon) return;
+
+            const lang = currentLanguage || 'es';
+            const t = translations[lang] || translations['es'];
+
+            if (os === 'mac') {
+                btn.setAttribute('onclick', "openDownloadPage('mac')");
+                icon.setAttribute('data-lucide', 'apple');
+                text.textContent = (t.downloadWindows || '').replace('Windows', 'Mac');
+                text.removeAttribute('data-key'); // evitamos que changeLanguage lo sobreescriba erróneamente sin lógica
+            } else if (os === 'linux') {
+                btn.setAttribute('onclick', "openDownloadPage('linux')");
+                icon.setAttribute('data-lucide', 'terminal');
+                text.textContent = (t.downloadWindows || '').replace('Windows', 'Linux');
+                text.removeAttribute('data-key');
+            } else if (os === 'android') {
+                btn.setAttribute('onclick', "document.getElementById('android').scrollIntoView({behavior: 'smooth'})");
+                icon.setAttribute('data-lucide', 'smartphone');
+                text.textContent = t.downloadAndroid || 'Descargar Android';
+                text.setAttribute('data-key', 'downloadAndroid');
+            } else {
+                btn.setAttribute('onclick', "openDownloadPage('windows')");
+                icon.setAttribute('data-lucide', 'monitor'); // o 'download'
+                text.textContent = t.downloadWindows || 'Descargar para Windows';
+                text.setAttribute('data-key', 'downloadWindows');
+            }
         }
 
         // Funcionalidad de descarga
