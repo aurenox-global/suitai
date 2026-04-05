@@ -95,13 +95,27 @@
         .glass-card {
             background: linear-gradient(145deg, rgba(15, 17, 21, 0.8) 0%, rgba(15, 17, 21, 0.4) 100%);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
-            border-color: rgba(0, 160, 250, 0.3);
-            box-shadow: 0 0 30px rgba(0, 160, 250, 0.05);
-            transform: translateY(-2px);
+            border-color: rgba(0, 160, 250, 0.4);
+            box-shadow: 0 10px 40px -10px rgba(0, 160, 250, 0.2);
+            transform: translateY(-4px);
         }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+        .reveal-delay-300 { transition-delay: 300ms; }
 
         /* Text Gradients */
         .text-gradient {
@@ -310,14 +324,14 @@
             </style>
 
             <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button id="heroDownloadBtn" onclick="openDownloadPage('windows')" class="btn-glow group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
+                <button id="heroDownloadBtn" onclick="openDownloadPage('windows')" class="btn-glow group relative px-8 py-4 bg-white text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-r from-suit-cyan to-suit-green opacity-0 group-hover:opacity-20 transition-opacity"></div>
                     <span class="flex items-center gap-2">
                         <i id="heroDownloadIcon" data-lucide="download" class="w-5 h-5"></i>
                         <span id="heroDownloadText" data-key="downloadWindows">Descargar para Windows</span>
                     </span>
                 </button>
-                <button onclick="document.getElementById('android').scrollIntoView({behavior: 'smooth'})" class="btn-glow group relative px-8 py-4 bg-gradient-to-r from-suit-green/20 to-suit-cyan/20 border border-suit-green/30 text-white font-bold rounded-lg overflow-hidden transition-all hover:scale-105 cursor-pointer">
+                <button onclick="document.getElementById('android').scrollIntoView({behavior: 'smooth'})" class="btn-glow group relative px-8 py-4 bg-gradient-to-r from-suit-green/20 to-suit-cyan/20 border border-suit-green/30 text-white font-bold rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 cursor-pointer">
                     <div class="absolute inset-0 bg-gradient-to-r from-suit-green to-suit-cyan opacity-0 group-hover:opacity-20 transition-opacity"></div>
                     <span class="flex items-center gap-2">
                         <i data-lucide="smartphone" class="w-5 h-5"></i>
@@ -444,7 +458,7 @@
                             <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our2">100% privado y seguro</span>
                         </li>
                         <li class="flex items-center gap-3 text-suit-green">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our3">Pago único, sin suscripciones</span>
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our3">Totalmente gratis, sin suscripciones</span>
                         </li>
                         <li class="flex items-center gap-3 text-suit-green">
                             <i data-lucide="check-circle-2" class="w-5 h-5"></i> <span data-key="our4">Uso ilimitado</span>
@@ -811,7 +825,7 @@
 
             <!-- CTA -->
             <div class="text-center">
-                <button onclick="openDownloadPage('android')" class="btn-glow inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-suit-green to-suit-cyan text-black font-bold rounded-xl hover:scale-105 transition-all cursor-pointer shadow-lg shadow-suit-green/20">
+                <button onclick="openDownloadPage('android')" class="btn-glow inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-suit-green to-suit-cyan text-black font-bold rounded-xl hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-lg shadow-suit-green/20">
                     <i data-lucide="smartphone" class="w-6 h-6"></i>
                     <span data-key="downloadAndroid">Descargar para Android</span>
                 </button>
@@ -858,7 +872,7 @@
     <!-- Download / CTA Footer -->
     <footer id="download" class="relative z-10 border-t border-white/5 bg-suit-dark pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
+            <h2 class="text-4xl md:text-5xl tracking-tight font-bold mb-6" data-key="downloadTitle">Únete a la Revolución de la IA Privada</h2>
             <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto" data-key="downloadDescription">
                 Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.
             </p>
@@ -887,7 +901,7 @@
                     <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge1">Sin suscripciones</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge2">Pago único</span>
+                    <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge2">Totalmente gratis</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <i data-lucide="check" class="w-4 h-4 text-suit-green"></i> <span data-key="badge3">Actualizaciones gratuitas</span>
@@ -1059,7 +1073,7 @@
         const faqAnswers = [
             "SuitAI Pro es un ecosistema de IA 100% privado y seguro que funciona completamente en tu dispositivo. Integrado con capacidades para DevOps, terminal, Ollama y RAG, te ofrece total soberanía digital sin dependencias de la nube.",
             "No. SuitAI Pro funciona de forma completamente offline garantizando que tus datos, código y documentos nunca salgan de tu equipo ni se compartan con nadie.",
-            "¡No! SuitAI Pro ofrece un pago único para uso ilimitado. Sin suscripciones, sin cobros por tokens, tú administras tu propia infraestructura de IA.",
+            "¡No! SuitAI Pro es totalmente gratis para uso ilimitado. Sin suscripciones, sin cobros por tokens, tú administras tu propia infraestructura de IA.",
             "SuitAI Pro es multiplataforma. Está disponible como software de PC para Windows, Mac y Linux, así como una aplicación robusta para dispositivos móviles Android con funciones RAG y modelos de visión locales."
         ];
 
@@ -1155,7 +1169,7 @@
                 ourTitle: "SuitAI",
                 our1: "Funciona completamente offline",
                 our2: "100% privado y seguro",
-                our3: "Pago único, sin suscripciones",
+                our3: "Totalmente gratis, sin suscripciones",
                 our4: "Uso ilimitado",
                 assistantName: "Asistente SuitAI",
                 assistantStatus: "En línea y listo",
@@ -1190,7 +1204,7 @@
                 unlimitedUse: "Uso sin límites",
                 downloadTitle: "Únete a la Revolución de la IA Privada",
                 downloadDescription: "Descarga SuitAI ahora y experimenta el futuro de la inteligencia artificial personal. Sin suscripciones, sin límites, sin compromisos.",
-                noSubscription: "✅ Sin suscripciones • ✅ Pago único • ✅ Actualizaciones gratuitas",
+                noSubscription: "✅ Sin suscripciones • ✅ Totalmente gratis • ✅ Actualizaciones gratuitas",
                 footer: "© 2024 SuitAI. La revolución de la IA privada y local.",
                 downloadAndroid: "Descargar Android",
                 androidBadge: "Ahora disponible en Android",
@@ -1240,7 +1254,7 @@
                 galleryPC5: "Generación de Imágenes",
                 galleryPC6: "Asistente Interactivo",
                 badge1: "Sin suscripciones",
-                badge2: "Pago único",
+                badge2: "Totalmente gratis",
                 badge3: "Actualizaciones gratuitas",
             },
             en: {
@@ -1860,6 +1874,33 @@
             localStorage.setItem('suitai-theme', theme);
         }
 
+        // Configuración de Scroll Reveal
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.glass-card, .glass-panel:not(#chatbot-window):not(#changelogContent), h2, section p, .grid > div');
+            
+            // Añadir clase inicial a los elementos
+            reveals.forEach(el => {
+                if(!el.classList.contains('reveal')) {
+                    el.classList.add('reveal');
+                }
+            });
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Dejar de observar una vez mostrado
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1, // Mostrar cuando el 10% sea visible
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(el => revealObserver.observe(el));
+        }
+
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
             changeLanguage(currentLanguage);
@@ -1867,6 +1908,7 @@
             updateLiveStats();
             startHeroSlider();
             lucide.createIcons();
+            initScrollReveal();
 
             // Language buttons
             document.querySelectorAll('.lang-btn[data-lang]').forEach(btn => {
