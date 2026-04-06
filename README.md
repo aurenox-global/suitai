@@ -1,10 +1,19 @@
-# SuitAI PRO v2.3
+# SuitAI PRO v2.3.2
 
 SuitAI PRO es una plataforma local de inteligencia artificial diseñada para crear, investigar y producir contenido en un solo entorno.
 
 SuitAI PRO is a local AI platform built to help you create, research, and produce content from one unified workspace.
 
----
+>> Mejoras :
+>> 2.4.2026
+
+-- V2.3.2
+
+- Se agrego soporte para gemma4 , texto y imagen.
+- Se optimizo el funcionamiento del chat.
+- SE optimizo la UI del chat
+
+----------------------------------------------------------------------------------------------------------------------------
 >> Mejoras :
 >> 28.3.2026
 
