@@ -1,10 +1,21 @@
 --------------------------------------------------------------------------------------------------------------------------------------
-# SuitAI PRO v2.3.3
+# SuitAI PRO v2.3.6
 
 SuitAI PRO es una plataforma local de inteligencia artificial diseñada para crear, investigar y producir contenido en un solo entorno.
 
 SuitAI PRO is a local AI platform built to help you create, research, and produce content from one unified workspace.
 
+>> Mejoras :
+>> 20.8.2026
+
+-- V2.3.6
+
+- correccion de bug
+- optimizacion de diseño
+- cambio de motor a llama.cpp
+- actualizacion de catalogo de modelos
+- 
+-------------------------------------------------------------------------------------------------------------------------------
 >> Mejoras :
 >> 30.4.2026
 
